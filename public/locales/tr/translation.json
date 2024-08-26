@@ -1,4 +1,24 @@
 {
-    "Welcome to our website!":"Web sitemize hoş geldiniz!"
-    
+    "Welcome to our website!":"Web sitemize hoş geldiniz!",
+    "Log In":"Giriş Yap",
+    "Search Button":"Arama Butonu",
+    "Search":"Arama",
+    "Home Page":"Ana Sayfa",
+    "Movies":"Filmler",
+    "Series":"Diziler",
+    "Genres":"Türler",
+    "Action":"Aksiyon",
+    "Family":"Aile",
+    "Animation":"Animasyon",
+    "Documentary":"Belgesel",
+    "Science Fiction":"Bilim Kurgu",
+    "Drama":"Dram",
+    "Thriller":"Gerilim",
+    "Comedy":"Komedi",
+    "Adventure":"Macera",
+    "Romantic":"Romantik",
+    "Crime":"Suç",
+    "History":"Tarih",
+    "The Newest":"En Yeniler",
+    "Menu":"Menü"
 }

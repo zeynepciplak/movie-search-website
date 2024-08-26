@@ -1,20 +1,23 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import './App.css';
-import { useTranslation } from 'react-i18next';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import './i18n';
+import HomePage from './pages/HomePage/HomePage';
 
+const App: React.FC = () => {
 
-
-
-const App:React.FC=()=> {
-  const {t} = useTranslation();//Bu kısımda i18n yi kullanmak için değişkenimizi tanımladım
   return (
-
     <div className="App">
-    {t("Web sitemize hoş geldiniz!")}
-   
-  </div>
+      <Router>
+        <Navbar /> {/* Navbar bileşenini ekledik */}
+        <Routes>
+          <Route path="/" element={<HomePage />} /> {/* Ana sayfa */}
+        </Routes>
+      </Router>
+    </div>
   );
-} 
+}
 
 export default App;
+
