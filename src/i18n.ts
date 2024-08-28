@@ -18,7 +18,7 @@ i18n
   .use(LanguageDetector) // kullanıcının dilini otomatik algılamak için
   .use(initReactI18next) // react-i18next entegrasyonu
   .init({
-    lng: localStorage.getItem('i18n') || defaultLang, // Dil ayarını al
+    lng: storedLang || defaultLang, // Dil ayarını al
     supportedLngs: ['en', 'tr'], // Desteklenen diller
     fallbackLng: 'en', // Bir dil bulunamazsa kullanılacak dil
     debug: true, // Geliştirme sırasında hata ayıklama için
@@ -27,6 +27,10 @@ i18n
     },
     backend: {
       loadPath: '/locales/{{lng}}/translation.json', // Çeviri dosyalarının yolu
+    },
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage'],
     },
   });
 

@@ -1,0 +1,78 @@
+.slider-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .slider-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .slider-wrapper {
+    overflow: hidden; /* Slider alanı taşan öğeleri gizler */
+    position: relative;
+    width: 100%;
+  }
+  
+  .slider {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    scroll-behavior: smooth; /* Pürüzsüz kaydırma */
+  }
+  
+  .slide-item {
+    flex: 0 0 220px; /* Kart genişliği */
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .slide-image-container {
+    width: 100%;
+    height: 70%;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+  }
+  
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .slide-info {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .slider-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .slider-button.left {
+    left: -40px;
+  }
+  
+  .slider-button.right {
+    right: -40px;
+  }
+  

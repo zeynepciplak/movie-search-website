@@ -17,69 +17,69 @@ const HamburgerMenu: React.FC = () => {
     setOpenDrawer(open);
   };
 
-  const handleGenreClick = () => {
+  const handleGenreClick = (event: React.MouseEvent) => {
+    event.stopPropagation(); // Drawer'ın kapanmasını engeller
     setOpenGenre(!openGenre);
   };
 
   const drawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
-      <ListItem button>
-          <ListItemText primary={t('Ana Sayfa')} />
+        <ListItem button>
+          <ListItemText primary={t('hamburgerMenu.Home Page')} />
         </ListItem>
         <ListItem button>
-          <ListItemText primary={t('Filmler')} />
+          <ListItemText primary={t('hamburgerMenu.Movies')} />
         </ListItem>
         <ListItem button>
-          <ListItemText primary={t('Diziler')} />
+          <ListItemText primary={t('hamburgerMenu.Series')} />
         </ListItem>
         <ListItem button onClick={handleGenreClick}>
-          <ListItemText primary={t('Türler')} />
+          <ListItemText primary={t('hamburgerMenu.Genres')} />
           {openGenre ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={openGenre} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-          <ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Aile')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Aksiyon')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Animasyon')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Belgesel')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Bilim Kurgu')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Dram')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Gerilim')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Komedi')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Macera')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Romantik')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Suç')} />
-</ListItem>
-<ListItem button sx={{ pl: 4 }}>
-  <ListItemText primary={t('Tarih')} />
-</ListItem>
-
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Family')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Action')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Animation')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Documentary')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Science Fiction')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Drama')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Thriller')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Comedy')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Adventure')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Romantic')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Crime')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.History')} />
+            </ListItem>
           </List>
         </Collapse>
         <ListItem button>
-          <ListItemText primary={t('En Yeniler')} />
+          <ListItemText primary={t('hamburgerMenu.The Newest')} />
         </ListItem>
       </List>
     </Box>
@@ -87,7 +87,7 @@ const HamburgerMenu: React.FC = () => {
 
   return (
     <>
-      <IconButton size="large" edge="start" color="inherit" aria-label={t('Menu')} sx={{ ml: 2 }} onClick={toggleDrawer(true)}>
+      <IconButton size="large" edge="start" color="inherit" aria-label={t('hamburgerMenu.Menu')} sx={{ ml: 2 }} onClick={toggleDrawer(true)}>
         <MenuIcon />
       </IconButton>
       <Drawer anchor="left" open={openDrawer} onClose={toggleDrawer(false)}>

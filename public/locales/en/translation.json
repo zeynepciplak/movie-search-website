@@ -1,24 +1,32 @@
 {
-   "Web sitemize hoş geldiniz!":"Welcome to our website!",
-   "Giriş Yap":"Log In",
-   "Arama Butonu":"Search Button",
-   "Arama" :"Search",
-   "Ana Sayfa":"Home Page",
-   "Filmler":"Movies",
-   "Diziler":"Series",
-   "Türler":"Genres",
-   "Aksiyon":"Action",
-   "Aile":"Family",
-   "Animasyon":"Animation",
-   "Belgesel": "Documentary",
-   "Bilim Kurgu":"Science Fiction",
-   "Dram":"Drama",
-   "Gerilim":"Thriller",
-   "Komedi": "Comedy",
-   "Macera":"Adventure",
-   "Romantik": "Romantic",
-   "Suç": "Crime",
-   "Tarih":"History",
-   "En Yeniler":"The Newest",
-   "Menü":"Menu"
-}
+   "header": {
+     "Log In": "Log In",
+     "Search Button": "Search Button",
+     "Search": "Search",
+     "LOGO": "LOGO"
+   },
+   "hamburgerMenu": {
+     "Home Page": "Home Page",
+     "Movies": "Movies",
+     "Series": "Series",
+     "Genres": "Genres",
+     "Family": "Family",
+     "Action": "Action",
+     "Animation": "Animation",
+     "Documentary": "Documentary",
+     "Science Fiction": "Science Fiction",
+     "Drama": "Drama",
+     "Thriller": "Thriller",
+     "Comedy": "Comedy",
+     "Adventure": "Adventure",
+     "Romantic": "Romantic",
+     "Crime": "Crime",
+     "History": "History",
+     "The Newest": "The Newest",
+     "Menu": "Menu"
+   },
+   "slider":{
+      "Popular This Week":"Popular This Week"
+   }
+ }
+ 

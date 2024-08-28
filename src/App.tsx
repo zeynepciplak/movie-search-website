@@ -1,23 +1,20 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import './i18n';
-import HomePage from './pages/HomePage/HomePage';
+import HomePage from './pages/HomePage/HomePage'; 
+import Navbar from './components/Navbar/Navbar';  // Navbar bileşenini import ettik
+import Slider from './components/Slider/Slider';  // Slider bileşenini import ettik
 
 const App: React.FC = () => {
-
   return (
-    <div className="App">
-      <Router>
-        <Navbar /> {/* Navbar bileşenini ekledik */}
-        <Routes>
-          <Route path="/" element={<HomePage />} /> {/* Ana sayfa */}
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <Navbar />  {/* Navbar'ı burada ekliyoruz */}
+      <Slider />  {/* Slider'ı burada ekliyoruz */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* Diğer rotalarınızı buraya ekleyin */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
-

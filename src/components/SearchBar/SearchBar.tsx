@@ -56,7 +56,7 @@ const SearchBar: React.FC = () => {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder={t('Search')}
+        placeholder={t('header.Search')}
         inputProps={{ 'aria-label': t('Search') }}
       />
     </Search>
