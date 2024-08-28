@@ -10,7 +10,7 @@ interface Movie {
   poster_path: string;
   release_date: string;
 }
-
+export const fetchUpcomingTrailers = async () => {}
 export const fetchPopularMovies = async (language: string): Promise<Movie[]> => {
   try {
     const response = await axios.get(`${baseURL}/trending/movie/week`, {
@@ -24,4 +24,5 @@ export const fetchPopularMovies = async (language: string): Promise<Movie[]> => 
     console.error('API isteği başarısız:', error);
     return [];
   }
+  
 };

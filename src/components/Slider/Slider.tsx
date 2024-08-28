@@ -17,7 +17,7 @@ const Slider: React.FC = () => {
   const { t,i18n } = useTranslation();
   const [movies, setMovies] = useState<Movie[]>([]);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const cardWidth = 240; // Kartın genişliği (padding, margin ve border dahil)
+  const cardWidth = 192; // Kartın genişliği (padding, margin ve border dahil)
 
   useEffect(() => {
     const getMovies = async () => {
