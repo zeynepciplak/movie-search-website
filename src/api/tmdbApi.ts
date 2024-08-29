@@ -18,6 +18,7 @@ export interface Trailer {
   releaseDate: string;
 }
 
+
 // Popüler filmleri getiren fonksiyon
 export const fetchPopularMovies = async (language: string): Promise<Movie[]> => {
   try {
@@ -35,24 +36,37 @@ export const fetchPopularMovies = async (language: string): Promise<Movie[]> => 
 };
 
 // Yakında çıkacak filmlerin fragmanlarını getiren fonksiyon
-export const fetchUpcomingTrailers = async (): Promise<Trailer[]> => {
+export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise<Trailer[]> => {
   try {
     const response = await axios.get(`${baseURL}/movie/upcoming`, {
       params: {
         api_key: apiKey,
-        language: 'en-US', // İsteğe bağlı olarak dili burada ayarlayabilirsiniz
+        language: language,
         page: 1,
       },
     });
 
-    const movies = response.data.results;
+    let movies = response.data.results;
+    
+    if (movies.length === 0 && language !== 'en-US') { 
+      // Eğer TR dilinde içerik bulunamazsa, EN diline geri döner
+      const fallbackResponse = await axios.get(`${baseURL}/movie/upcoming`, {
+        params: {
+          api_key: apiKey,
+          language: 'en-US',
+          page: 1,
+        },
+      });
+      movies = fallbackResponse.data.results;
+    }
+
     const trailers: Trailer[] = [];
 
     for (let movie of movies) {
       const videoResponse = await axios.get(`${baseURL}/movie/${movie.id}/videos`, {
         params: {
           api_key: apiKey,
-          language: 'en-US',
+          language: language,
         },
       });
 
@@ -72,4 +86,3 @@ export const fetchUpcomingTrailers = async (): Promise<Trailer[]> => {
     return [];
   }
 };
-

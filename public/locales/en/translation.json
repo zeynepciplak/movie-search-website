@@ -27,6 +27,12 @@
    },
    "slider":{
       "Popular This Week":"Popular This Week"
+   },
+   "UpComing":{
+
+    "Release Date":"Release Date",
+   "Upcoming Movies & TV Shows":"Upcoming Movies & TV Shows"
+ 
    }
  }
  

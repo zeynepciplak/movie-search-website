@@ -27,6 +27,10 @@
     },
     "slider":{
         "Popular This Week":"Bu Hafta Popüler Olanlar"
+    },
+    "UpComing":{
+      "Release Date":"Yayın Tarihi",
+     "Upcoming Movies & TV Shows":"Gelecek Filmler & TV Programları"
     }
   }
   
