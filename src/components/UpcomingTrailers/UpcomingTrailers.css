@@ -2,10 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 20px;
+    padding: 50px;
   }
   
   .trailer-card {
-    margin: 15px;
+    margin: 30px;
   }
   

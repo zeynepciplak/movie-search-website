@@ -1,9 +1,10 @@
-// UpcomingTrailerCard.tsx
+
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
+import ReactPlayer from 'react-player';
 
 export interface TrailerCardProps {
   title: string;
@@ -13,16 +14,15 @@ export interface TrailerCardProps {
 
 const UpcomingTrailerCard: React.FC<TrailerCardProps> = ({ title, trailerUrl, releaseDate }) => {
   return (
-    <Card sx={{ maxWidth: 400, maxHeight: 500, margin: '10px' }}>
+    <Card sx={{ maxWidth: 700, maxHeight: 800, margin: '10px' }}>
       <CardActionArea>
-        <iframe
-          width="100%"
-          height="250"
-          src={trailerUrl}
-          title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <ReactPlayer
+        url={trailerUrl}
+        width="100%"
+          height="400px"
+          controls={true}
+          playing={false}
+          />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {title}

@@ -10,9 +10,10 @@ import UpcomingTrailers from './components/UpcomingTrailers/UpcomingTrailers';
 const App: React.FC = () => {
   return (
     <Router>
-      <Navbar />  {/* Navbar'ı burada ekliyoruz */}
-      <Slider />  {/* Slider'ı burada ekliyoruz */}
+      <Navbar /> 
       <UpcomingTrailers />
+      <Slider /> 
+      
       <Routes>
         <Route path="/" element={<HomePage />} />
         {/* Diğer rotalarınızı buraya ekleyin */}

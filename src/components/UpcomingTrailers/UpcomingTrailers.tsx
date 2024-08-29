@@ -1,8 +1,9 @@
-// UpcomingTrailers.tsx
+
 import React, { useEffect, useState } from 'react';
 import UpcomingTrailerCard, { TrailerCardProps } from './UpcomingTrailerCard';
-import { fetchUpcomingTrailers, Trailler}from '/src/api/tmdbApi';
 import { Box, Grid, Typography } from '@mui/material';
+import { fetchUpcomingTrailers, Trailer } from '../../api/tmdbApi';
+
 
 const UpcomingTrailers: React.FC = () => {
   const [trailers, setTrailers] = useState<Trailer[]>([]);
@@ -22,7 +23,7 @@ const UpcomingTrailers: React.FC = () => {
       </Typography>
       <Grid container spacing={2}>
         {trailers.map((trailer, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4}>
+          <Grid item key={index} xs={12} sm={6} md={6}>
             <UpcomingTrailerCard
               title={trailer.title}
               trailerUrl={trailer.trailerUrl}
