@@ -26,11 +26,14 @@
       "Menu": "Menü"
     },
     "slider":{
-        "Popular This Week":"Bu Hafta Popüler Olanlar"
+        "Popular Movies This Week":"Bu Hafta Popüler Olan Filmler",
+        "Popular TV Shows This Week":"Bu hafta Popüler Olan Diziler"
     },
     "UpComing":{
       "Release Date":"Yayın Tarihi",
-     "Upcoming Movies & TV Shows":"Gelecek Filmler & TV Programları"
+     "Upcoming Movies & TV Shows":"Gelecek Filmler & TV Programları",
+     "Movie":"Film",
+     "TV Show":"Dizi"
     }
   }
   

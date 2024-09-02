@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { fetchPopularMovies } from '../../api/tmdbApi';
 import { useTranslation } from 'react-i18next';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import SlideItem from './SlideItem';
 import './Slider.css';
-
 
 interface Movie {
   id: number;
@@ -13,19 +11,24 @@ interface Movie {
   release_date: string;
 }
 
-const Slider: React.FC = () => {
-  const { t,i18n } = useTranslation();
-  const [movies, setMovies] = useState<Movie[]>([]);
+interface SliderProps {
+  title: string;  // Slider başlığı
+  fetchData: (language: string) => Promise<Movie[]>;  // Veri çekme fonksiyonu
+}
+
+const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
+  const { i18n } = useTranslation();
+  const [items, setItems] = useState<Movie[]>([]);
   const sliderRef = useRef<HTMLDivElement>(null);
   const cardWidth = 192; // Kartın genişliği (padding, margin ve border dahil)
 
   useEffect(() => {
-    const getMovies = async () => {
-      const popularMovies = await fetchPopularMovies(i18n.language);
-      setMovies(popularMovies);
+    const getItems = async () => {
+      const data = await fetchData(i18n.language);
+      setItems(data);
     };
-    getMovies();
-  }, [i18n.language]);
+    getItems();
+  }, [fetchData, i18n.language]);
 
   const handleNext = () => {
     if (sliderRef.current) {
@@ -42,35 +45,35 @@ const Slider: React.FC = () => {
     }
   };
 
-  const handleWheel = (e: React.WheelEvent) => { //mousepad olaylarını burda yakalıyoruz
-    const scrollSpeed=1.5;//kaydırma hızı
+  const handleWheel = (e: React.WheelEvent) => {
+    const scrollSpeed = 1.5;
     if (sliderRef.current) {
       if (e.deltaX > 0) {
-        sliderRef.current.scrollLeft += cardWidth * scrollSpeed; // Eğer kullanıcı sağa kaydırıyorsa bir kart sağa kaydır
+        sliderRef.current.scrollLeft += cardWidth * scrollSpeed;
       } else if (e.deltaX < 0) {
-        sliderRef.current.scrollLeft -= cardWidth * scrollSpeed; // Eğer kullanıcı sola kaydırıyorsa bir kart sola kaydır
+        sliderRef.current.scrollLeft -= cardWidth * scrollSpeed;
       }
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {//klavye tuşları hareketlerini yakalıyoruz
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowRight') {
-      handleNext(); // Sağ ok tuşuna basıldığında bir kart sağa kaydır
+      handleNext();
     } else if (e.key === 'ArrowLeft') {
-      handlePrev(); // Sol ok tuşuna basıldığında bir kart sola kaydır
+      handlePrev();
     }
   };
 
   return (
     <div className="slider-container" onKeyDown={handleKeyDown} tabIndex={0}>
-      <h2 className="slider-title">{t('slider.Popular This Week')}</h2>
+      <h2 className="slider-title">{title}</h2>
       <button onClick={handlePrev} className="slider-button left">
         <FaChevronLeft />
       </button>
       <div className="slider-wrapper" onWheel={handleWheel}>
         <div className="slider" ref={sliderRef} style={{ display: 'flex', overflowX: 'hidden' }}>
-          {movies.map((movie) => (
-            <SlideItem key={movie.id} movie={movie} />
+          {items.map((item) => (
+            <SlideItem key={item.id} movie={item} />
           ))}
         </div>
       </div>
@@ -81,4 +84,4 @@ const Slider: React.FC = () => {
   );
 };
 
-export default Slider
+export default Slider;

@@ -1,1 +1,5 @@
-declare module 'react-slick';
+declare module "react-slick" {
+    const Slider: any;
+    export default Slider;
+  }
+  

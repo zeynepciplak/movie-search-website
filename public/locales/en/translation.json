@@ -26,13 +26,15 @@
      "Menu": "Menu"
    },
    "slider":{
-      "Popular This Week":"Popular This Week"
+      "Popular Movies This Week":"Popular Movies This Week",
+     "Popular TV Shows This Week":"Popular TV Shows This Week"
    },
    "UpComing":{
 
     "Release Date":"Release Date",
-   "Upcoming Movies & TV Shows":"Upcoming Movies & TV Shows"
- 
+   "Upcoming Movies & TV Shows":"Upcoming Movies & TV Shows",
+    "Movie":"Movie",
+    "TV Show":"TV Show"
    }
  }
  

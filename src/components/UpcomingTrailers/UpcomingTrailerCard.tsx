@@ -12,37 +12,28 @@ export interface TrailerCardProps {
   title: string;
   trailerUrl: string;
   releaseDate: string;
-  isPlaying?: boolean;
-  onPlay?: () => void;
-  onStop?: () => void;
-  onError?: () => void;
+  mediaType: 'movie' | 'tv';
+  onError: () => void;
 }
 
 const UpcomingTrailerCard: React.FC<TrailerCardProps> = ({
   title,
   trailerUrl,
   releaseDate,
-  onPlay,
-  onStop,
+  mediaType,
   onError
 }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // isPlaying durumunu yönetmek için useState kullanıyoruz
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   const handleMouseEnter = () => {
     setIsPlaying(true);
-    if (onPlay) {
-      onPlay();  // onPlay fonksiyonu varsa çağrılıyor
-    }
   };
 
   const handleMouseLeave = () => {
     setIsPlaying(false);
-    if (onStop) {
-      onStop();  // onStop fonksiyonu varsa çağrılıyor
-    }
   };
 
   // Tarihi sayılı formatta gösteriyoruz
@@ -60,7 +51,7 @@ const UpcomingTrailerCard: React.FC<TrailerCardProps> = ({
           height="400px"
           controls={true}
           playing={isPlaying}  // isPlaying durumuna göre oynatma kontrol edilir
-          onError={onError} 
+          onError={onError}  // Video oynatmada hata olursa onError çağrılır
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -68,6 +59,9 @@ const UpcomingTrailerCard: React.FC<TrailerCardProps> = ({
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {t('UpComing.Release Date')}: {formattedDate} {/* i18n ile dinamik metin */}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            {mediaType === 'movie' ? t('UpComing.Movie') : t('UpComing.TV Show')}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
+//bu bileşen her bir film veya dizi için görüntülenen ıkartı temsil eder
 interface SlideItemProps {
   movie: {
     title: string;
