@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
 
         
        <UpcomingTrailers />
-
+      
         {/* Haftanın popüler filmlerini gösteren slider */}
         <Slider title={t("slider.Popular Movies This Week")} fetchData={fetchPopularMovies} />
 
