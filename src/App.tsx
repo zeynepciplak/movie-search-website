@@ -5,17 +5,17 @@ import Navbar from './components/Navbar/Navbar';  // Navbar bileşenini import e
 import Slider from './components/Slider/Slider';
 //import UpcomingTrailerCard from './components/UpcomingTrailers/UpcomingTrailerCard';
 import UpcomingTrailers from './components/UpcomingTrailers/UpcomingTrailers';
+import DetailPage from './pages/DetailPage/DetailPage';
 
 
 const App: React.FC = () => {
   return (
     <Router>
       <Navbar /> 
-      <UpcomingTrailers />
-      
-      
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/detail" element={<DetailPage />} />
+
         {/* Diğer rotalarınızı buraya ekleyin */}
       </Routes>
     </Router>
