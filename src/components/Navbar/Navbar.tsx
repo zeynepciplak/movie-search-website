@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
     setLanguage(selectedLanguage);
     i18n.changeLanguage(selectedLanguage)
       .then(() => {
-        localStorage.setItem('i18n', selectedLanguage);  // Seçilen dili localStorage'a kaydediyoruz
+        localStorage.setItem('i18n', selectedLanguage);  // Seçilen dil localstorage a kaydediliyor
         console.log(`Dil değiştirildi: ${selectedLanguage}`);
       })
       .catch((error) => {
@@ -33,7 +33,6 @@ const Navbar: React.FC = () => {
   };
 
   const handleLoginClick = () => {
-    // Burada login işlemleri için bir fonksiyon çağırabilirsin
     console.log("Giriş Yap butonuna tıklandı!");
   };
 
@@ -49,7 +48,7 @@ const Navbar: React.FC = () => {
           <SearchBar />
           <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
             <IconButton sx={{ color: 'inherit', ml: 2 }} onClick={handleLoginClick}>
-              <AccountCircleIcon /> {/* AccountCircleIcon burada kullanıldı */}
+              <AccountCircleIcon />
               {t('header.Log In')}
             </IconButton>
             <FormControl variant="standard" sx={{ ml: 2, minWidth: 80, borderBottom: 'none' }}>
@@ -64,10 +63,10 @@ const Navbar: React.FC = () => {
                   '&::before, &::after': { borderBottom: 'none' },
                   '.MuiOutlinedInput-notchedOutline': { borderBottom: 'none', border: 'none' }, // Outlined borderları kaldırır
                   '&:hover:not(.Mui-disabled):before': {
-                    borderBottom: 'none', // Hover durumunda alt çizgi olmaması
+                    borderBottom: 'none',
                   },
                   '& .MuiInput-underline:before': {
-                    borderBottom: 'none', // Alt çizgiyi tamamen kaldırır
+                    borderBottom: 'none', 
                   },
                 }}
               >

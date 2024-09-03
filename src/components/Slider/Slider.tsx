@@ -20,7 +20,7 @@ const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
   const { i18n } = useTranslation();
   const [items, setItems] = useState<Movie[]>([]);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const cardWidth = 192; // Kartın genişliği (padding, margin ve border dahil)
+  const cardWidth = 192; // Kartın genişliği
 
   useEffect(() => {
     const getItems = async () => {
