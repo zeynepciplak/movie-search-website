@@ -53,7 +53,7 @@ const SearchBar: React.FC = () => {
   return (
     <Search>
       <SearchIconWrapper>
-        <SearchIcon className='ilk' />
+        <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
         placeholder={t('header.Search')}
