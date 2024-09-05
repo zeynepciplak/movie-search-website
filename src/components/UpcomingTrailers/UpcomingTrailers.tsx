@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { fetchUpcomingTrailers, Trailer } from '../../api/tmdbApi';
 import { useTranslation } from 'react-i18next';
-import CircularProgressWithLabel from '../Loading/CircularProgressWithLabel'; // Doğru yolu kontrol edin
+import CircularProgressWithLabel from '../Loading/CircularProgressWithLabel';
 
 const UpcomingTrailers: React.FC = () => {
   const [trailers, setTrailers] = useState<Trailer[]>([]);
@@ -23,7 +23,7 @@ const UpcomingTrailers: React.FC = () => {
         setLoading(true);
         const upcomingTrailers = await fetchUpcomingTrailers(i18n.language);
         
-        // Simulated progress
+      
         let simulatedProgress = 0;
         const interval = setInterval(() => {
           simulatedProgress += 10;
@@ -73,7 +73,7 @@ const UpcomingTrailers: React.FC = () => {
             zIndex: 10 
           }}
         >
-          <CircularProgressWithLabel value={progress} size={80} /> {/* CircularProgressWithLabel prop'larını doğru geçin */}
+          <CircularProgressWithLabel value={progress} size={80} /> 
         </Box>
       ) : (
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

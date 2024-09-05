@@ -25,7 +25,7 @@ const UpcomingTrailerCard: React.FC<TrailerCardProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  // isPlaying durumunu yönetmek için useState kullanıyoruz
+  
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   const handleMouseEnter = () => {
@@ -36,7 +36,7 @@ const UpcomingTrailerCard: React.FC<TrailerCardProps> = ({
     setIsPlaying(false);
   };
 
-  // Tarihi sayılı formatta gösteriyoruz
+
   const formattedDate = format(new Date(releaseDate), 'dd/MM/yyyy', { locale: tr });
 
   return (
