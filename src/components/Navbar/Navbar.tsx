@@ -6,6 +6,7 @@ import { SelectChangeEvent } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import HomeButton from '../Icon/HomeButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import  '../../styles/global.css';
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();  // Çeviri fonksiyonunu alıyoruz
@@ -45,7 +46,10 @@ const Navbar: React.FC = () => {
             {t('header.LOGO')}
           </Typography>
           <HomeButton />
+          <div className='appBar'>
+
           <HamburgerMenu />
+          </div>
           <SearchBar />
           <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
             <IconButton sx={{ color: 'inherit', ml: 2 }} onClick={handleLoginClick}>

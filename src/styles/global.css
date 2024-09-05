@@ -1,8 +1,28 @@
 
   :root {
-    --bg-color: #1C1C1C; /* Arka Plan Rengi */
+    --bg-color: #FFFFFF; /* Arka Plan Rengi */
     --highlight-color: #2e3134; /* Vurgu Rengi */
     --secondary-color: #3A3A3A; /* Ara Renk */
     --detail-color: #FFD700; /* Detay Rengi */
 }
+.hamburger{
+  background-color: #2e3134;
+}
+.hamburgeer{
+  background-color:#2e3134;
+  box-shadow: none;
+}
+.css-1uyu4lo-MuiPaper-root-MuiAppBar-root{
+  box-shadow: none  !important;
+}
+.slick-arrow{
+visibility: hidden;
 
+} 
+.slick-prev{
+visibility: hidden;
+
+}
+.MuiTypography-h4{
+  margin-left: 0.5rem !important;
+}

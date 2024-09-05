@@ -58,10 +58,11 @@ const UpcomingTrailers: React.FC = () => {
 
   return (
     <Box sx={{ padding: '20px', position: 'relative', minHeight: '400px' }}>
+      
       <Typography variant="h4" gutterBottom>
         Upcoming Movies & TV Shows
       </Typography>
-
+  
       {loading ? (
         <Box 
           sx={{ 
