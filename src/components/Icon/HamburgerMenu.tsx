@@ -11,7 +11,7 @@ const HamburgerMenu: React.FC = () => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [openGenre, setOpenGenre] = useState(false);
-  const navigate=useNavigate();
+  const navigate= useNavigate();
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

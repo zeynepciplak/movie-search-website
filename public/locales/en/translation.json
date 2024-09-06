@@ -35,6 +35,10 @@
    "Upcoming Movies & TV Shows":"Upcoming Movies & TV Shows",
     "Movie":"Movie",
     "TV Show":"TV Show"
+   },
+   "imdbtop100movies":{
+    "Load More":"Load More",
+    "Loading":"Loading"
    }
  }
  

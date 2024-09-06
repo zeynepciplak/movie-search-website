@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 const apiKey = '99cd5d08a91b7c3308edfd32c078eb7a';
-const imdbApiKey = '575c43922amsh9e6e3bca6f3f84ap13a164jsndf92b4451fe6';
 const baseURL = 'https://api.themoviedb.org/3';
-const imdbBaseURL = 'https://imdb-top-100-movies.p.rapidapi.com';
+
 
 // Movie arayüzü haftalık popüler olan
 export interface Movie {
@@ -47,13 +46,13 @@ export const fetchPopularMovies = async (language: string): Promise<Movie[]> => 
   }
 };
 
-// IMDb Top 100 filmleri getiren fonksiyon
-export const fetchIMDbTop100Movies = async (): Promise<Movie[]> => {
+// Top 100 filmleri getiren fonksiyon
+export const fetchIMDbTop100Movies = async (language:string): Promise<Movie[]> => {
   try {
-    const response = await axios.get(imdbBaseURL, {
+    const response = await axios.get(baseURL, {
       headers: {
-        'x-rapidapi-host': 'imdb-top-100-movies.p.rapidapi.com',
-        'x-rapidapi-key': imdbApiKey,
+        api_key: apiKey,
+        language:language,
       },
     });
     const movies: Movie[] = response.data.map((movie: any) => ({

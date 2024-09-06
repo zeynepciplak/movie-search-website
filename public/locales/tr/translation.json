@@ -34,6 +34,10 @@
      "Upcoming Movies & TV Shows":"Gelecek Filmler & TV Programları",
      "Movie":"Film",
      "TV Show":"Dizi"
-    }
+    },
+    "imdbtop100movies":{
+    "Load More":"Daha Fazla Yükle",
+    "Loading":"Yükleniyor"
+   }
   }
   
