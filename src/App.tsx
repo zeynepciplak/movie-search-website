@@ -1,10 +1,12 @@
+// App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import Navbar from './components/Navbar/Navbar'; // Navbar bileşenini import ettik
 import DetailPage from './pages/DetailPage/DetailPage';
+import ImdbTop100Movies from './pages/ImdbTop100Movies'; // IMDb bileşenini import et
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CssBaseline} from '@mui/material';
+import { CssBaseline } from '@mui/material';
 
 // Tema oluşturma
 const theme = createTheme({
@@ -50,9 +52,10 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-            <Navbar /> 
+        <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/imdb-top-100-movies" element={<ImdbTop100Movies />} /> {/* IMDb Top 100 Movies rotası */}
           <Route path="/detail" element={<DetailPage />} />
         </Routes>
       </Router>

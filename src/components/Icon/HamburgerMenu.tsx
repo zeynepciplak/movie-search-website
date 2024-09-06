@@ -4,12 +4,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import  '../../styles/global.css';
 
 const HamburgerMenu: React.FC = () => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [openGenre, setOpenGenre] = useState(false);
+  const navigate=useNavigate();
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -23,6 +25,10 @@ const HamburgerMenu: React.FC = () => {
     setOpenGenre(!openGenre);
   };
 
+  const handleIMDBTop100Click=()=>{
+    handleMenuClose();
+    navigate('/imdb-top-100-movies')
+  }
   return (
     <Box >
       <AppBar className='appBar' position="static">
@@ -96,6 +102,9 @@ const HamburgerMenu: React.FC = () => {
         </Collapse>
         <MenuItem onClick={handleMenuClose}>
           <ListItemText primary={t('hamburgerMenu.The Newest')} />
+        </MenuItem>
+        <MenuItem onClick={handleIMDBTop100Click}>
+        <ListItemText primary={t('IMDB Top 100 Movies')}/>
         </MenuItem>
       </Menu>
     </Box>
