@@ -37,7 +37,12 @@
     },
     "imdbtop100movies":{
     "Load More":"Daha Fazla Yükle",
-    "Loading":"Yükleniyor"
+    "Loading":"Yükleniyor",
+    "Year":"Yıl",
+    "Duration":"Süre",
+    "Actors":"Oyuncular",
+    "Genre":"Tür",
+    "Subject":"Konu"
    }
   }
   

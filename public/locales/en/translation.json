@@ -38,7 +38,12 @@
    },
    "imdbtop100movies":{
     "Load More":"Load More",
-    "Loading":"Loading"
+    "Loading":"Loading",
+    "Year":"Year",
+    "Duration":"Duration",
+    "Actors":"Actors",
+    "Genre":"Genre",
+    "Subject":"Subject"
    }
  }
  

@@ -12,7 +12,7 @@ import { CssBaseline } from '@mui/material';
 const theme = createTheme({
   palette: {
     background: {
-      default: '#969696',  // Sayfa genel arka plan rengi
+      default: '#2e3134',  // Sayfa genel arka plan rengi
       paper: '#2e3134',    // Kartlar ve menüler gibi "kağıt" bileşenler için
     },
     primary: {
