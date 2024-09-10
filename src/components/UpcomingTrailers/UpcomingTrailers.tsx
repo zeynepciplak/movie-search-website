@@ -56,6 +56,11 @@ const UpcomingTrailers: React.FC = () => {
     setTrailers(prevTrailers => prevTrailers.filter((_, i) => i !== index));
   };
 
+  useEffect(()=> {
+console.log("0aaaa",trailers);
+
+  },[trailers])
+
   return (
     <Box sx={{ padding: '20px', position: 'relative', minHeight: '400px' }}>
       
