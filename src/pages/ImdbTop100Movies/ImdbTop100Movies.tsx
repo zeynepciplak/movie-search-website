@@ -64,12 +64,12 @@ const ImdbTop100Movies: React.FC = () => {
         )}
       </Box>
 
-      {/* Artists section */}
-      <Box flex="0.3" padding="16px">
+     
+      <Box flex="0.5" padding="28px" display="flex"flexDirection="column" alignItems="center">
         <Typography variant="h5" onClick={handleMostPopularArtistsClick} style={{ cursor: 'pointer' }}>
           {t("Most Popular Artists")}
         </Typography>
-        <GroupAvatars artists={artists} /> {/* Showing top 5 artists */}
+        <GroupAvatars artists={artists} /> 
       </Box>
     </Box>
   );

@@ -3,6 +3,8 @@ import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import { useNavigate } from 'react-router-dom';
 
+
+
 interface Artist {
   id: number;
   name: string;
@@ -28,7 +30,7 @@ const GroupAvatars: React.FC<GroupAvatarsProps> = ({ artists }) => {
           alt={artist.name}
           src={artist.imageSrc}
           onClick={() => handleArtistClick(artist.id)}
-          style={{ cursor: 'pointer' }} // Avatar is clickable
+          style={{ cursor: 'pointer',width:70,height:70 }} // Avatar is clickable
         />
       ))}
     </AvatarGroup>

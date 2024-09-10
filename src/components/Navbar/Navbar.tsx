@@ -8,6 +8,7 @@ import HomeButton from '../Icon/HomeButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import  '../../styles/global.css';
 
+
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();  // Çeviri fonksiyonunu alıyoruz
   const [language, setLanguage] = useState<string>(localStorage.getItem('i18n') || i18n.language || 'en-US');
@@ -51,9 +52,8 @@ const Navbar: React.FC = () => {
           </div>
           <SearchBar />
           <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
-            <IconButton sx={{ color: 'inherit', ml: 2 }} onClick={handleLoginClick}>
+            <IconButton  sx={{ color: 'inherit', ml: 2 }} onClick={handleLoginClick}>
               <AccountCircleIcon />
-              {t('header.Log In')}
             </IconButton>
             <FormControl variant="standard" sx={{ ml: 2, minWidth: 80, borderBottom: 'none' }}>
               <Select
