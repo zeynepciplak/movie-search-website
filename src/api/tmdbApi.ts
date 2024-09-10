@@ -87,7 +87,7 @@ export const fetchPopularTVShows = async (language: string): Promise<Movie[]> =>
       release_date: show.first_air_date,
       vote_average: show.vote_average, // IMDb puanı (TMDB üzerinden)
     }));
-
+    
     return tvShows;
   } catch (error) {
     console.error('API isteği başarısız:', error);
@@ -95,6 +95,25 @@ export const fetchPopularTVShows = async (language: string): Promise<Movie[]> =>
   }
 };
 
+export const fetchPopularArtists =async (language:string='en-US')=>{
+  try{
+    const response=await axios.get(`${baseURL}/person/popular`, {
+      params:{
+        api_key:apiKey,
+        language:language,
+      },
+    });
+    const artists=response.data.results.map((artist:any)=>({
+      id:artist.id,
+      name:artist.name,
+      imageSrc:`https://image.tmdb.org/t/p/w500${artist.profile_path}`,
+    }));
+    return artists;
+  }catch(error){
+    console.error('sanatçıları çekerken hata oluştu',error);
+    return[];
+  }
+}; 
 // Yakında çıkacak film ve dizilerin fragmanlarını getiren fonksiyon
 export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise<Trailer[]> => {
   try {

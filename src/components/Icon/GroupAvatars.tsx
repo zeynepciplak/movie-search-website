@@ -1,22 +1,38 @@
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
+import { useNavigate } from 'react-router-dom';
 
-export interface Artist {
-    name:string;
-    imageSrc:string;
+interface Artist {
+  id: number;
+  name: string;
+  imageSrc: string;
 }
-interface GroupAvatarProps{
-    artists:Artist[];
+
+interface GroupAvatarsProps {
+  artists: Artist[]; 
 }
-const GroupAvatars : React.FC<GroupAvatarProps>=({artists})=> {
-    return(
-        <AvatarGroup max={4}>
-            {artists.map((artists,index)=>(
-                <Avatar key ={index} alt={artists.name} src={artists.imageSrc}/>
-            ))}
-            </AvatarGroup>
-       
-    );
+
+const GroupAvatars: React.FC<GroupAvatarsProps> = ({ artists }) => {
+  const navigate = useNavigate();
+
+  const handleArtistClick = (artistId: number) => {
+    navigate(`/artist/${artistId}`); // Navigate to artist detail page on click
+  };
+
+  return (
+    <AvatarGroup max={5}>
+      {artists.map((artist) => (
+        <Avatar
+          key={artist.id}
+          alt={artist.name}
+          src={artist.imageSrc}
+          onClick={() => handleArtistClick(artist.id)}
+          style={{ cursor: 'pointer' }} // Avatar is clickable
+        />
+      ))}
+    </AvatarGroup>
+  );
 };
+
 export default GroupAvatars;

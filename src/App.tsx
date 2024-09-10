@@ -7,7 +7,8 @@ import DetailPage from './pages/DetailPage/DetailPage';
 import ImdbTop100Movies from './pages/ImdbTop100Movies/ImdbTop100Movies'; // IMDb bileşenini import et
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-
+import ArtistDetails from './pages/MostPopularArtists/MostPopularArtists';
+import MostPopularArtists from './pages/MostPopularArtists/MostPopularArtists';
 // Tema oluşturma
 const theme = createTheme({
   palette: {
@@ -56,6 +57,8 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/imdb-top-100-movies" element={<ImdbTop100Movies />} /> {/* IMDb Top 100 Movies rotası */}
+          <Route path="/most-popular-artists" element={<MostPopularArtists />} />
+          <Route path="/artist/:artistId" element={<ArtistDetails />} />
           <Route path="/detail" element={<DetailPage />} />
         </Routes>
       </Router>
