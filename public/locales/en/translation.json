@@ -45,7 +45,24 @@
     "Genre":"Genre",
     "Subject":"Subject",
     "Top 100 Movies":"Top 100 Movies",
-    "Most Popular Artists":"Most Popular Artists"
+    "Most Popular Artists":"Most Popular Artists",
+    "Artists":"Artists",
+    "hours":"hours",
+    "minutes":"minutes",
+    "Score":"Score",
+    "Release Date":"Release Date",
+    "Family": "Family",
+    "Action": "Action",
+    "Animation": "Animation",
+    "Documentary": "Documentary",
+    "Science Fiction": "Science Fiction",
+    "Drama": "Drama",
+    "Thriller": "Thriller",
+    "Comedy": "Comedy",
+    "Adventure": "Adventure",
+    "Romantic": "Romantic",
+    "Crime": "Crime",
+    "History": "History"
    }
  }
  

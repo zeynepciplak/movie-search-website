@@ -1,114 +1,102 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import { Movie, MovieDetails } from '../api/tmdbApi';
 import { useTranslation } from 'react-i18next';
-
+// Poster görseli için stil
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
   maxWidth: '100%',
   maxHeight: '100%',
-  height: '200px', 
-  width: '150px',  
+  height: '250px',
+  width: '200px',
 });
 
+// Kartın dış yapısı
 const StyledPaper = styled(Paper)({
   padding: '16px',
   margin: '16px auto',
-  width: '85%', 
-  maxWidth: '700px', 
-  height: 'auto', // Kartın yüksekliği içerik kadar olsun
+  width: '85%',
+  maxWidth: '700px',
   backgroundColor: '#2e3134',
   color: '#fff',
   display: 'flex',
-  flexDirection: 'row', 
+  flexDirection: 'row',
   position: 'relative',
-  border: 'none', 
-  borderRadius: '0', 
+  border: 'none',
+  borderRadius: '0',
   boxShadow: 'none',
-  marginLeft: '50px'
+  marginLeft: '50px',
 });
 
-const IndexTypography = styled(Typography)({
-  color: 'rgba(255, 255, 255, 0.2)',
-  position: 'absolute',
-  left: 'calc(150px - 120px)', // Poster genişliği - offset ile ayarlıyoruz
-  top: '0',
-  height: '100%', // Kartın tamamını kapsayacak şekilde
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontSize: 'clamp(60px, 20vw, 150px)', // Dinamik font boyutu
-  fontWeight: 'bold',
-  overflow: 'hidden',
-});
-
-// Props olarak movie ve index (sıra numarası) alıyoruz
+// Movie arayüzü
 export interface MovieGridItemProps {
-  movie: {
-    title: string;
-    poster_path: string;
-    release_date: string;
-    vote_average: number;
-    runtime: number;
-    actors: string;
-    genre: string;
-    plot: string;
-  };
-  index: number; // Sıra numarası
+  movie: Movie; // Movie tipinde bir prop bekleniyor
+  index: number; // Index numarası da props olarak bekleniyor
+  fetchMovieDetails: () => void; // Film detaylarını fetch etme fonksiyonu
+  movieDetails: MovieDetails | null; // Film detayları
 }
 
-const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index }) => {
+// Bileşen
+const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieDetails, movieDetails }) => {
   const { t } = useTranslation();
-  // Poster URL'sini oluşturuyoruz
-  const posterURL = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : '/path/to/placeholder/image.jpg'; // Eğer poster yoksa placeholder görseli
+  useEffect(() => {
+    fetchMovieDetails();
+  }, [fetchMovieDetails]);
 
+
+const formatRuntime=(runtime:number)=>{
+  const hours=Math.floor(runtime/60);
+  const minutes=runtime%60;
+  const hoursText = t('imdbtop100movies.hours');
+  const minutesText = t('imdbtop100movies.minutes');
+  return hours>0?`${hours} ${hoursText} ${minutes} ${minutesText}`:`${minutes} ${minutesText}`;
+};
   return (
-    <StyledPaper>
-      <Grid container spacing={2} alignItems="center" justifyContent="flex-start"> {/* Sol tarafa hizalıyoruz */}
-        {/* Sıralama numarası */}
-        <Grid item xs={1} >
-          <IndexTypography variant="h1">
-            {index + 1}
-          </IndexTypography>
-        </Grid>
-
+    <StyledPaper key={movie.id}>
+      <Grid container spacing={2} alignItems="center" justifyContent="flex-start">
         {/* Film posteri */}
-        <Grid item xs={3}>
+        <Grid item xs={3} style={{ zIndex: 2, position: 'relative' }}>
           <ButtonBase sx={{ width: '100%', height: 'auto' }}>
-            <Img alt={movie.title} src={posterURL} />
+            <Img alt={movie.title} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
           </ButtonBase>
         </Grid>
 
         {/* Film bilgileri */}
-        <Grid item xs={8} sm container direction="column" spacing={2} >
+        <Grid item xs={8} sm container direction="column" spacing={2}>
           <Grid item xs>
             <Typography gutterBottom variant="h6">
-              {movie.title} {/* Filmin adı */}
+              {index + 1}. {movie.title}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              {t('imdbtop100movies.Year')}: {new Date(movie.release_date).getFullYear()} {/* Filmin yılı */}
+             {t('imdbtop100movies.Release Date')}: {new Date(movie.release_date).getFullYear()}
             </Typography>
             <Typography variant="body2" gutterBottom>
-              {t('imdbtop100movies.Duration')}: {movie.runtime} dakika {/* Filmin süresi */}
+              {t('imdbtop100movies.Score')}: {movie.vote_average}
             </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t('imdbtop100movies.Actors')}: {movie.actors} {/* Filmin oyuncuları */}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t('imdbtop100movies.Genre')}:{movie.genre} {/* Filmin türü */}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              {t('imdbtop100movies.Subject')}: {movie.plot} {/* Filmin kısa konusu */}
-            </Typography>
+            {movieDetails && (
+              <>
+                <Typography variant="body2" gutterBottom>
+                  {t('imdbtop100movies.Genre')}: {movieDetails.genres?.map((genre) => genre.name).join(', ') || 'Bilinmiyor'}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                {t('imdbtop100movies.Artists')}: {movieDetails.cast?.map((actor) => actor.name).join(', ') || 'Bilinmiyor'}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                {t('imdbtop100movies.Subject')}: {movieDetails.overview || 'Bilinmiyor'}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                {t('imdbtop100movies.Duration')}: {movieDetails.runtime ? formatRuntime(movieDetails.runtime): 'Bilinmiyor'}
+                </Typography>
+              </>
+            )}
           </Grid>
         </Grid>
-      </Grid >
+      </Grid>
     </StyledPaper>
   );
 };

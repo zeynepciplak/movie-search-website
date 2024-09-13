@@ -42,7 +42,24 @@
     "Duration":"Süre",
     "Actors":"Oyuncular",
     "Genre":"Tür",
-    "Subject":"Konu"
-   }
+    "Subject":"Konu",
+    "Artists":"Sanatçılar",
+    "hours":"saat",
+    "minutes":"dakika",
+    "Score":"Puan",
+    "Release Date":"Yayın Tarihi",
+    "Family": "Aile",
+      "Action": "Aksiyon",
+      "Animation": "Animasyon",
+      "Documentary": "Belgesel",
+      "Science Fiction": "Bilim Kurgu",
+      "Drama": "Dram",
+      "Thriller": "Gerilim",
+      "Comedy": "Komedi",
+      "Adventure": "Macera",
+      "Romantic": "Romantik",
+      "Crime": "Suç",
+      "History": "Tarih"
+    }
   }
   
