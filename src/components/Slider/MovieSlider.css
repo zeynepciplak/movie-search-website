@@ -1,0 +1,22 @@
+.slider-container {
+    padding: 20px;
+    background-color: #2c2c2c;
+  }
+  
+  .slick-slide {
+    padding: 10px;
+  }
+  
+  .MovieCard {
+    width: 250px;
+    height: 150px; /* Kısa ve geniş kart */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .MovieCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 192, 255, 0.6); /* Buz mavi hover efekti */
+  }
+  

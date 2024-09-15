@@ -1,40 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import CardMedia from '@mui/material/CardMedia';
 
-export interface MovieCardProps {
-  title: string;           // Film veya dizinin başlığı
-  trailerUrl: string;      // YouTube trailer URL'si
-  releaseDate: string;     // Yayınlanma tarihi
-  mediaType: 'movie' | 'tv'; // Filmin mi dizinin mi olduğunu belirtir
-  onError?: () => void;     // Hata durumunda ne yapılacağını belirtir
-  onClick: () => void;
+// Props tanımlamaları
+interface MovieCardProps {
+  title: string;
+  trailerUrl: string;
+  posterUrl: string;
 }
 
-// MovieCard bileşeni, Trailer bilgilerini kart şeklinde gösterir
-const MovieCard: React.FC<MovieCardProps> = ({ title, trailerUrl, releaseDate, mediaType, onError }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ title, trailerUrl, posterUrl }) => {
+  const [open, setOpen] = useState(false); // Modal için state
+
+  // Modal'ı açma ve kapatma işlemleri
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Card sx={{ maxWidth: 200, cursor: 'pointer' }} onClick={onError}>
-      <CardMedia
-        component="img"
-        height="300"
-        image={`https://image.tmdb.org/t/p/w500${mediaType === 'movie' ? 'movie_poster_path' : 'tv_poster_path'}`} // Filmin ya da dizinin posterini ekleriz
-        alt={title}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Release Date: {releaseDate}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Type: {mediaType === 'movie' ? 'Film' : 'Dizi'}
-        </Typography>
-      </CardContent>
-    </Card>
+    <>
+      <Card sx={{ minWidth: 275, cursor: 'pointer', '&:hover': { transform: 'scale(1.05)', transition: '0.3s' } }} onClick={handleClickOpen}>
+        {/* Poster */}
+        <CardMedia
+          component="img"
+          height="200"
+          image={posterUrl}
+          alt={title}
+        />
+        <CardContent>
+          <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
+            Movie of the Day
+          </Typography>
+          <Typography variant="h5" component="div">
+            {title}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" onClick={handleClickOpen}>
+            Watch Trailer
+          </Button>
+        </CardActions>
+      </Card>
+
+      {/* Trailer Modal */}
+      <Dialog open={open} onClose={handleClose} maxWidth="lg" fullWidth>
+        <DialogTitle>{title} - Trailer</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Enjoy the trailer of {title}!
+          </DialogContentText>
+          {/* Trailer Embed */}
+          <iframe
+            width="100%"
+            height="400"
+            src={trailerUrl}
+            title={title}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 };
 
