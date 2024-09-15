@@ -6,6 +6,7 @@ import GroupAvatars from '../../components/Icon/GroupAvatars'; // Avatar bileşe
 import { useTranslation } from 'react-i18next'; // Dil desteği için
 import { fetchIMDbTop100Movies, fetchPopularArtists, fetchMovieDetails, Movie, MovieDetails } from '../../api/tmdbApi'; // API fonksiyonları
 import { useNavigate } from 'react-router-dom';
+import MovieDetailModal from '../../Modal/MovieDetailModal'; // Modal bileşenini import et
 
 const ImdbTop100Movies: React.FC = () => {
   const { i18n, t } = useTranslation(); // Mevcut dili ve çeviriyi al
@@ -14,8 +15,10 @@ const ImdbTop100Movies: React.FC = () => {
   const [page, setPage] = useState<number>(1); // Sayfa numarası
   const [hasMore, setHasMore] = useState<boolean>(true); // Daha fazla veri olup olmadığını kontrol etmek için
   const [artists, setArtists] = useState<any[]>([]); // Sanatçılar için state
+  const [openModal, setOpenModal] = useState<boolean>(false); // Modal aç/kapa
+  const [selectedMovie, setSelectedMovie] = useState<MovieDetails | null>(null); // Seçili film detayları
   const navigate = useNavigate();
-
+  
   const currentLanguage = i18n.language; // Mevcut dil (tr-TR veya en-US gibi)
 
   // Filmleri API'den çekiyoruz
@@ -50,6 +53,19 @@ const ImdbTop100Movies: React.FC = () => {
         [movieId]: details,
       }));
     }
+    return movieDetailsList[movieId]; // Detayları döndür
+  };
+
+  // Modalı açmak için seçili filmi alıyoruz
+  const handleOpenModal = async (movieId: number) => {
+    const movieDetails = await getMovieDetails(movieId);
+    setSelectedMovie(movieDetails); // Seçilen filmi state'e atıyoruz
+    setOpenModal(true); // Modalı aç
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false); // Modalı kapat
+    setSelectedMovie(null); // Seçili filmi temizle
   };
 
   // Sanatçıları çekiyoruz
@@ -78,14 +94,14 @@ const ImdbTop100Movies: React.FC = () => {
   return (
     <Box display="flex" justifyContent="space-between">
       <Box flex="1">
-        <h1>{t('imdbtop100movies.Top 100 Movies')}</h1>
+        <h1 className='h1'>{t('imdbtop100movies.Top 100 Movies')}</h1>
         <Grid container spacing={2}>
           {movies.map((movie, index) => (
             <MovieGridItem
               key={movie.id}
               movie={movie}
               index={index}
-              fetchMovieDetails={() => getMovieDetails(movie.id)}
+              fetchMovieDetails={() => handleOpenModal(movie.id)} // Filme tıklanınca modal aç
               movieDetails={movieDetailsList[movie.id]}
             />
           ))}
@@ -108,6 +124,15 @@ const ImdbTop100Movies: React.FC = () => {
         </Typography>
         <GroupAvatars artists={artists} />
       </Box>
+
+      {/* Modal Bileşeni */}
+      {selectedMovie && (
+        <MovieDetailModal
+          open={openModal}
+          onClose={handleCloseModal}
+          movie={selectedMovie} // Seçilen film detayları modalda gösterilecek
+        />
+      )}
     </Box>
   );
 };

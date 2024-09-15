@@ -26,6 +26,13 @@ const theme = createTheme({
       primary: '#FFFFFF',  // Varsayılan beyaz yazı rengi
     },
   },
+  typography: {
+    body2: {
+      fontSize: '14px', // body2 için varsayılan font boyutu 12px olacak
+      textAlign: 'left', // Genel olarak sola hizalayacak
+      color:'#6d6d6d',
+    },
+  },
   components: {
     MuiAppBar: {
       styleOverrides: {

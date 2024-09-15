@@ -1,0 +1,24 @@
+/* Modalın arka plan rengi */
+.custom-modal {
+    background-color: #5a5a5a;
+    color: #fff ;
+    padding: 20px;
+    border-radius: 8px;
+    width:70%;
+    max-width:800px;
+    height:auto;
+
+  }
+  
+  /* Modal dışındaki overlay rengi */
+  .react-responsive-modal-overlay {
+    background-color: rgba(0, 0, 0, 0) ;
+  }
+  .modal-poster{
+    width:120px;
+    height:150px;
+    border-radius:8px;
+  }
+  .custom-modal .react-responsive-modal-modal{
+    padding:20px;
+  }

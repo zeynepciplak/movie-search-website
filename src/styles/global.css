@@ -1,6 +1,5 @@
 
   :root {
-    --bg-color: #544242; /* Arka Plan Rengi */
     --highlight-color: #2e3134; /* Vurgu Rengi */
     --secondary-color: #3A3A3A; /* Ara Renk */
     --detail-color: #FFD700; /* Detay Rengi */
@@ -25,4 +24,7 @@ visibility: hidden;
 }
 .MuiTypography-h4{
   margin-left: 0.5rem !important;
+}
+.h1{
+  margin-left: 20px; /* İstediğiniz kadar sağa alın */
 }
