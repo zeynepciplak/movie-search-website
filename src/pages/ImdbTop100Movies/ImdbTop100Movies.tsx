@@ -107,6 +107,7 @@ const ImdbTop100Movies: React.FC = () => {
   };
 
   return (
+    <>
     <Box display="flex" justifyContent="space-between">
       <Box flex="1" >
         <h1 className='h1'>{t('imdbtop100movies.Top 100 Movies')}</h1>
@@ -121,17 +122,8 @@ const ImdbTop100Movies: React.FC = () => {
             />
           ))}
         </Grid>
-       
-       
-        {hasMore && (
-          <StyledButton
-            variant="contained"
-            color="secondary"
-            onClick={() => setPage((prevPage) => prevPage + 1)} // Sayfa numarasını artır
-          >
-            {t('imdbtop100movies.Load More')}
-          </StyledButton>
-        )}
+
+      
      </Box>
 
       <Box flex="0.5" padding="28px" display="flex" flexDirection="column" alignItems="center">
@@ -150,6 +142,21 @@ const ImdbTop100Movies: React.FC = () => {
         />
       )}
     </Box>
+           
+           <Box style={{display:"flex" , justifyContent:"center" , marginLeft:"16rem", marginTop:"2rem" , marginBottom:"2rem"}}
+ 
+           >
+                   {hasMore && (
+                       <StyledButton
+                         variant="contained"
+                         color="secondary"
+                       onClick={() => setPage((prevPage) => prevPage + 1)} // Sayfa numarasını artır
+                     >
+                       {t('imdbtop100movies.Load More')}
+                     </StyledButton>
+                 )}
+                </Box>
+                </>
   );
 };
 

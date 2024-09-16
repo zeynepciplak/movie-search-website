@@ -22,3 +22,7 @@
   .custom-modal .react-responsive-modal-modal{
     padding:20px;
   }
+
+  .css-mhc70k-MuiGrid-root{
+    flex-direction:column-reverse
+  }

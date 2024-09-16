@@ -79,8 +79,8 @@ const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieD
 
   return (
     <>
-      <StyledPaper key={movie.id}>
-        <Grid container spacing={2} alignItems="center" justifyContent="flex-start">
+      <StyledPaper  key={movie.id}>
+        <Grid  container spacing={2} alignItems="center" justifyContent="flex-start">
           {/* Film posteri */}
           <Grid item xs={3} style={{ zIndex: 2, position: 'relative' }}>
             <ButtonBase sx={{ width: '100%', height: 'auto' }}>

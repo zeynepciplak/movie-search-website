@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import MovieCard from './MovieCard';
 import { Trailer, fetchUpcomingTrailers } from '../../api/tmdbApi';
+import backGroundImage from "../../assets/duvarkagıdı.jpg";
 
 const sliderSettings = {
   dots: true,
@@ -28,16 +29,26 @@ const MoviesWithModal: React.FC = () => {
   return (
     <div style={{ padding: '20px' }}>
       <h2>Upcoming Trailers</h2>
-      <Slider {...sliderSettings}>
-        {trailers.map((trailer) => (
-          <MovieCard
-            key={trailer.title}
-            title={trailer.title}
-            trailerUrl={trailer.trailerUrl}
-            videoId={trailer.trailerUrl.split('v=')[1]} // YouTube video ID'si
-          />
-        ))}
-      </Slider>
+      <div
+        style={{
+          backgroundImage: `url(${backGroundImage})`, // Arkaplan resmi burada ekleniyor
+          backgroundSize: 'cover', // Resmin kapsaması için
+          backgroundPosition: 'center', // Resmin ortalanması için
+          padding: '20px',
+          borderRadius:"25px"
+        }}
+      >
+        <Slider {...sliderSettings}>
+          {trailers.map((trailer) => (
+            <MovieCard
+              key={trailer.title}
+              title={trailer.title}
+              trailerUrl={trailer.trailerUrl}
+              videoId={trailer.trailerUrl.split('v=')[1]} // YouTube video ID'si
+            />
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
