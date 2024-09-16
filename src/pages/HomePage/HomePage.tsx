@@ -1,6 +1,6 @@
 
 import Slider from '../../components/Slider/Slider';
-import { fetchPopularTVShows ,fetchPopularMovies, fetchUpcomingTrailers} from '../../api/tmdbApi';
+import { fetchPopularTVShows ,fetchPopularMovies} from '../../api/tmdbApi';
 import { useTranslation } from 'react-i18next';
 
 import { ScopedCssBaseline } from '@mui/material';

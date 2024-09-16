@@ -19,6 +19,7 @@ export interface Trailer {
   releaseDate: string;
   mediaType: 'movie' | 'tv';
   poster_path: string;
+  videoId:string;
 }
 
 // Film Detayları
@@ -236,6 +237,7 @@ export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise
         trailers.push({
           title: item.title || item.name,
           trailerUrl: `https://www.youtube.com/watch?v=${trailer.key}`,
+          videoId:trailer.key,
           releaseDate: item.release_date || item.first_air_date,
           mediaType: item.title ? 'movie' : 'tv',
           poster_path: `https://image.tmdb.org/t/p/w500${item.poster_path}`,

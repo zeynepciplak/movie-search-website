@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next'; // Dil desteği için
 import { fetchIMDbTop100Movies, fetchPopularArtists, fetchMovieDetails, Movie, MovieDetails } from '../../api/tmdbApi'; // API fonksiyonları
 import { useNavigate } from 'react-router-dom';
 import MovieDetailModal from '../../Modal/MovieDetailModal'; // Modal bileşenini import et
+import { styled } from '@mui/material/styles';
+
 
 const ImdbTop100Movies: React.FC = () => {
   const { i18n, t } = useTranslation(); // Mevcut dili ve çeviriyi al
@@ -20,6 +22,19 @@ const ImdbTop100Movies: React.FC = () => {
   const navigate = useNavigate();
   
   const currentLanguage = i18n.language; // Mevcut dil (tr-TR veya en-US gibi)
+
+  const StyledButton = styled(CustomButton) ({
+    backgroundColor: '#3a3a3a',
+    color: '#fbc02d', 
+    borderRadius: '15px', // Yuvarlak köşeler
+    fontSize: '0.7rem',
+    padding: '6px 12px', 
+   
+        '&:hover': {
+      backgroundColor: '#fbc02d', 
+      color: '#fff', 
+    },
+  });
 
   // Filmleri API'den çekiyoruz
   const getMovies = async () => {
@@ -93,7 +108,7 @@ const ImdbTop100Movies: React.FC = () => {
 
   return (
     <Box display="flex" justifyContent="space-between">
-      <Box flex="1">
+      <Box flex="1" >
         <h1 className='h1'>{t('imdbtop100movies.Top 100 Movies')}</h1>
         <Grid container spacing={2}>
           {movies.map((movie, index) => (
@@ -106,17 +121,18 @@ const ImdbTop100Movies: React.FC = () => {
             />
           ))}
         </Grid>
-
+       
+       
         {hasMore && (
-          <CustomButton
+          <StyledButton
             variant="contained"
             color="secondary"
             onClick={() => setPage((prevPage) => prevPage + 1)} // Sayfa numarasını artır
           >
             {t('imdbtop100movies.Load More')}
-          </CustomButton>
+          </StyledButton>
         )}
-      </Box>
+     </Box>
 
       <Box flex="0.5" padding="28px" display="flex" flexDirection="column" alignItems="center">
         <Typography variant="h5" onClick={handleMostPopularArtistsClick} style={{ cursor: 'pointer' }}>

@@ -1,22 +1,18 @@
-.slider-container {
-    padding: 20px;
-    background-color: #2c2c2c;
-  }
-  
-  .slick-slide {
-    padding: 10px;
-  }
-  
-  .MovieCard {
-    width: 250px;
-    height: 150px; /* Kısa ve geniş kart */
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .MovieCard:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(0, 192, 255, 0.6); /* Buz mavi hover efekti */
-  }
-  
+.slick-dots {
+  position: relative;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.slick-dots li {
+  width: 100px; /* Çubuğun genişliği */
+  height: 4px;  /* Çubuğun yüksekliği */
+  background-color: rgba(255, 255, 255, 0.3); /* Arka plana göre saydam */
+  margin: 0 5px;
+}
+
+.slick-dots li.slick-active {
+  background-color: rgba(179, 229, 252, 0.8); /* Aktif olduğunda buz mavisi renk */
+}
+

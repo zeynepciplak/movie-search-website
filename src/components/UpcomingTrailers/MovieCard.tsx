@@ -1,73 +1,90 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CardMedia from '@mui/material/CardMedia';
+import { styled } from '@mui/material/styles';
 
-// Props tanımlamaları
+// MovieCardProps Arayüzünü Tanımlama
 interface MovieCardProps {
   title: string;
   trailerUrl: string;
-  posterUrl: string;
+  videoId: string;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ title, trailerUrl, posterUrl }) => {
-  const [open, setOpen] = useState(false); // Modal için state
+// Styled Card
+const StyledCard = styled(Card) ({
+  minWidth: 275,
+  cursor: 'pointer',
+  borderRadius: '15px',
+  overflow: 'hidden',
+  transition: '0.3s',
+  border: '2px solid transparent',
+  '&:hover': {
+    borderColor: '#b3e5fc',
+  },
+  margin: '10px',
+  display:'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
 
-  // Modal'ı açma ve kapatma işlemleri
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+// Styled CardMedia
+const StyledCardMedia = styled('img')({
+  width: '100%',  // Fotoğrafın genişliğini karta göre ayarla
+  height: 150,    // Fotoğraf yüksekliğini ayarla
+  objectFit: 'cover',  // Fotoğrafın kapsama modunu ayarla
+});
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+// Styled Button
+const StyledButton = styled(Button) ({
+  backgroundColor: '#3a3a3a',
+  color: '#fbc02d', 
+  borderRadius: '15px', // Yuvarlak köşeler
+  fontSize: '0.7rem',
+  padding: '6px 12px', 
+  
+  '&:hover': {
+    backgroundColor: '#fbc02d', 
+    color: '#fff', 
+  },
+});
+
+const MovieCard: React.FC<MovieCardProps> = ({ title, trailerUrl, videoId }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
-      <Card sx={{ minWidth: 275, cursor: 'pointer', '&:hover': { transform: 'scale(1.05)', transition: '0.3s' } }} onClick={handleClickOpen}>
-        {/* Poster */}
-        <CardMedia
-          component="img"
-          height="200"
-          image={posterUrl}
+      <StyledCard onClick={handleClickOpen}>
+        <StyledCardMedia
+          src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
           alt={title}
         />
-        <CardContent>
-          <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-            Movie of the Day
-          </Typography>
-          <Typography variant="h5" component="div">
+        <CardContent sx={{ textAlign: 'center' }}>
+          <Typography variant="h6" sx={{ fontSize: '0.9rem' }}>
             {title}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" onClick={handleClickOpen}>
-            Watch Trailer
-          </Button>
-        </CardActions>
-      </Card>
+        <StyledButton onClick={handleClickOpen}>
+          Watch Trailer
+        </StyledButton>
+      </StyledCard>
 
-      {/* Trailer Modal */}
       <Dialog open={open} onClose={handleClose} maxWidth="lg" fullWidth>
         <DialogTitle>{title} - Trailer</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Enjoy the trailer of {title}!
-          </DialogContentText>
-          {/* Trailer Embed */}
           <iframe
             width="100%"
             height="400"
-            src={trailerUrl}
+            src={`https://www.youtube.com/embed/${videoId}`}
             title={title}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
