@@ -1,8 +1,6 @@
-import React from 'react';
-import Slider from 'react-slick';
-import MovieCard from '../UpcomingTrailers/MovieCard'; // Card bileşenini sliderda kullanacağız.
-import './MovieSlider.css'; // CSS stillerini içe aktar
-
+import React, { useRef } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // İkonları import ediyoruz
+import './MovieSlider.css';
 
 interface Movie {
   id: number;
@@ -18,31 +16,47 @@ interface MovieSliderProps {
 }
 
 const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
-  const settings = {
-    dots: false,    // İsteğe bağlı olarak dots kullanabilirsin
-    infinite: false,  // Sonsuz kaydırma özelliği devre dışı
-    speed: 500,
-    slidesToShow: 4,  // Görüntülenen kart sayısı
-    slidesToScroll: 1, // Kaç kart kaydırılacağı
-    arrows: true,  // Okları etkinleştir
+  const sliderRef = useRef<HTMLDivElement>(null); // Slider referansı
+
+  const handleNext = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollTo({
+        left: sliderRef.current.scrollLeft + 300, // Her tıklamada 300px sağa kaydır
+        behavior: 'smooth', // Yumuşak kaydırma
+      });
+    }
+  };
+
+  const handlePrev = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollTo({
+        left: sliderRef.current.scrollLeft - 300, // Her tıklamada 300px sola kaydır
+        behavior: 'smooth', // Yumuşak kaydırma
+      });
+    }
   };
 
   return (
-    <div className="slider-container"> {/* Kapsayıcı kaydırmayı aktif eder */}
-      <div className="slick-list">  {/* Scrollbar ile kaydırma sağlanır */}
-        <Slider {...settings}>
-          {movies.map((movie) => (
-            <div key={movie.id} style={{ padding: '0 10px' }}>
-              <MovieCard
-                key={movie.id}
-                title={movie.title}
-                trailerUrl={movie.trailerUrl}
-                videoId={movie.videoId}
-              />
-            </div>
-          ))}
-        </Slider>
+    <div className="slider-container">
+      {/* Sol buton */}
+      <button onClick={handlePrev} className="slider-button left">
+        <FaChevronLeft size={24} color="white" />
+      </button>
+      
+      {/* Kaydırılacak alan */}
+      <div className="slider-track" ref={sliderRef}>
+        {movies.map((movie) => (
+          <div key={movie.id} className="movie-card">
+            {/* MovieCard bileşeni burada kullanılmalı */}
+            <div>{movie.title}</div> {/* MovieCard içerik yerine koydum */}
+          </div>
+        ))}
       </div>
+
+      {/* Sağ buton */}
+      <button onClick={handleNext} className="slider-button right">
+        <FaChevronRight size={24} color="white" />
+      </button>
     </div>
   );
 };

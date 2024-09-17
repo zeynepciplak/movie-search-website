@@ -9,6 +9,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import ArtistDetails from './pages/MostPopularArtists/MostPopularArtists';
 import MostPopularArtists from './pages/MostPopularArtists/MostPopularArtists';
+import AwardWinningMovies from './pages/AwardWinningMovies/AwardWinningMovies';
+import TopDirectors from './pages/TopDirectors/TopDirectors';
+import DirectorDetails from './pages/TopDirectors/DirectorDetails';
 // Tema oluşturma
 const theme = createTheme({
   palette: {
@@ -67,6 +70,9 @@ const App: React.FC = () => {
           <Route path="/most-popular-artists" element={<MostPopularArtists />} />
           <Route path="/artist/:artistId" element={<ArtistDetails />} />
           <Route path="/detail" element={<DetailPage />} />
+          <Route path="/awardwinningmovies" element={<AwardWinningMovies />} /> 
+          <Route path="/top-directors" element={<TopDirectors />} />
+          <Route path="/director/:directorId" element={<DirectorDetails />} />
         </Routes>
       </Router>
     </ThemeProvider>

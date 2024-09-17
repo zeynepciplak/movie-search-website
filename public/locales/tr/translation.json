@@ -19,11 +19,17 @@
       "Thriller": "Gerilim",
       "Comedy": "Komedi",
       "Adventure": "Macera",
+
+
       "Romantic": "Romantik",
       "Crime": "Suç",
       "History": "Tarih",
       "The Newest": "En Yeniler",
-      "Menu": "Menü"
+      "Menu": "Menü",
+      "Award Winning Movies":"Ödüllü Filmler",
+      "Top 100 Movies":"En İyi 100 Film",
+      "Most Popular Artists":"En Popüler Oyuncular",
+      "Top Directors":"En İyi Yönetmenler"
     },
     "slider":{
         "Popular Movies This Week":"Bu Hafta Popüler Olan Filmler",
@@ -33,7 +39,11 @@
       "Release Date":"Yayın Tarihi",
      "Upcoming Movies & TV Shows":"Gelecek Filmler & TV Programları",
      "Movie":"Film",
-     "TV Show":"Dizi"
+     "TV Show":"Dizi",
+     "Watch Trailer":"Fragmanı İzle",
+     "Trailer":"Fragman",
+     "Close":"Kapat",
+     "Latest Trailers":"Son Fragmanlar"
     },
     "imdbtop100movies":{
     "Load More":"Daha Fazla Yükle",

@@ -1,18 +1,60 @@
-.slick-dots {
-  position: relative;
-  bottom: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-.slick-dots li {
-  width: 100px; /* Çubuğun genişliği */
-  height: 4px;  /* Çubuğun yüksekliği */
-  background-color: rgba(255, 255, 255, 0.3); /* Arka plana göre saydam */
-  margin: 0 5px;
-}
-
-.slick-dots li.slick-active {
-  background-color: rgba(179, 229, 252, 0.8); /* Aktif olduğunda buz mavisi renk */
-}
-
+/* Slider container kapsayıcı */
+.slider-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden; /* İçeriğin taşmasını engelle */
+    padding: 0 50px;  /* Sağ ve sol boşluk ekleyerek butonlar için yer aç */
+  }
+  
+  /* Slider track alanı, kartları yatayda hizalar */
+  .slider-track {
+    display: flex;
+    overflow-x: scroll; /* Yatay kaydırma sağla */
+    scroll-behavior: smooth; /* Kaydırma animasyonu */
+    padding: 20px 0;
+  }
+  
+  /* Kartların genişliği ve aralarındaki boşluk */
+  .movie-card {
+    min-width: 200px; /* Kart genişliği */
+    margin-right: 10px; /* Kartlar arası boşluk */
+  }
+  
+  /* Slider butonları */
+  .slider-button {  
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    z-index: 1; /* Butonların içerikten önde görünmesini sağlar */
+  }
+  
+  .slider-button.left {
+    left: 0px; /* Sol buton */
+  }
+  
+  .slider-button.right {
+    right: 0px; /* Sağ buton */
+  }
+  
+  .slider-button:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Hover efekti */
+  }
+  
+  /* Mobil ekranlar için butonları gizle */
+  @media (max-width: 768px) {
+    .slider-button {
+      display: none;
+    }
+  }
+  

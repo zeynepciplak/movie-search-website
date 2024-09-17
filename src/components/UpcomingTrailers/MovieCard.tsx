@@ -9,6 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import CardMedia from '@mui/material/CardMedia';
 import { styled } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 
 // MovieCardProps Arayüzünü Tanımlama
 interface MovieCardProps {
@@ -28,7 +29,7 @@ const StyledCard = styled(Card) ({
   '&:hover': {
     borderColor: '#b3e5fc',
   },
-  margin: '10px',
+  margin: '8px',
   display:'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -39,6 +40,7 @@ const StyledCardMedia = styled('img')({
   width: '100%',  // Fotoğrafın genişliğini karta göre ayarla
   height: 150,    // Fotoğraf yüksekliğini ayarla
   objectFit: 'cover',  // Fotoğrafın kapsama modunu ayarla
+  
 });
 
 // Styled Button
@@ -60,7 +62,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ title, trailerUrl, videoId }) => 
 
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+ const {t}=useTranslation();
   return (
     <>
       <StyledCard onClick={handleClickOpen}>
@@ -74,12 +76,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ title, trailerUrl, videoId }) => 
           </Typography>
         </CardContent>
         <StyledButton onClick={handleClickOpen}>
-          Watch Trailer
+          {t('UpComing.Watch Trailer')}
         </StyledButton>
       </StyledCard>
 
       <Dialog open={open} onClose={handleClose} maxWidth="lg" fullWidth>
-        <DialogTitle>{title} - Trailer</DialogTitle>
+        <DialogTitle>{title} - {t('UpComing.Trailer')}</DialogTitle>
         <DialogContent>
           <iframe
             width="100%"
@@ -92,7 +94,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ title, trailerUrl, videoId }) => 
           ></iframe>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <StyledButton onClick={handleClose}>{t('UpComing.Close')}</StyledButton>
         </DialogActions>
       </Dialog>
     </>

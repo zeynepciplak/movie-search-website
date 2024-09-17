@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import MovieCard from './MovieCard';
 import { Trailer, fetchUpcomingTrailers } from '../../api/tmdbApi';
 import backGroundImage from "../../assets/duvarkagıdı.jpg";
+import { useTranslation } from 'react-i18next';
 
 const sliderSettings = {
   dots: true,
@@ -16,7 +17,7 @@ const sliderSettings = {
 
 const MoviesWithModal: React.FC = () => {
   const [trailers, setTrailers] = useState<Trailer[]>([]);
-
+  const {t}=useTranslation();
   useEffect(() => {
     const fetchData = async () => {
       const trailerData = await fetchUpcomingTrailers('en-US');
@@ -27,8 +28,8 @@ const MoviesWithModal: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Upcoming Trailers</h2>
+    <div style={{ padding: '35px' }}>
+      <h2>{t('UpComing.Latest Trailers')}</h2>
       <div
         style={{
           backgroundImage: `url(${backGroundImage})`, // Arkaplan resmi burada ekleniyor

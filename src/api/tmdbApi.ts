@@ -10,6 +10,7 @@ export interface Movie {
   poster_path: string;
   release_date: string;
   vote_average: number; // IMDb puanı
+  
 }
 
 // Trailer arayüzü
@@ -34,7 +35,13 @@ export interface MovieDetails {
   runtime: number;
   cast: { name: string; character: string }[];
 }
-
+export interface Director {
+  id: number;
+  name: string;
+  biography: string;
+  known_for: Movie[];
+  profile_path: string | null;
+}
 // Haftalık trend olan popüler filmleri getiren fonksiyon
 export const fetchPopularMovies = async (language: string): Promise<Movie[]> => {
   try {
@@ -249,5 +256,98 @@ export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise
   } catch (error) {
     console.error('API isteği başarısız:', error);
     return [];
+  }
+};
+//ödüllü filmler
+export const fetchAwardWinningMovies = async (language: string): Promise<Movie[]> => {
+  try {
+    const response = await axios.get(`${baseURL}/discover/movie`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+        sort_by: 'vote_average.desc',  // Puan sırasına göre sıralıyoruz
+        'vote_count.gte': 1000,        // En az 1000 oy alan filmler
+      },
+    });
+
+    const movies: Movie[] = response.data.results.map((movie: any) => ({
+      id: movie.id,
+      title: movie.title,
+      poster_path: movie.poster_path,
+      release_date: movie.release_date,
+      vote_average: movie.vote_average,
+    }));
+
+    return movies;
+  } catch (error) {
+    console.error('Ödüllü filmleri çekerken hata oluştu:', error);
+    return [];
+  }
+};
+// Popüler yönetmenleri getiren fonksiyon
+export const fetchPopularDirectors = async (language: string = 'en-US'): Promise<Director[]> => {
+  try {
+    const response = await axios.get(`${baseURL}/person/popular`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+      },
+    });
+
+    // Yönetmenleri popüler kişilerden filtreliyoruz (yönetmenler için popüler film yapımcılarını kullanıyoruz)
+    const directors = response.data.results
+      .filter((person: any) => person.known_for_department === 'Directing') // Yalnızca yönetmenleri filtrele
+      .map((director: any) => ({
+        id: director.id,
+        name: director.name,
+        profile_path: `https://image.tmdb.org/t/p/w500${director.profile_path}`,
+        biography: director.biography || 'Biography not available.',
+        known_for: director.known_for.map((movie: any) => ({
+          id: movie.id,
+          title: movie.title,
+          poster_path: movie.poster_path ? `https://image.tmdb.org/t/p/w200${movie.poster_path}` : null,
+        })),
+      }));
+
+    return directors;
+  } catch (error) {
+    console.error('Yönetmenleri çekerken bir hata oluştu:', error);
+    return [];
+  }
+};
+// Yönetmen detaylarını getiren fonksiyon
+export const fetchDirectorDetails = async (directorId: number, language: string = 'en-US') => {
+  try {
+    const response = await axios.get(`${baseURL}/person/${directorId}`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+        append_to_response: 'movie_credits', // Yönetmenin filmlerini de alıyoruz
+      },
+    });
+
+    const directorData = response.data;
+    const directorDetails = {
+      id: directorData.id,
+      name: directorData.name,
+      profile_path: directorData.profile_path
+        ? `https://image.tmdb.org/t/p/w500${directorData.profile_path}`
+        : null,
+      biography: directorData.biography || 'No biography available.',
+      known_for: directorData.movie_credits?.crew
+        .filter((movie: any) => movie.job === 'Director')
+        .map((movie: any) => ({
+          id: movie.id,
+          title: movie.title,
+          poster_path: movie.poster_path
+            ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+            : 'https://via.placeholder.com/200x300?text=No+Poster',
+        })),
+    };
+
+    return directorDetails;
+  } catch (error) {
+    console.error('Yönetmen detaylarını çekerken bir hata oluştu:', error);
+    return null;
   }
 };

@@ -29,6 +29,22 @@ const HamburgerMenu: React.FC = () => {
     handleMenuClose();
     navigate('/imdb-top-100-movies')
   }
+  const handleAwardWinningMoviesClick=()=>{
+    handleMenuClose();
+    navigate('/awardwinningmovies')
+  }
+  const handleHomePageClick=()=>{
+    handleMenuClose();
+    navigate('/')
+  }
+  const handleMostPopularArtistsClick=()=>{
+    handleMenuClose();
+    navigate('/most-popular-artists')
+  }
+  const handleTopDirectorsClick=()=>{
+    handleMenuClose();
+    navigate('/topdirectors')
+  }
   return (
     <Box >
       <AppBar className='appBar' position="static">
@@ -47,7 +63,7 @@ const HamburgerMenu: React.FC = () => {
         onClose={handleMenuClose}
         sx={{ width: '100%' }} // Responsive tam genişlik
       >
-        <MenuItem onClick={handleMenuClose}>
+        <MenuItem onClick={handleHomePageClick}>
           <ListItemText primary={t('hamburgerMenu.Home Page')} />
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
@@ -104,7 +120,16 @@ const HamburgerMenu: React.FC = () => {
           <ListItemText primary={t('hamburgerMenu.The Newest')} />
         </MenuItem>
         <MenuItem onClick={handleIMDBTop100Click}>
-        <ListItemText primary={t('IMDB Top 100 Movies')}/>
+        <ListItemText primary={t('hamburgerMenu.Top 100 Movies')}/>
+        </MenuItem>
+        <MenuItem onClick={handleAwardWinningMoviesClick}>
+        <ListItemText primary={t('hamburgerMenu.Award Winning Movies')}/>
+        </MenuItem>
+        <MenuItem onClick={handleMostPopularArtistsClick}>
+        <ListItemText primary={t('hamburgerMenu.Most Popular Artists')}/>
+        </MenuItem>
+        <MenuItem onClick={handleTopDirectorsClick}>
+        <ListItemText primary={t('hamburgerMenu.Top Directors')}/>
         </MenuItem>
       </Menu>
     </Box>

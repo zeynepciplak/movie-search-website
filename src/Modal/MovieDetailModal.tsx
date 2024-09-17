@@ -3,6 +3,7 @@ import { Modal } from 'react-responsive-modal';
 import { MovieDetails } from '../api/tmdbApi'; // Film detayları tipi
 import 'react-responsive-modal/styles.css'; // Varsayılan modal stilleri
 import './MovieDetailModal.css'; // Özel modal stillerini burada tanımlayacağız
+import StarIcon from '@mui/icons-material/Star'; // MUI'dan StarIcon import edildi
 
 interface MovieDetailModalProps {
   open: boolean; // Modal'ın açık olup olmadığını kontrol eder
@@ -22,7 +23,10 @@ const MovieDetailModal: React.FC<MovieDetailModalProps> = ({ open, onClose, movi
         <div style={{marginLeft:'20px'}}>
           <h2>{movie.title}</h2>
           <p><strong>Release Date:</strong> {movie.release_date}</p>
-          <p><strong>Score:</strong> {movie.vote_average}</p>
+          <p>
+            <strong><StarIcon sx={{ color: '#FFD700',marginBottom:'3px', verticalAlign:'bottom',fontSize: '20px' }} /></strong> {movie.vote_average} 
+            
+          </p>
           <p><strong>Genre:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p>
           <p><strong>Actors:</strong> {movie.cast.map(actor => actor.name).join(', ')}</p>
           <p><strong>Subject:</strong> {movie.overview}</p>

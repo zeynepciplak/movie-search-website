@@ -8,7 +8,7 @@ import { Movie, MovieDetails } from '../api/tmdbApi';
 import { useTranslation } from 'react-i18next';
 import InfoIcon from '@mui/icons-material/Info';
 import MovieDetailModal from '../Modal/MovieDetailModal'; // Modal bileşeni
-
+import StarIcon from '@mui/icons-material/Star';
 // Poster görseli için stil
 const Img = styled('img')({
   margin: 'auto',
@@ -98,7 +98,8 @@ const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieD
                 {t('imdbtop100movies.Release Date')}: {new Date(movie.release_date).getFullYear()}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                {t('imdbtop100movies.Score')}: {movie.vote_average}
+              <StarIcon sx={{ color: '#FFD700',marginBottom:'3px', verticalAlign:'bottom',fontSize: '16px' }} /> {movie.vote_average} 
+               
               </Typography>
               
             </TextWrapper>
@@ -119,4 +120,4 @@ const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieD
   );
 };
 
-export default MovieGridItem;
+export default MovieGridItem; 

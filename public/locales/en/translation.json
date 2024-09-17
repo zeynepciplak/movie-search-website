@@ -23,7 +23,11 @@
      "Crime": "Crime",
      "History": "History",
      "The Newest": "The Newest",
-     "Menu": "Menu"
+     "Menu": "Menu",
+     "Award Winning Movies":"Award Winning Movies",
+     "Top 100 Movies":"Top 100 Movies",
+     "Most Popular Artists":"Most Popular Artists",
+     "Top Directors":"Top Directors"
    },
    "slider":{
       "Popular Movies This Week":"Popular Movies This Week",
@@ -34,7 +38,11 @@
     "Release Date":"Release Date",
    "Upcoming Movies & TV Shows":"Upcoming Movies & TV Shows",
     "Movie":"Movie",
-    "TV Show":"TV Show"
+    "TV Show":"TV Show",
+    "Watch Trailer":" Watch Trailer",
+   "Trailer":"Trailer",
+   "Close":"Close",
+   "Latest Trailers":"Latest Trailers"
    },
    "imdbtop100movies":{
     "Load More":"Load More",
