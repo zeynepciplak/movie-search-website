@@ -52,7 +52,7 @@ export interface DirectorGridItemProps {
 // Bileşen
 const DirectorGridItem: React.FC<DirectorGridItemProps> = ({ director, index, fetchDirectorDetails }) => {
   const { t } = useTranslation();
-  const [openModal, setOpenModal] = useState(false);
+const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => {
     fetchDirectorDetails(); // Yönetmen detaylarını getir

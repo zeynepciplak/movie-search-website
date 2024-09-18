@@ -7,7 +7,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import CardMedia from '@mui/material/CardMedia';
+
 import { styled } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 

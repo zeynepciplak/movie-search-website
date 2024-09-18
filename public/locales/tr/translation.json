@@ -33,7 +33,8 @@
     },
     "slider":{
         "Popular Movies This Week":"Bu Hafta Popüler Olan Filmler",
-        "Popular TV Shows This Week":"Bu hafta Popüler Olan Diziler"
+        "Popular TV Shows This Week":"Bu hafta Popüler Olan Diziler",
+        "Award Winning Movies":"Ödüllü Filmler"
     },
     "UpComing":{
       "Release Date":"Yayın Tarihi",
@@ -69,7 +70,11 @@
       "Adventure": "Macera",
       "Romantic": "Romantik",
       "Crime": "Suç",
-      "History": "Tarih"
+      "History": "Tarih",
+      "Award Winning Movies":"Ödüllü Filmler",
+      "Top 100 Movies":"En İyi 100 Film",
+      "Most Popular Artists":"En Popüler Oyuncular",
+      "Top Directors":"En İyi Yönetmenler"
     }
   }
   

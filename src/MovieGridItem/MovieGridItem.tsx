@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import InfoIcon from '@mui/icons-material/Info';
 import MovieDetailModal from '../Modal/MovieDetailModal'; // Modal bileşeni
 import StarIcon from '@mui/icons-material/Star';
+
 // Poster görseli için stil
 const Img = styled('img')({
   margin: 'auto',
@@ -17,8 +18,8 @@ const Img = styled('img')({
   maxHeight: '100%',
   height: '150px',
   width: '100px',
-  objectFit:'cover',
-  borderRadius:'8px',
+  objectFit: 'cover',
+  borderRadius: '8px',
 });
 
 // Kartın dış yapısı
@@ -26,8 +27,7 @@ const StyledPaper = styled(Paper)({
   padding: '10px',
   margin: '8px auto',
   width: '85%',
-  Width: '600px',
-  maxWidth:'95%',
+  maxWidth: '600px',
   backgroundColor: '#2e3134',
   color: '#fff',
   display: 'flex',
@@ -39,9 +39,9 @@ const StyledPaper = styled(Paper)({
   marginLeft: '10px',
 });
 
-const TextWrapper=styled('div')({
-  textAlign:'left',
-})
+const TextWrapper = styled('div')({
+  textAlign: 'left',
+});
 
 // Movie arayüzü
 export interface MovieGridItemProps {
@@ -53,7 +53,7 @@ export interface MovieGridItemProps {
 
 // Bileşen
 const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieDetails, movieDetails }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation(); // Dil desteği
 
   // Modal state
   const [openModal, setOpenModal] = useState(false);
@@ -69,18 +69,10 @@ const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieD
     setOpenModal(false); // Modalı kapat
   };
 
-  const formatRuntime = (runtime: number) => {
-    const hours = Math.floor(runtime / 60);
-    const minutes = runtime % 60;
-    const hoursText = t('imdbtop100movies.hours');
-    const minutesText = t('imdbtop100movies.minutes');
-    return hours > 0 ? `${hours} ${hoursText} ${minutes} ${minutesText}` : `${minutes} ${minutesText}`;
-  };
-
   return (
     <>
-      <StyledPaper  key={movie.id}>
-        <Grid  container spacing={2} alignItems="center" justifyContent="flex-start">
+      <StyledPaper key={movie.id}>
+        <Grid container spacing={2} alignItems="center" justifyContent="flex-start">
           {/* Film posteri */}
           <Grid item xs={3} style={{ zIndex: 2, position: 'relative' }}>
             <ButtonBase sx={{ width: '100%', height: 'auto' }}>
@@ -91,21 +83,19 @@ const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieD
           {/* Film bilgileri */}
           <Grid item xs={7} sm container direction="column" spacing={1}>
             <TextWrapper>
-              <Typography gutterBottom variant="h6" style={{fontSize:'16px'}}>
+              <Typography gutterBottom variant="h6" style={{ fontSize: '16px' }}>
                 {index + 1}. {movie.title}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                {t('imdbtop100movies.Release Date')}: {new Date(movie.release_date).getFullYear()}
+                {t('imdbtop100movies.Release Date')}: {movie.release_date}
               </Typography>
               <Typography variant="body2" gutterBottom>
-              <StarIcon sx={{ color: '#FFD700',marginBottom:'3px', verticalAlign:'bottom',fontSize: '16px' }} /> {movie.vote_average} 
-               
+                <StarIcon sx={{ color: '#FFD700', marginBottom: '3px', verticalAlign: 'bottom', fontSize: '16px' }} /> {movie.vote_average}
               </Typography>
-              
             </TextWrapper>
           </Grid>
 
-          {/* Sağ alt köşeye AdsClickIcon ekliyoruz */}
+          {/* Sağ alt köşeye InfoIcon ekliyoruz */}
           <div style={{ position: 'absolute', right: '10px', bottom: '10px' }}>
             <InfoIcon onClick={handleOpenModal} style={{ cursor: 'pointer' }} />
           </div>
@@ -114,10 +104,14 @@ const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieD
 
       {/* Modal */}
       {movieDetails && (
-        <MovieDetailModal open={openModal} onClose={handleCloseModal} movie={movieDetails} />
+        <MovieDetailModal 
+          open={openModal} 
+          onClose={handleCloseModal} 
+          movie={movieDetails} 
+        />
       )}
     </>
   );
 };
 
-export default MovieGridItem; 
+export default MovieGridItem;

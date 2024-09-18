@@ -31,7 +31,8 @@
    },
    "slider":{
       "Popular Movies This Week":"Popular Movies This Week",
-     "Popular TV Shows This Week":"Popular TV Shows This Week"
+     "Popular TV Shows This Week":"Popular TV Shows This Week",
+     "Award Winning Movies":"Award Winning Movies"
    },
    "UpComing":{
 
@@ -70,7 +71,9 @@
     "Adventure": "Adventure",
     "Romantic": "Romantic",
     "Crime": "Crime",
-    "History": "History"
+    "History": "History",
+    "Award Winning Movies":"Award Winning Movies",
+    "Top Directors":"Top Directors"
    }
  }
  
