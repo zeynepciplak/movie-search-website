@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import MovieCard from './MovieCard';
 import { Trailer, fetchUpcomingTrailers } from '../../api/tmdbApi';
@@ -17,15 +17,17 @@ const sliderSettings = {
 
 const MoviesWithModal: React.FC = () => {
   const [trailers, setTrailers] = useState<Trailer[]>([]);
-  const {t}=useTranslation();
+  const { i18n, t } = useTranslation(); 
+  const currentLanguage = i18n.language;  
+  
   useEffect(() => {
     const fetchData = async () => {
-      const trailerData = await fetchUpcomingTrailers('en-US');
+      const trailerData = await fetchUpcomingTrailers(currentLanguage);
       setTrailers(trailerData);
     };
 
     fetchData();
-  }, []);
+  }, [currentLanguage]);
 
   return (
     <div style={{ padding: '35px' }}>
@@ -36,7 +38,7 @@ const MoviesWithModal: React.FC = () => {
           backgroundSize: 'cover', // Resmin kapsaması için
           backgroundPosition: 'center', // Resmin ortalanması için
           padding: '20px',
-          borderRadius:"25px"
+          borderRadius: "25px"
         }}
       >
         <Slider {...sliderSettings}>

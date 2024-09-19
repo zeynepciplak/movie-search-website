@@ -46,7 +46,7 @@ const ImdbTop100Movies: React.FC = () => {
         return;
       }
 
-      const fetchedMovies = await fetchIMDbTop100Movies(language); 
+      const fetchedMovies = await fetchIMDbTop100Movies(language , page); 
       if (fetchedMovies.length > 0) {
         const totalMovies = reset ? fetchedMovies : [...movies, ...fetchedMovies];
         setMovies(totalMovies.slice(0, 100));
@@ -60,24 +60,23 @@ const ImdbTop100Movies: React.FC = () => {
       console.error('Filmleri çekerken bir hata oluştu:', error);
       setHasMore(false);
     }
-  }, [movies]);
+  }, [page]); // Dependency listesine sadece movies.length koyarak her render'da yeniden oluşturmayı önlüyoruz
 
   const getMovieDetails = useCallback(async (movieId: number) => {
-    if (!movieDetailsList[movieId]) {
-      const details = await fetchMovieDetails(movieId, currentLanguage);
-      setMovieDetailsList((prevDetails) => ({
-        ...prevDetails,
-        [movieId]: details,
-      }));
-    }
-    return movieDetailsList[movieId];
-  }, [currentLanguage, movieDetailsList]);
+  const details = await fetchMovieDetails(movieId, currentLanguage);
+  setMovieDetailsList((prevDetails) => ({
+    ...prevDetails,
+    [movieId]: details,
+  }));
+  return details; // İstek her zaman yapılacak
+}, [currentLanguage]);
 
-  const handleOpenModal = async (movieId: number) => {
-    const movieDetails = await getMovieDetails(movieId);
-    setSelectedMovie(movieDetails);
-    setOpenModal(true);
-  };
+const handleOpenModal = async (movieId: number) => {
+  const movieDetails = await getMovieDetails(movieId);
+  setSelectedMovie(movieDetails);
+  setOpenModal(true);
+};
+
 
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -86,17 +85,26 @@ const ImdbTop100Movies: React.FC = () => {
 
   const fetchArtists = useCallback(async () => {
     try {
-      const allArtists = await fetchPopularArtists();
+      const allArtists = await fetchPopularArtists(currentLanguage);
       setArtists(allArtists.slice(0, 5)); 
     } catch (error) {
       console.error('Sanatçıları çekerken bir hata oluştu:', error);
     }
-  }, []);
+  }, [currentLanguage]);
 
   useEffect(() => {
     getMovies(currentLanguage, true);
+  }, [getMovies, currentLanguage]); // movies'ı çıkartıyoruz, sadece dil değişiminde veya ilk yüklemede çağrılıyor
+
+  useEffect(() => {
     fetchArtists();
-  }, [getMovies, fetchArtists, currentLanguage]);
+  }, [fetchArtists, currentLanguage]);
+  
+  useEffect(() => {
+  if (page > 1) {
+    getMovies(currentLanguage, false); // Sonraki sayfalar için reset false
+  }
+}, [page, getMovies, currentLanguage]);
 
   const handleMostPopularArtistsClick = () => {
     navigate('/most-popular-artists');

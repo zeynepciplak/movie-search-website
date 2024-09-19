@@ -1,7 +1,10 @@
+
+
 import React, { useEffect, useState } from 'react';
 import { Grid, Card, CardMedia, CardContent, Typography } from '@mui/material';
 import { fetchPopularArtists } from '../../api/tmdbApi';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface Artist {
   id: number;
@@ -12,17 +15,19 @@ interface Artist {
 const MostPopularArtists: React.FC = () => {
   const [artists, setArtists] = useState<Artist[]>([]);
   const navigate = useNavigate();
-
+  const { i18n, t } = useTranslation(); 
+  const currentLanguage = i18n.language;
+  
   useEffect(() => {
     const loadArtists = async () => {
-      const fetchedArtists = await fetchPopularArtists();
-      setArtists(fetchedArtists); // Fetch and set all artists
+      const fetchedArtists = await fetchPopularArtists(currentLanguage);
+      setArtists(fetchedArtists);
     };
     loadArtists();
-  }, []);
+  }, [currentLanguage]);
 
   const handleArtistClick = (artistId: number) => {
-    navigate(`/artist/${artistId}`); // Navigate to artist details page
+    navigate(`/artist/${artistId}`);
   };
 
   return (

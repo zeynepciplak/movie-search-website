@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchDirectorDetails } from '../../api/tmdbApi';
 import { Box, Typography, CircularProgress, Grid } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface Movie {
   id: number;
@@ -21,18 +22,20 @@ const DirectorDetails: React.FC = () => {
   const { directorId } = useParams<{ directorId: string }>();
   const [director, setDirector] = useState<Director | null>(null);
   const [loading, setLoading] = useState(true);
+  const { i18n, t } = useTranslation(); 
+  const currentLanguage = i18n.language;
+useEffect(() => {
+  const loadDirectorDetails = async () => {
+    if (directorId) {
+      const fetchedDirector = await fetchDirectorDetails(parseInt(directorId), currentLanguage); // Dil parametresi eklendi
+      setDirector(fetchedDirector);
+      setLoading(false);
+    }
+  };
 
-  useEffect(() => {
-    const loadDirectorDetails = async () => {
-      if (directorId) {
-        const fetchedDirector = await fetchDirectorDetails(parseInt(directorId));
-        setDirector(fetchedDirector);
-        setLoading(false);
-      }
-    };
+  loadDirectorDetails();
+}, [directorId, currentLanguage]); // currentLanguage'yi dependency olarak ekledik
 
-    loadDirectorDetails();
-  }, [directorId]);
 
   if (loading) {
     return <CircularProgress />;

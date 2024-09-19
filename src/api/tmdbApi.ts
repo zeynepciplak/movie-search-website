@@ -10,7 +10,6 @@ export interface Movie {
   poster_path: string;
   release_date: string;
   vote_average: number; // IMDb puanı
-  
 }
 
 // Trailer arayüzü
@@ -20,7 +19,7 @@ export interface Trailer {
   releaseDate: string;
   mediaType: 'movie' | 'tv';
   poster_path: string;
-  videoId:string;
+  videoId: string;
 }
 
 // Film Detayları
@@ -42,6 +41,7 @@ export interface Director {
   known_for: Movie[];
   profile_path: string | null;
 }
+
 // Haftalık trend olan popüler filmleri getiren fonksiyon
 export const fetchPopularMovies = async (language: string): Promise<Movie[]> => {
   try {
@@ -68,7 +68,7 @@ export const fetchPopularMovies = async (language: string): Promise<Movie[]> => 
 };
 
 // Top 100 filmleri getiren fonksiyon
-export const fetchIMDbTop100Movies = async (language: string): Promise<Movie[]> => {
+export const fetchIMDbTop100Movies = async (language: string , page: number): Promise<Movie[]> => {
   try {
     const response = await axios.get(`${baseURL}/discover/movie`, {
       params: {
@@ -76,7 +76,7 @@ export const fetchIMDbTop100Movies = async (language: string): Promise<Movie[]> 
         language: language, // Dil parametresi dinamik
         sort_by: 'vote_average.desc',
         'vote_count.gte': 1000, // IMDb Top 100 için minimum 1000 oy
-        page: 1,  // İlk sayfayı alıyoruz, istersen bunu artırabilirsin
+        page: page,  // İlk sayfayı alıyoruz, istersen bunu artırabilirsin
       },
     });
 
@@ -123,7 +123,7 @@ export const fetchMovieDetails = async (movieId: number, language: string): Prom
       runtime: movieData.runtime, // Film süresi
       cast: cast, // Oyuncular
     };
-    
+
     return movieDetails;
   } catch (error) {
     console.error('Film detaylarını çekerken hata oluştu:', error);
@@ -157,7 +157,7 @@ export const fetchPopularTVShows = async (language: string): Promise<Movie[]> =>
 };
 
 // Sanatçıları getiren fonksiyon
-export const fetchPopularArtists = async (language: string = 'en-US') => {
+export const fetchPopularArtists = async (language: string) => {
   try {
     const response = await axios.get(`${baseURL}/person/popular`, {
       params: {
@@ -180,7 +180,7 @@ export const fetchPopularArtists = async (language: string = 'en-US') => {
 };
 
 // Fragmanları getiren fonksiyon
-export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise<Trailer[]> => {
+export const fetchUpcomingTrailers = async (language: string): Promise<Trailer[]> => {
   try {
     const movieResponse = await axios.get(`${baseURL}/movie/upcoming`, {
       params: {
@@ -207,7 +207,7 @@ export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise
       const fallbackMovieResponse = await axios.get(`${baseURL}/movie/upcoming`, {
         params: {
           api_key: apiKey,
-          language: 'en-US',
+          language: language,
           page: 1,
         },
       });
@@ -215,7 +215,7 @@ export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise
       const fallbackTvResponse = await axios.get(`${baseURL}/tv/on_the_air`, {
         params: {
           api_key: apiKey,
-          language: 'en-US',
+          language: language,
           page: 1,
         },
       });
@@ -244,7 +244,7 @@ export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise
         trailers.push({
           title: item.title || item.name,
           trailerUrl: `https://www.youtube.com/watch?v=${trailer.key}`,
-          videoId:trailer.key,
+          videoId: trailer.key,
           releaseDate: item.release_date || item.first_air_date,
           mediaType: item.title ? 'movie' : 'tv',
           poster_path: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
@@ -258,7 +258,8 @@ export const fetchUpcomingTrailers = async (language: string = 'en-US'): Promise
     return [];
   }
 };
-//ödüllü filmler
+
+// Ödüllü filmleri getiren fonksiyon
 export const fetchAwardWinningMovies = async (language: string): Promise<Movie[]> => {
   try {
     const response = await axios.get(`${baseURL}/discover/movie`, {
@@ -284,8 +285,9 @@ export const fetchAwardWinningMovies = async (language: string): Promise<Movie[]
     return [];
   }
 };
+
 // Popüler yönetmenleri getiren fonksiyon
-export const fetchPopularDirectors = async (language: string = 'en-US'): Promise<Director[]> => {
+export const fetchPopularDirectors = async (language: string): Promise<Director[]> => {
   try {
     const response = await axios.get(`${baseURL}/person/popular`, {
       params: {
@@ -315,8 +317,9 @@ export const fetchPopularDirectors = async (language: string = 'en-US'): Promise
     return [];
   }
 };
+
 // Yönetmen detaylarını getiren fonksiyon
-export const fetchDirectorDetails = async (directorId: number, language: string = 'en-US') => {
+export const fetchDirectorDetails = async (directorId: number, language: string) => {
   try {
     const response = await axios.get(`${baseURL}/person/${directorId}`, {
       params: {
