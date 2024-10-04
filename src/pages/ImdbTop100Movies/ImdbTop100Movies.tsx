@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Box, Grid, Typography, Link } from '@mui/material';
 import MovieGridItem from '../../MovieGridItem/MovieGridItem'; 
-import CustomButton from '../../components/Button/Button'; 
 import GroupAvatars from '../../components/Icon/GroupAvatars'; 
 import { useTranslation } from 'react-i18next';
 import { fetchIMDbTop100Movies, fetchPopularArtists, fetchMovieDetails, Movie, MovieDetails } from '../../api/tmdbApi'; 
 import { useNavigate } from 'react-router-dom';
 import MovieDetailModal from '../../Modal/MovieDetailModal'; 
-import { styled } from '@mui/material/styles';
 import LaunchIcon from '@mui/icons-material/Launch';
+import LoadMoreButton from '../../components/LoadMoreButton/LoadMoreButton'; 
 
 const ImdbTop100Movies: React.FC = () => {
   const { i18n, t } = useTranslation(); 
@@ -27,17 +26,9 @@ const ImdbTop100Movies: React.FC = () => {
 
   const currentLanguage = i18n.language;
 
-  const StyledButton = styled(CustomButton)({
-    backgroundColor: '#3a3a3a',
-    color: '#fbc02d',
-    borderRadius: '15px',
-    fontSize: '0.7rem',
-    padding: '6px 12px',
-    '&:hover': {
-      backgroundColor: '#fbc02d',
-      color: '#fff',
-    },
-  });
+  const handleLoadMore = async () => {
+    setPage((prevPage) => prevPage + 1); // Sayfa numarasını artırıyoruz
+  };
 
   const getMovies = useCallback(async (language: string, reset: boolean = false) => {
     try {
@@ -60,23 +51,22 @@ const ImdbTop100Movies: React.FC = () => {
       console.error('Filmleri çekerken bir hata oluştu:', error);
       setHasMore(false);
     }
-  }, [page]); // Dependency listesine sadece movies.length koyarak her render'da yeniden oluşturmayı önlüyoruz
+  }, [page]);
 
   const getMovieDetails = useCallback(async (movieId: number) => {
-  const details = await fetchMovieDetails(movieId, currentLanguage);
-  setMovieDetailsList((prevDetails) => ({
-    ...prevDetails,
-    [movieId]: details,
-  }));
-  return details; // İstek her zaman yapılacak
-}, [currentLanguage]);
+    const details = await fetchMovieDetails(movieId, currentLanguage);
+    setMovieDetailsList((prevDetails) => ({
+      ...prevDetails,
+      [movieId]: details,
+    }));
+    return details; 
+  }, [currentLanguage]);
 
-const handleOpenModal = async (movieId: number) => {
-  const movieDetails = await getMovieDetails(movieId);
-  setSelectedMovie(movieDetails);
-  setOpenModal(true);
-};
-
+  const handleOpenModal = async (movieId: number) => {
+    const movieDetails = await getMovieDetails(movieId);
+    setSelectedMovie(movieDetails);
+    setOpenModal(true);
+  };
 
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -94,17 +84,17 @@ const handleOpenModal = async (movieId: number) => {
 
   useEffect(() => {
     getMovies(currentLanguage, true);
-  }, [getMovies, currentLanguage]); // movies'ı çıkartıyoruz, sadece dil değişiminde veya ilk yüklemede çağrılıyor
+  }, [getMovies, currentLanguage]);
 
   useEffect(() => {
     fetchArtists();
   }, [fetchArtists, currentLanguage]);
   
   useEffect(() => {
-  if (page > 1) {
-    getMovies(currentLanguage, false); // Sonraki sayfalar için reset false
-  }
-}, [page, getMovies, currentLanguage]);
+    if (page > 1) {
+      getMovies(currentLanguage, false); 
+    }
+  }, [page, getMovies, currentLanguage]);
 
   const handleMostPopularArtistsClick = () => {
     navigate('/most-popular-artists');
@@ -126,6 +116,22 @@ const handleOpenModal = async (movieId: number) => {
               />
             ))}
           </Grid>
+
+          {/* Load More Butonu */}
+          <Box
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end', // Sağ tarafa hizalar
+              marginRight:'4rem',
+              marginBottom:'30px',
+            
+            }}
+          >
+            <LoadMoreButton
+              onClick={handleLoadMore}
+              label={t('imdbtop100movies.Load More')}
+            />
+          </Box>
         </Box>
 
         <Box flex="0.5" padding="28px" display="flex" flexDirection="column" alignItems="center">
@@ -179,26 +185,6 @@ const handleOpenModal = async (movieId: number) => {
             onClose={handleCloseModal}
             movie={selectedMovie}
           />
-        )}
-      </Box>
-
-      <Box
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginLeft: '16rem',
-          marginTop: '2rem',
-          marginBottom: '2rem',
-        }}
-      >
-        {hasMore && (
-          <StyledButton
-            variant="contained"
-            color="secondary"
-            onClick={() => setPage((prevPage) => prevPage + 1)}
-          >
-            {t('imdbtop100movies.Load More')}
-          </StyledButton>
         )}
       </Box>
     </>

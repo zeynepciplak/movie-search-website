@@ -5,11 +5,10 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import InfoIcon from '@mui/icons-material/Info';
-import { Director } from '../../api/tmdbApi'; // Yönetmenler için arayüz
+import { Director } from '../../api/tmdbApi'; 
 import { useTranslation } from 'react-i18next';
 import StarIcon from '@mui/icons-material/Star';
 
-// Yönetmen resimleri için stil
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
@@ -21,7 +20,6 @@ const Img = styled('img')({
   borderRadius: '8px',
 });
 
-// Kartın dış yapısı
 const StyledPaper = styled(Paper)({
   padding: '10px',
   margin: '8px auto',
@@ -42,32 +40,29 @@ const TextWrapper = styled('div')({
   textAlign: 'left',
 });
 
-// Yönetmen arayüzü
 export interface DirectorGridItemProps {
   director: Director;
   index: number;
-  fetchDirectorDetails: () => void; // Yönetmen detaylarını fetch etme fonksiyonu
+  fetchDirectorDetails: () => void;
 }
 
-// Bileşen
 const DirectorGridItem: React.FC<DirectorGridItemProps> = ({ director, index, fetchDirectorDetails }) => {
   const { t } = useTranslation();
-const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => {
-    fetchDirectorDetails(); // Yönetmen detaylarını getir
-    setOpenModal(true); // Modalı aç
+    fetchDirectorDetails(); 
+    setOpenModal(true);
   };
 
   const handleCloseModal = () => {
-    setOpenModal(false); // Modalı kapat
+    setOpenModal(false);
   };
 
   return (
     <>
       <StyledPaper key={director.id}>
         <Grid container spacing={2} alignItems="center" justifyContent="flex-start">
-          {/* Yönetmen posteri */}
           <Grid item xs={3} style={{ zIndex: 2, position: 'relative' }}>
             <ButtonBase sx={{ width: '100%', height: 'auto' }}>
               <Img
@@ -77,14 +72,13 @@ const [openModal, setOpenModal] = useState(false);
             </ButtonBase>
           </Grid>
 
-          {/* Yönetmen bilgileri */}
           <Grid item xs={7} sm container direction="column" spacing={1}>
             <TextWrapper>
               <Typography gutterBottom variant="h6" style={{ fontSize: '16px' }}>
                 {index + 1}. {director.name}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                Famous Movies:
+                {t('Famous Movies')}:
               </Typography>
               {director.known_for.map((movie, idx) => (
                 <Typography key={movie.id} variant="body2" gutterBottom>
@@ -97,15 +91,12 @@ const [openModal, setOpenModal] = useState(false);
             </TextWrapper>
           </Grid>
 
-          {/* Sağ alt köşeye AdsClickIcon ekliyoruz */}
           <div style={{ position: 'absolute', right: '10px', bottom: '10px' }}>
             <InfoIcon onClick={handleOpenModal} style={{ cursor: 'pointer' }} />
           </div>
         </Grid>
       </StyledPaper>
 
-      {/* Modal */}
-      {/* Modal kısmını yönetmen detayı eklemek istersen buraya ekleyebilirsin */}
     </>
   );
 };

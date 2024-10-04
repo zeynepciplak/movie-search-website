@@ -11,7 +11,12 @@ export interface Movie {
   release_date: string;
   vote_average: number; // IMDb puanı
 }
-
+export interface Series {
+  id: number;
+  name: string;
+  poster_path: string;
+  first_air_date: string;
+}
 // Trailer arayüzü
 export interface Trailer {
   title: string;
@@ -330,6 +335,7 @@ export const fetchDirectorDetails = async (directorId: number, language: string)
     });
 
     const directorData = response.data;
+    console.log("Director Data API Response:", directorData);
     const directorDetails = {
       id: directorData.id,
       name: directorData.name,
@@ -352,5 +358,58 @@ export const fetchDirectorDetails = async (directorId: number, language: string)
   } catch (error) {
     console.error('Yönetmen detaylarını çekerken bir hata oluştu:', error);
     return null;
+  }
+};
+// En yeni filmleri getiren fonksiyon
+export const fetchNewestMovies = async (language: string,page:number): Promise<Movie[]> => {
+  try {
+    const response = await axios.get(`${baseURL}/movie/now_playing`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+        page: page,
+      },
+    });
+
+    // Veriyi type-safe olarak dönüştürüyoruz
+    const movies: Movie[] = response.data.results.map((movie: any) => ({
+      id: movie.id,
+      title: movie.title,
+      poster_path: movie.poster_path,
+      release_date: movie.release_date,
+    }));
+
+    // release_date'e göre en yeni'den eskiye sıralıyoruz
+    return movies.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
+  } catch (error) {
+    console.error('Error fetching newest movies:', error);
+    return [];
+  }
+};
+
+// En yeni dizileri getiren fonksiyon (popüler veya güncel diziler üzerinden)
+export const fetchNewestSeries = async (language: string,page:number): Promise<Series[]> => {
+  try {
+    const response = await axios.get(`${baseURL}/tv/airing_today`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+        page: page,
+      },
+    });
+
+    // Veriyi type-safe olarak dönüştürüyoruz
+    const series: Series[] = response.data.results.map((serie: any) => ({
+      id: serie.id,
+      name: serie.name,
+      poster_path: serie.poster_path,
+      first_air_date: serie.first_air_date,
+    }));
+
+    // first_air_date'e göre en yeni'den eskiye sıralıyoruz
+    return series.sort((a, b) => new Date(b.first_air_date).getTime() - new Date(a.first_air_date).getTime());
+  } catch (error) {
+    console.error('Error fetching newest series:', error);
+    return [];
   }
 };

@@ -7,14 +7,14 @@ import { useTranslation } from 'react-i18next';
 interface Movie {
   id: number;
   title: string;
-  poster_path: string | null; // null olabilir
+  poster_path: string | null;
 }
 
 interface Director {
   id: number;
   name: string;
   biography: string;
-  profile_path: string | null; // null olabilir
+  profile_path: string | null;
   known_for: Movie[];
 }
 
@@ -24,25 +24,32 @@ const DirectorDetails: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { i18n, t } = useTranslation(); 
   const currentLanguage = i18n.language;
-useEffect(() => {
-  const loadDirectorDetails = async () => {
-    if (directorId) {
-      const fetchedDirector = await fetchDirectorDetails(parseInt(directorId), currentLanguage); // Dil parametresi eklendi
-      setDirector(fetchedDirector);
-      setLoading(false);
-    }
-  };
 
-  loadDirectorDetails();
-}, [directorId, currentLanguage]); // currentLanguage'yi dependency olarak ekledik
+  useEffect(() => {
+    const loadDirectorDetails = async () => {
+      try {
+        if (directorId) {
+          console.log("Director ID:", directorId);
+          const fetchedDirector = await fetchDirectorDetails(parseInt(directorId), currentLanguage);
+          console.log("Fetched Director:", fetchedDirector);  // Burada veriyi kontrol ediyoruz
+          setDirector(fetchedDirector);
+        }
+      } catch (error) {
+        console.error("Director API call failed:", error);  // Hata olursa burada gösterecek
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    loadDirectorDetails();
+  }, [directorId, currentLanguage]);
 
   if (loading) {
     return <CircularProgress />;
   }
 
   if (!director) {
-    return <Typography>Director not found</Typography>;
+    return <Typography>{t('Director not found')}</Typography>;  // Hata durumunda boş veri gelirse bu mesajı verir
   }
 
   return (
@@ -68,7 +75,7 @@ useEffect(() => {
       </Box>
 
       <Typography variant="h5" marginTop="32px">
-        Known For
+        {t('Known For')}
       </Typography>
       <Grid container spacing={2} marginTop="16px">
         {director.known_for.map((movie) => (

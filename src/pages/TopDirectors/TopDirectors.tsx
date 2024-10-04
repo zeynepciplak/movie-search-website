@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import { fetchPopularDirectors, Director } from '../../api/tmdbApi';
-import DirectorGridItem from './DirectorGridItem'; // DirectorGridItem bileşeni
+import DirectorGridItem from './DirectorGridItem';
 import { useTranslation } from 'react-i18next';
 
 const TopDirectors: React.FC = () => {
   const [directors, setDirectors] = useState<Director[]>([]);
   const { i18n, t } = useTranslation(); 
   const currentLanguage = i18n.language;
- useEffect(() => {
+
+  useEffect(() => {
     const loadDirectors = async () => {
-      const fetchedDirectors = await fetchPopularDirectors(currentLanguage); // Dil parametresi eklendi
-      setDirectors(fetchedDirectors);
+      try {
+        console.log("Fetching directors with language:", currentLanguage); // Dil parametresini kontrol et
+        const fetchedDirectors = await fetchPopularDirectors(currentLanguage);
+        console.log("Fetched Directors:", fetchedDirectors);  // Veriyi kontrol et
+        setDirectors(fetchedDirectors);
+      } catch (error) {
+        console.error("Fetching directors failed:", error);  // Hata mesajını göster
+      }
     };
 
     loadDirectors();
-  }, [currentLanguage]); // currentLanguage'yi dependency olarak ekledik
+  }, [currentLanguage]);
 
   return (
     <Grid container spacing={2}>

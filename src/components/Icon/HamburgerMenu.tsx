@@ -5,13 +5,14 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import  '../../styles/global.css';
+import '../../styles/global.css';
 
 const HamburgerMenu: React.FC = () => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [openGenre, setOpenGenre] = useState(false);
-  const navigate= useNavigate();
+  const [openNewest, setOpenNewest] = useState(false); // En yeni seçeneği için state
+  const navigate = useNavigate();
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -25,35 +26,53 @@ const HamburgerMenu: React.FC = () => {
     setOpenGenre(!openGenre);
   };
 
-  const handleIMDBTop100Click=()=>{
+  const handleNewestClick = () => {
+    setOpenNewest(!openNewest); // En yeni seçeneği açılır/kapanır
+  };
+
+  const handleNewestMoviesClick = () => {
     handleMenuClose();
-    navigate('/imdb-top-100-movies')
-  }
-  const handleAwardWinningMoviesClick=()=>{
+    navigate('/newest-movies'); // En yeni filmler sayfasına yönlendirme
+  };
+
+  const handleNewestSeriesClick = () => {
     handleMenuClose();
-    navigate('/awardwinningmovies')
-  }
-  const handleHomePageClick=()=>{
+    navigate('/newest-series'); // En yeni diziler sayfasına yönlendirme
+  };
+
+  const handleIMDBTop100Click = () => {
     handleMenuClose();
-    navigate('/')
-  }
-  const handleMostPopularArtistsClick=()=>{
+    navigate('/imdb-top-100-movies');
+  };
+
+  const handleAwardWinningMoviesClick = () => {
     handleMenuClose();
-    navigate('/most-popular-artists')
-  }
-  const handleTopDirectorsClick=()=>{
+    navigate('/awardwinningmovies');
+  };
+
+  const handleHomePageClick = () => {
     handleMenuClose();
-    navigate('/topdirectors')
-  }
+    navigate('/');
+  };
+
+  const handleMostPopularArtistsClick = () => {
+    handleMenuClose();
+    navigate('/most-popular-artists');
+  };
+
+  const handleTopDirectorsClick = () => {
+    handleMenuClose();
+    navigate('/topdirectors');
+  };
+
   return (
-    <Box >
+    <Box>
       <AppBar className='appBar' position="static">
-        <Toolbar className='hamburgeer' >
-          <IconButton    color="inherit" onClick={handleMenuOpen}>
-            <MenuIcon className='hamburger'/>
+        <Toolbar className='hamburgeer'>
+          <IconButton color="inherit" onClick={handleMenuOpen}>
+            <MenuIcon className='hamburger' />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
         </Toolbar>
       </AppBar>
 
@@ -72,64 +91,49 @@ const HamburgerMenu: React.FC = () => {
         <MenuItem onClick={handleMenuClose}>
           <ListItemText primary={t('hamburgerMenu.Series')} />
         </MenuItem>
+
         <MenuItem onClick={handleGenreClick}>
           <ListItemText primary={t('hamburgerMenu.Genres')} />
           {openGenre ? <ExpandLess /> : <ExpandMore />}
         </MenuItem>
+
         <Collapse in={openGenre} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button sx={{ pl: 4 }}>
               <ListItemText primary={t('hamburgerMenu.Action')} />
             </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Adventure')} />
+            {/* Diğer türler burada */}
+          </List>
+        </Collapse>
+
+        {/* The Newest Menüsü */}
+        <MenuItem onClick={handleNewestClick}>
+          <ListItemText primary={t('hamburgerMenu.The Newest')} />
+          {openNewest ? <ExpandLess /> : <ExpandMore />}
+        </MenuItem>
+
+        <Collapse in={openNewest} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem button sx={{ pl: 4 }} onClick={handleNewestMoviesClick}>
+              <ListItemText primary={t('hamburgerMenu.Newest Movies')} />
             </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Animation')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Comedy')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Crime')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Documentary')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Drama')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Family')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.History')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Romantic')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Science Fiction')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Thriller')} />
+            <ListItem button sx={{ pl: 4 }} onClick={handleNewestSeriesClick}>
+              <ListItemText primary={t('hamburgerMenu.Newest Series')} />
             </ListItem>
           </List>
         </Collapse>
-        <MenuItem onClick={handleMenuClose}>
-          <ListItemText primary={t('hamburgerMenu.The Newest')} />
-        </MenuItem>
+
         <MenuItem onClick={handleIMDBTop100Click}>
-        <ListItemText primary={t('hamburgerMenu.Top 100 Movies')}/>
+          <ListItemText primary={t('hamburgerMenu.Top 100 Movies')} />
         </MenuItem>
         <MenuItem onClick={handleAwardWinningMoviesClick}>
-        <ListItemText primary={t('hamburgerMenu.Award Winning Movies')}/>
+          <ListItemText primary={t('hamburgerMenu.Award Winning Movies')} />
         </MenuItem>
         <MenuItem onClick={handleMostPopularArtistsClick}>
-        <ListItemText primary={t('hamburgerMenu.Most Popular Artists')}/>
+          <ListItemText primary={t('hamburgerMenu.Most Popular Artists')} />
         </MenuItem>
         <MenuItem onClick={handleTopDirectorsClick}>
-        <ListItemText primary={t('hamburgerMenu.Top Directors')}/>
+          <ListItemText primary={t('hamburgerMenu.Top Directors')} />
         </MenuItem>
       </Menu>
     </Box>

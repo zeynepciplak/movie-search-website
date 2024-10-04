@@ -1,6 +1,6 @@
 
 import Slider from '../../components/Slider/Slider';
-import { fetchPopularTVShows ,fetchPopularMovies, fetchAwardWinningMovies} from '../../api/tmdbApi';
+import { fetchPopularTVShows ,fetchPopularMovies, fetchAwardWinningMovies, fetchPopularDirectors} from '../../api/tmdbApi';
 import { useTranslation } from 'react-i18next';
 
 import { ScopedCssBaseline } from '@mui/material';
@@ -32,6 +32,8 @@ const HomePage: React.FC = () => {
         <Slider title={t("slider.Popular TV Shows This Week")} fetchData={fetchPopularTVShows} />
        
         <Slider title={t("slider.Award Winning Movies")}fetchData={fetchAwardWinningMovies}/>
+
+    
       </div>
       
   );

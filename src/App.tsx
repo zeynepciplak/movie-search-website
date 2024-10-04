@@ -12,6 +12,9 @@ import MostPopularArtists from './pages/MostPopularArtists/MostPopularArtists';
 import AwardWinningMovies from './pages/AwardWinningMovies/AwardWinningMovies';
 import TopDirectors from './pages/TopDirectors/TopDirectors';
 import DirectorDetails from './pages/TopDirectors/DirectorDetails';
+import NewestMovies from './pages/NewestMovies/NewestMovies';
+import NewestSeries  from './pages/NewestSeries/NewestSeries';
+
 // Tema oluşturma
 const theme = createTheme({
   palette: {
@@ -71,8 +74,10 @@ const App: React.FC = () => {
           <Route path="/artist/:artistId" element={<ArtistDetails />} />
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/awardwinningmovies" element={<AwardWinningMovies />} /> 
-          <Route path="/top-directors" element={<TopDirectors />} />
+          <Route path="/topdirectors" element={<TopDirectors />} />
           <Route path="/director/:directorId" element={<DirectorDetails />} />
+          <Route path="/newest-movies" element={<NewestMovies />} />
+        <Route path="/newest-series" element={<NewestSeries />} />
         </Routes>
       </Router>
     </ThemeProvider>
