@@ -291,7 +291,6 @@ export const fetchAwardWinningMovies = async (language: string): Promise<Movie[]
   }
 };
 
-// Popüler yönetmenleri getiren fonksiyon
 export const fetchPopularDirectors = async (language: string): Promise<Director[]> => {
   try {
     const response = await axios.get(`${baseURL}/person/popular`, {
@@ -307,7 +306,9 @@ export const fetchPopularDirectors = async (language: string): Promise<Director[
       .map((director: any) => ({
         id: director.id,
         name: director.name,
-        profile_path: `https://image.tmdb.org/t/p/w500${director.profile_path}`,
+        profile_path: director.profile_path
+          ? `https://image.tmdb.org/t/p/w500${director.profile_path}`
+          : null,  // Profil resmi yoksa null atanıyor
         biography: director.biography || 'Biography not available.',
         known_for: director.known_for.map((movie: any) => ({
           id: movie.id,
@@ -326,13 +327,14 @@ export const fetchPopularDirectors = async (language: string): Promise<Director[
 // Yönetmen detaylarını getiren fonksiyon
 export const fetchDirectorDetails = async (directorId: number, language: string) => {
   try {
-    const response = await axios.get(`${baseURL}/person/${directorId}`, {
+    const response = await axios.get(`${baseURL}/person/popular`, {
       params: {
         api_key: apiKey,
         language: language,
-        append_to_response: 'movie_credits', // Yönetmenin filmlerini de alıyoruz
       },
     });
+    console.log(response.data);
+    
 
     const directorData = response.data;
     console.log("Director Data API Response:", directorData);

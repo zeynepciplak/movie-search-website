@@ -16,40 +16,40 @@ interface MediaCardProps {
 
 // Styled Card component
 const StyledCard = styled(Card)({
-  width: '100%', // Responsive genişlik
-  maxWidth: '160px', // Kart genişliği daha dar olacak
-  height: '320px', // Kart yüksekliği sabit
+  width: '100%',
+  maxWidth: '160px', 
+  height: '320px', 
   display: 'flex',
   flexDirection: 'column',
 });
 
 const StyledCardMedia = styled(CardMedia)({
-  height: '70%', // Kartın %70'i poster için ayrılacak
+  height: '70%', 
   objectFit: 'cover',
 });
 
 const StyledCardContent = styled(CardContent)({
-  height: '30%', // Kartın %30'u içerik için ayrılacak
+  height: '30%', 
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
-  overflow: 'hidden', // Karttan taşmayı engeller
+  overflow: 'hidden', 
 });
 
 const TitleTypography = styled(Typography)({
   fontSize: '1rem',
   fontWeight: 'bold',
-  wordWrap: 'break-word', // Başlık alt satıra geçebilir
+  wordWrap: 'break-word',
   display: '-webkit-box',
-  WebkitLineClamp: 2, // İki satırda kes
+  WebkitLineClamp: 2,
   WebkitBoxOrient: 'vertical',
-  overflow: 'hidden', // Taşmayı önle
+  overflow: 'hidden', 
 });
 
 const DateTypography = styled(Typography)({
   fontSize: '0.8rem',
   color: 'gray',
-  marginTop: 'auto', // Tarihi başlığın altına yerleştirir
+  marginTop: 'auto',
 });
 
 const MediaCard: React.FC<MediaCardProps> = ({
@@ -67,12 +67,12 @@ const MediaCard: React.FC<MediaCardProps> = ({
     <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
       <StyledCard onClick={onClick}>
         <StyledCardMedia
-          component="img"
-          image={posterPath} // Poster yolu
-          alt={title} // Alt metin
+         // component="img"
+          image={posterPath} 
+          //alt={title}
           sx={{
-            height: '70%', // Poster alanı kartın %70'ini kaplayacak
-            objectFit: 'cover', // Posteri düzgün kes
+            height: '70%',
+            objectFit: 'cover', 
           }}
         />
         <StyledCardContent>
