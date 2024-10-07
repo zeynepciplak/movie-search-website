@@ -162,12 +162,13 @@ export const fetchPopularTVShows = async (language: string): Promise<Movie[]> =>
 };
 
 // Sanatçıları getiren fonksiyon
-export const fetchPopularArtists = async (language: string) => {
+export const fetchPopularArtists = async (language: string, page: number = 1) => {
   try {
     const response = await axios.get(`${baseURL}/person/popular`, {
       params: {
         api_key: apiKey,
         language: language, // Dil parametresi dinamik olarak gönderiliyor
+        page: page,
       },
     });
 
@@ -299,7 +300,7 @@ export const fetchPopularDirectors = async (language: string): Promise<Director[
         language: language,
       },
     });
-
+    console.log(response.data);
     // Yönetmenleri popüler kişilerden filtreliyoruz (yönetmenler için popüler film yapımcılarını kullanıyoruz)
     const directors = response.data.results
       .filter((person: any) => person.known_for_department === 'Directing') // Yalnızca yönetmenleri filtrele
@@ -323,7 +324,6 @@ export const fetchPopularDirectors = async (language: string): Promise<Director[
     return [];
   }
 };
-
 // Yönetmen detaylarını getiren fonksiyon
 export const fetchDirectorDetails = async (directorId: number, language: string) => {
   try {

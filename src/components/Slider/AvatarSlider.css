@@ -1,62 +1,40 @@
-/* Slider genel stil */
 .slider-container {
-    padding: 10px;
-    text-align: center;
-    position: relative;
-  }
-  
-  .slider-title {
-    margin-bottom: 20px;
-  }
-  
-  /* Avatar kartı */
-  .avatar-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: px; /* Kart genişliği */
-    height: 250px; /* Kart yüksekliği */
-    margin:0 5px;
-  }
-  
-  /* Avatar görüntüsü */
-  .avatar-image {
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  /* İsim stili */
-  .avatar-name {
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  /* Sol ve sağ ok butonları */
-  .slider-button {
-    background: transparent;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 24px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-  }
-  
-  .slider-button.left {
-    left: -25px;
-  }
-  
-  .slider-button.right {
-    right: -25px;
-  }
-  
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.slider-title {
+  margin-bottom: 20px;
+}
+
+/* Avatar kartı */
+.avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px; /* Kart genişliği */
+  height: 250px; /* Kart yüksekliği */
+  margin: 0 5px;
+}
+
+/* Avatar görüntüsü */
+.avatar-image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* İsim stili */
+.avatar-name {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

@@ -102,10 +102,41 @@ const HamburgerMenu: React.FC = () => {
             <ListItem button sx={{ pl: 4 }}>
               <ListItemText primary={t('hamburgerMenu.Action')} />
             </ListItem>
-            {/* Diğer türler burada */}
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Adventure')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Animation')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Comedy')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Crime')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Documentary')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Drama')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Family')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.History')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Romantic')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Science Fiction')} />
+            </ListItem>
+            <ListItem button sx={{ pl: 4 }}>
+              <ListItemText primary={t('hamburgerMenu.Thriller')} />
+            </ListItem>
           </List>
         </Collapse>
-
         {/* The Newest Menüsü */}
         <MenuItem onClick={handleNewestClick}>
           <ListItemText primary={t('hamburgerMenu.The Newest')} />
