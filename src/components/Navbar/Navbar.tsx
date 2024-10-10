@@ -7,12 +7,16 @@ import { useTranslation } from 'react-i18next';
 import HomeButton from '../Icon/HomeButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import  '../../styles/global.css';
-
+import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();  // Çeviri fonksiyonunu alıyoruz
   const [language, setLanguage] = useState<string>(localStorage.getItem('i18n') || i18n.language || 'en-US');
+  const navigate = useNavigate();
 
+  const handleLoginClick=()=>{
+    navigate('/login');
+  };
   useEffect(() => {
     const storedLanguage = localStorage.getItem('i18n');
     if (storedLanguage) {
@@ -34,10 +38,7 @@ const Navbar: React.FC = () => {
       });
   };
 
-  const handleLoginClick = () => {
-    console.log("Giriş Yap butonuna tıklandı!");
-  };
-
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: 'var(--highlight-color)' }}>

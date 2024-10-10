@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/*import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchDirectorDetails, Director } from '../../api/tmdbApi';  // Sanatçı detaylarını çeken API fonksiyonu
 import { Typography, Box, CardMedia } from '@mui/material';
@@ -35,4 +35,4 @@ const ArtistDetailPage: React.FC = () => {
   );
 };
 
-export default ArtistDetailPage;
+export default ArtistDetailPage;*/

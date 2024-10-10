@@ -13,9 +13,9 @@ import TopDirectors from './pages/TopDirectors/TopDirectors';
 
 import NewestMovies from './pages/NewestMovies/NewestMovies';
 import NewestSeries  from './pages/NewestSeries/NewestSeries';
-import MovieDetailPage from './pages/MovieDetailPage/MovieDetailPage';
-import ArtistDetailPage from './pages/ArtistDetailPage/ArtistDetailPage';
-
+//import MovieDetailPage from './pages/MovieDetailPage/MovieDetailPage';
+//import ArtistDetailPage from './pages/ArtistDetailPage/ArtistDetailPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 // Tema oluşturma
 const theme = createTheme({
   palette: {
@@ -70,6 +70,7 @@ const App: React.FC = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/imdb-top-100-movies" element={<ImdbTop100Movies />} /> {/* IMDb Top 100 Movies rotası */}
           <Route path="/most-popular-artists" element={<MostPopularArtists />} />
          
@@ -79,8 +80,8 @@ const App: React.FC = () => {
           
           <Route path="/newest-movies" element={<NewestMovies />} />
         <Route path="/newest-series" element={<NewestSeries />} />
-        <Route path="/movie/:id" element={<MovieDetailPage />} />
-        <Route path="/artist/:id" element={<ArtistDetailPage />} />
+        {/*<Route path="/movie/:id" element={<MovieDetailPage />} />*/}
+        {/*<Route path="/artist/:id" element={<ArtistDetailPage />} /> */}
         </Routes>
       </Router>
     </ThemeProvider>

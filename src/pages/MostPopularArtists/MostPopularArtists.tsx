@@ -35,8 +35,8 @@ const MostPopularArtists: React.FC = () => {
   // "Daha fazla yükle" butonuna tıklandığında çalışacak fonksiyon
   const loadMoreArtists = async () => {
     setLoading(true);
-    const fetchedArtists = await fetchPopularArtists(page);  // Verileri çek
-    setArtists((prevArtists) => [...prevArtists, ...fetchedArtists]);  // Yeni verileri öncekiyle birleştir
+    //const fetchedArtists = await fetchPopularArtists(page);  // Verileri çek
+    //setArtists((prevArtists) => [...prevArtists, ...fetchedArtists]);  // Yeni verileri öncekiyle birleştir
     setPage(page + 1);  // Sayfa numarasını artır
     setLoading(false);
   };

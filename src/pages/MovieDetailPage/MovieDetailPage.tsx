@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../../api/tmdbApi';
 import { useState, useEffect } from 'react';
@@ -34,4 +34,4 @@ const MovieDetailPage: React.FC = () => {
   );
 };
 
-export default MovieDetailPage;
+export default MovieDetailPage;*/
