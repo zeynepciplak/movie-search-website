@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import MovieDetailModal from '../../Modal/MovieDetailModal'; 
 import LaunchIcon from '@mui/icons-material/Launch';
 import LoadMoreButton from '../../components/LoadMoreButton/LoadMoreButton'; 
+import LoadingIcon from '../../components/Loading/LoadingIcon';
 
 const ImdbTop100Movies: React.FC = () => {
   const { i18n, t } = useTranslation(); 
@@ -18,6 +19,7 @@ const ImdbTop100Movies: React.FC = () => {
   const [artists, setArtists] = useState<any[]>([]); 
   const [openModal, setOpenModal] = useState<boolean>(false); 
   const [selectedMovie, setSelectedMovie] = useState<MovieDetails | null>(null); 
+  const [loading,setLoading]=useState<boolean>(true);
   const navigate = useNavigate();
 
   const [hoverArtists, setHoverArtists] = useState(false);
@@ -31,6 +33,7 @@ const ImdbTop100Movies: React.FC = () => {
   };
 
   const getMovies = useCallback(async (language: string, reset: boolean = false) => {
+    setLoading(true);
     try {
       if (movies.length >= 100 && !reset) {
         setHasMore(false);
@@ -50,6 +53,8 @@ const ImdbTop100Movies: React.FC = () => {
     } catch (error) {
       console.error('Filmleri çekerken bir hata oluştu:', error);
       setHasMore(false);
+    }finally{
+      setLoading(false);
     }
   }, [page]);
 
@@ -102,93 +107,96 @@ const ImdbTop100Movies: React.FC = () => {
 
   return (
     <>
-      <Box display="flex" justifyContent="space-between">
-        <Box flex="1">
-          <h1 className="h1">{t('imdbtop100movies.Top 100 Movies')}</h1>
-          <Grid container spacing={2}>
-            {movies.map((movie, index) => (
-              <MovieGridItem
-                key={movie.id}
-                movie={movie}
-                index={index}
-                fetchMovieDetails={() => handleOpenModal(movie.id)} 
-                movieDetails={movieDetailsList[movie.id]}
+      {loading ? ( // Loading durumunu kontrol ediyoruz
+        <LoadingIcon /> // Yüklenirken LoadingIcon gösteriliyor
+      ) : (
+        <Box display="flex" justifyContent="space-between">
+          <Box flex="1">
+            <h1 className="h1">{t('imdbtop100movies.Top 100 Movies')}</h1>
+            <Grid container spacing={2}>
+              {movies.map((movie, index) => (
+                <MovieGridItem
+                  key={movie.id}
+                  movie={movie}
+                  index={index}
+                  fetchMovieDetails={() => handleOpenModal(movie.id)} 
+                  movieDetails={movieDetailsList[movie.id]}
+                />
+              ))}
+            </Grid>
+
+            {/* Load More Butonu */}
+            <Box
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end', // Sağ tarafa hizalar
+                marginRight:'4rem',
+                marginBottom:'30px',
+              
+              }}
+            >
+              <LoadMoreButton
+                onClick={handleLoadMore}
+                label={t('imdbtop100movies.Load More')}
               />
-            ))}
-          </Grid>
+            </Box>
+          </Box>
 
-          {/* Load More Butonu */}
-          <Box
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-end', // Sağ tarafa hizalar
-              marginRight:'4rem',
-              marginBottom:'30px',
-            
-            }}
-          >
-            <LoadMoreButton
-              onClick={handleLoadMore}
-              label={t('imdbtop100movies.Load More')}
+          <Box flex="0.5" padding="28px" display="flex" flexDirection="column" alignItems="center">
+            <Box
+              display="flex"
+              alignItems="center"
+              style={{ cursor: 'pointer' }}
+              onMouseEnter={() => setHoverArtists(true)}
+              onMouseLeave={() => setHoverArtists(false)}
+            >
+              <Link href="/most-popular-artists" underline="none" color="inherit">
+                <Typography variant="h5" onClick={handleMostPopularArtistsClick}>
+                  {t('imdbtop100movies.Most Popular Artists')}
+                </Typography>
+              </Link>
+              <LaunchIcon sx={{ marginLeft: '8px', color: hoverArtists ? '#FFD700' : 'inherit' }} />
+            </Box>
+
+            <GroupAvatars artists={artists} />
+
+            <Box
+              display="flex"
+              alignItems="center"
+              style={{ marginTop: '80px', cursor: 'pointer' }}
+              onMouseEnter={() => setHoverAwards(true)}
+              onMouseLeave={() => setHoverAwards(false)}
+            >
+              <Link href="/awardwinningmovies" underline="none" color="inherit">
+                <Typography variant="h5">{t('imdbtop100movies.Award Winning Movies')}</Typography>
+              </Link>
+              <LaunchIcon sx={{ marginLeft: '8px', color: hoverAwards ? '#FFD700' : 'inherit' }} />
+            </Box>
+
+            <Box
+              display="flex"
+              alignItems="center"
+              style={{ marginTop: '80px', cursor: 'pointer' }}
+              onMouseEnter={() => setHoverDirectors(true)}
+              onMouseLeave={() => setHoverDirectors(false)}
+            >
+              <Link href="/topdirectors" underline="none" color="inherit">
+                <Typography variant="h5">{t('imdbtop100movies.Top Directors')}</Typography>
+              </Link>
+              <LaunchIcon sx={{ marginLeft: '8px', color: hoverDirectors ? '#FFD700' : 'inherit' }} />
+            </Box>
+          </Box>
+
+          {selectedMovie && (
+            <MovieDetailModal
+              open={openModal}
+              onClose={handleCloseModal}
+              movie={selectedMovie}
             />
-          </Box>
+          )}
         </Box>
-
-        <Box flex="0.5" padding="28px" display="flex" flexDirection="column" alignItems="center">
-          <Box
-            display="flex"
-            alignItems="center"
-            style={{ cursor: 'pointer' }}
-            onMouseEnter={() => setHoverArtists(true)}
-            onMouseLeave={() => setHoverArtists(false)}
-          >
-            <Link href="/most-popular-artists" underline="none" color="inherit">
-              <Typography variant="h5" onClick={handleMostPopularArtistsClick}>
-                {t('imdbtop100movies.Most Popular Artists')}
-              </Typography>
-            </Link>
-            <LaunchIcon sx={{ marginLeft: '8px', color: hoverArtists ? '#FFD700' : 'inherit' }} />
-          </Box>
-
-          <GroupAvatars artists={artists} />
-
-          <Box
-            display="flex"
-            alignItems="center"
-            style={{ marginTop: '80px', cursor: 'pointer' }}
-            onMouseEnter={() => setHoverAwards(true)}
-            onMouseLeave={() => setHoverAwards(false)}
-          >
-            <Link href="/awardwinningmovies" underline="none" color="inherit">
-              <Typography variant="h5">{t('imdbtop100movies.Award Winning Movies')}</Typography>
-            </Link>
-            <LaunchIcon sx={{ marginLeft: '8px', color: hoverAwards ? '#FFD700' : 'inherit' }} />
-          </Box>
-
-          <Box
-            display="flex"
-            alignItems="center"
-            style={{ marginTop: '80px', cursor: 'pointer' }}
-            onMouseEnter={() => setHoverDirectors(true)}
-            onMouseLeave={() => setHoverDirectors(false)}
-          >
-            <Link href="/topdirectors" underline="none" color="inherit">
-              <Typography variant="h5">{t('imdbtop100movies.Top Directors')}</Typography>
-            </Link>
-            <LaunchIcon sx={{ marginLeft: '8px', color: hoverDirectors ? '#FFD700' : 'inherit' }} />
-          </Box>
-        </Box>
-
-        {selectedMovie && (
-          <MovieDetailModal
-            open={openModal}
-            onClose={handleCloseModal}
-            movie={selectedMovie}
-          />
-        )}
-      </Box>
+      )}
     </>
   );
 };
-
 export default ImdbTop100Movies;

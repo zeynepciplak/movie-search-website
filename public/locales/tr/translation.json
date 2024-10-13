@@ -102,6 +102,10 @@
         "Password": "Şifre",
         "Login successful!": "Giriş başarılı!",
         "Invalid credentials!": "Geçersiz bilgiler!"
+      },
+      "newest":{
+        "Newest Movies":"En Yeni Filmler",
+        "Newest Series":"En Yeni Diziler"
       }
   }
   

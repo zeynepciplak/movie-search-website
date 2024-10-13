@@ -6,40 +6,37 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './AvatarSlider.css';
 import { useTranslation } from 'react-i18next';
+import LoadingIcon from '../Loading/LoadingIcon';
 
-// Slider veri kaynağı tipi
 type FetchDataFunction = (language: string) => Promise<any[]>;
 
-// Dinamik slider bileşeni
 const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDataFunction }) => {
   const sliderRef = useRef<any>(null);
   const { i18n } = useTranslation();
   const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true); // Loading state
 
-  // Veriyi bileşen içinde çekiyoruz
   useEffect(() => {
     const loadData = async () => {
-      const fetchedData = await fetchData(i18n.language); // Dinamik veri çekme fonksiyonu
+      const fetchedData = await fetchData(i18n.language); 
       setData(fetchedData);
+      setLoading(false); // Veriler yüklendiğinde loading state'i false yap
     };
     loadData();
   }, [fetchData, i18n.language]);
 
-  // Sonraki slayda geçme fonksiyonu
   const handleNext = () => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
     }
   };
 
-  // Önceki slayda gitme fonksiyonu
   const handlePrev = () => {
     if (sliderRef.current) {
       sliderRef.current.slickPrev();
     }
   };
 
-  // Wheel hareketi ile kaydırma
   const handleWheel = (e: React.WheelEvent) => {
     if (e.deltaY > 0) {
       handleNext();
@@ -48,7 +45,6 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
     }
   };
 
-  // Slider ayarları
   const settings = {
     dots: false,
     infinite: true,
@@ -58,30 +54,10 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
     nextArrow: <FaChevronRight />,
     prevArrow: <FaChevronLeft />,
     responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
+      { breakpoint: 1280, settings: { slidesToShow: 4 } },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 480, settings: { slidesToShow: 1 } },
     ],
   };
 
@@ -92,8 +68,12 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
       </Typography>
 
       <div>
-        {data.length > 0 ? (
-          <Slider {...settings} ref={sliderRef}> {/* react-slick Slider kullanılıyor */}
+        {loading ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+            <LoadingIcon />
+          </Box>
+        ) : (
+          <Slider {...settings} ref={sliderRef}>
             {data.map((item) => (
               <div key={item.id} className="avatar-card">
                 <CardMedia
@@ -108,12 +88,9 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
               </div>
             ))}
           </Slider>
-        ) : (
-          <Typography>Loading...</Typography> // Veriler yüklenirken
         )}
       </div>
 
-      {/* Sol ve Sağ Oklar */}
       <button onClick={handlePrev} className="slider-button left">
         <FaChevronLeft />
       </button>

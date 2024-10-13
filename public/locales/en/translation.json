@@ -101,6 +101,10 @@
    "Password":"Password",
    "Login successful!":"Login successful!",
    "Invalid credentials!":"Invalid credentials!"
+   },
+   "newest":{
+    "Newest Movies":"Newest Movies",
+   "Newest Series":"Newest Series"
    }
  }
  

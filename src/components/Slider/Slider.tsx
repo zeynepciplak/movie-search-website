@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import SlideItem from './SlideItem';
 import './Slider.css';
+import LoadingIcon from '../Loading/LoadingIcon';
 
 interface Movie {
   id: number;
@@ -12,20 +13,22 @@ interface Movie {
 }
 
 interface SliderProps {
-  title: string;  // Slider başlığı
-  fetchData: (language: string) => Promise<Movie[]>;  // Veri çekme fonksiyonu
+  title: string; 
+  fetchData: (language: string) => Promise<Movie[]>; 
 }
 
 const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
   const { i18n } = useTranslation();
   const [items, setItems] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(true); // Loading state
   const sliderRef = useRef<HTMLDivElement>(null);
-  const cardWidth = 192; // Kartın genişliği
+  const cardWidth = 192;
 
   useEffect(() => {
     const getItems = async () => {
       const data = await fetchData(i18n.language);
       setItems(data);
+      setLoading(false); // Veriler yüklendiğinde loading state'i false yap
     };
     getItems();
   }, [fetchData, i18n.language]);
@@ -72,9 +75,23 @@ const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
       </button>
       <div className="slider-wrapper" onWheel={handleWheel}>
         <div className="slider" ref={sliderRef} style={{ display: 'flex', overflowX: 'hidden' }}>
-          {items.map((item) => (
-            <SlideItem key={item.id} movie={item} />
-          ))}
+          {loading ? (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '300px', // Sabit alan
+                width: '100%',
+              }}
+            >
+              <LoadingIcon />
+            </div>
+          ) : (
+            items.map((item) => (
+              <SlideItem key={item.id} movie={item} />
+            ))
+          )}
         </div>
       </div>
       <button onClick={handleNext} className="slider-button right">

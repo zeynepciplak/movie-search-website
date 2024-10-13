@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -7,7 +7,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import LoadingIcon from '../Loading/LoadingIcon';
 import { styled } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
@@ -33,6 +33,7 @@ const StyledCard = styled(Card) ({
   display:'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  position:'relative',
 });
 
 // Styled CardMedia
@@ -59,46 +60,72 @@ const StyledButton = styled(Button) ({
 
 const MovieCard: React.FC<MovieCardProps> = ({ title, trailerUrl, videoId }) => {
   const [open, setOpen] = useState(false);
+ const[loading,setLoading]=useState(true);
+ const {t}=useTranslation();
 
+ useEffect(() => {
+  const timer = setTimeout(() => {
+    setLoading(false); // Yükleme tamamlandığında false yap
+  }, 1000); // 1 saniyelik simüle edilmiş yükleme süresi
+
+  return () => clearTimeout(timer); // Component unmount olduğunda timeout'u temizle
+}, []);
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
- const {t}=useTranslation();
+ 
   return (
     <>
-      <StyledCard onClick={handleClickOpen}>
+    <StyledCard onClick={handleClickOpen}>
+      {loading ? (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '150px', // Resim alanını sabit tutuyoruz
+            width: '100%',
+          }}
+        >
+          <LoadingIcon />
+        </div>
+      ) : (
         <StyledCardMedia
           src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
           alt={title}
         />
-        <CardContent sx={{ textAlign: 'center' }}>
-          <Typography variant="h6" sx={{ fontSize: '0.9rem' }}>
-            {title}
-          </Typography>
-        </CardContent>
-        <StyledButton onClick={handleClickOpen}>
-          {t('UpComing.Watch Trailer')}
-        </StyledButton>
-      </StyledCard>
+      )}
+      <CardContent sx={{ textAlign: 'center' }}>
+        <Typography variant="h6" sx={{ fontSize: '0.9rem' }}>
+          {title}
+        </Typography>
+      </CardContent>
+      <StyledButton onClick={handleClickOpen}>
+        {t('UpComing.Watch Trailer')}
+      </StyledButton>
+    </StyledCard>
 
-      <Dialog open={open} onClose={handleClose} maxWidth="lg" fullWidth>
-        <DialogTitle>{title} - {t('UpComing.Trailer')}</DialogTitle>
-        <DialogContent>
-          <iframe
-            width="100%"
-            height="400"
-            src={`https://www.youtube.com/embed/${videoId}`}
-            title={title}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </DialogContent>
-        <DialogActions>
-          <StyledButton onClick={handleClose}>{t('UpComing.Close')}</StyledButton>
-        </DialogActions>
-      </Dialog>
-    </>
-  );
+    <Dialog open={open} onClose={handleClose} maxWidth="lg" fullWidth>
+      <DialogTitle>
+        {title} - {t('UpComing.Trailer')}
+      </DialogTitle>
+      <DialogContent>
+        <iframe
+          width="100%"
+          height="400"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title={title}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </DialogContent>
+      <DialogActions>
+        <StyledButton onClick={handleClose}>{t('UpComing.Close')}</StyledButton>
+      </DialogActions>
+    </Dialog>
+  </>
+);
 };
+
 
 export default MovieCard;
