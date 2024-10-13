@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography, Grid } from '@mui/material';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import './LoginPage.css';  
+import { useTranslation } from 'react-i18next';
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Dummy veri ile kontrol yapıyoruz
+   
     if (username === 'admin' && password === 'password') {
       alert('Login successful!');
       navigate('/'); // Başarılı girişten sonra anasayfaya yönlendir
@@ -19,13 +23,14 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Grid container justifyContent="center" alignItems="center" style={{ height: '100vh' }}>
+    <Grid container className="login-container">
       <Grid item xs={12} sm={8} md={4}>
-        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-          <Typography variant="h4" gutterBottom>Login</Typography>
-          <form onSubmit={handleLogin} style={{ width: '100%' }}>
+        <Box className="login-box">
+          <FontAwesomeIcon icon={faCircleUser} size="6x" className="login-icon" />
+          <Typography variant="h4" gutterBottom>{t("login.Login")}</Typography>
+          <form onSubmit={handleLogin}>
             <TextField
-              label="Username"
+              label={t("login.Username")}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               fullWidth
@@ -33,7 +38,7 @@ const LoginPage: React.FC = () => {
               variant="outlined"
             />
             <TextField
-              label="Password"
+              label={t("login.Password")}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -41,8 +46,8 @@ const LoginPage: React.FC = () => {
               margin="normal"
               variant="outlined"
             />
-            <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: '20px' }}>
-              Login
+            <Button type="submit" variant="contained" color="primary" fullWidth className="login-button">
+             {t("login.Login")}
             </Button>
           </form>
         </Box>

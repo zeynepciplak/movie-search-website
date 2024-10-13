@@ -6,7 +6,7 @@ import Navbar from './components/Navbar/Navbar'; // Navbar bileşenini import et
 import ImdbTop100Movies from './pages/ImdbTop100Movies/ImdbTop100Movies'; // IMDb bileşenini import et
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-
+import Footer from './components/Footer/Footer';
 import MostPopularArtists from './pages/MostPopularArtists/MostPopularArtists';
 import AwardWinningMovies from './pages/AwardWinningMovies/AwardWinningMovies';
 import TopDirectors from './pages/TopDirectors/TopDirectors';
@@ -83,6 +83,7 @@ const App: React.FC = () => {
         {/*<Route path="/movie/:id" element={<MovieDetailPage />} />*/}
         {/*<Route path="/artist/:id" element={<ArtistDetailPage />} /> */}
         </Routes>
+        <Footer/>
       </Router>
     </ThemeProvider>
   );
