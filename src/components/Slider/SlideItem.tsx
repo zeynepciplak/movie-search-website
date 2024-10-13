@@ -6,6 +6,7 @@ interface SlideItemProps {
     title: string;
     poster_path: string;
     release_date: string;
+    vote_average: number;
   };
 }
 
@@ -20,13 +21,14 @@ const SlideItem: React.FC<SlideItemProps> = ({ movie }) => {
           alt={movie.title}
           className="slide-image"
         />
+        <div className="movie-rating">{Math.round(movie.vote_average * 10) / 10}</div>
       </div>
       <div className="slide-info">
-        <h3>{movie.title}</h3>
-        <p>
+        <h3 className="slide-title">{movie.title}</h3>
+        <p className="slide-date">
           {new Date(movie.release_date).toLocaleDateString(i18n.language, {
             year: 'numeric',
-            month: 'long',
+            month: 'short',
             day: 'numeric',
           })}
         </p>

@@ -10,25 +10,26 @@ interface Movie {
   title: string;
   poster_path: string;
   release_date: string;
+  vote_average: number;
 }
 
 interface SliderProps {
-  title: string; 
-  fetchData: (language: string) => Promise<Movie[]>; 
+  title: string;
+  fetchData: (language: string) => Promise<Movie[]>;
 }
 
 const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
   const { i18n } = useTranslation();
   const [items, setItems] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const cardWidth = 192;
+  const cardWidth = 160; // Kart genişliği küçültüldü
 
   useEffect(() => {
     const getItems = async () => {
       const data = await fetchData(i18n.language);
       setItems(data);
-      setLoading(false); // Veriler yüklendiğinde loading state'i false yap
+      setLoading(false);
     };
     getItems();
   }, [fetchData, i18n.language]);
@@ -51,9 +52,9 @@ const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
   const handleWheel = (e: React.WheelEvent) => {
     const scrollSpeed = 1.5;
     if (sliderRef.current) {
-      if (e.deltaX > 0) {
+      if (e.deltaY > 0) {
         sliderRef.current.scrollLeft += cardWidth * scrollSpeed;
-      } else if (e.deltaX < 0) {
+      } else if (e.deltaY < 0) {
         sliderRef.current.scrollLeft -= cardWidth * scrollSpeed;
       }
     }
@@ -81,7 +82,7 @@ const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '300px', // Sabit alan
+                height: '250px', // Sabit alan
                 width: '100%',
               }}
             >
