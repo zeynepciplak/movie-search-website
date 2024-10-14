@@ -46,6 +46,10 @@ export interface Director {
   known_for: Movie[];
   profile_path: string | null;
 }
+export interface Genre {
+  id: number;
+  name: string;
+}
 
 // Haftalık trend olan popüler filmleri getiren fonksiyon
 export const fetchPopularMovies = async (language: string): Promise<Movie[]> => {
@@ -412,6 +416,99 @@ export const fetchNewestSeries = async (language: string,page:number): Promise<S
     return series.sort((a, b) => new Date(b.first_air_date).getTime() - new Date(a.first_air_date).getTime());
   } catch (error) {
     console.error('Error fetching newest series:', error);
+    return [];
+  }
+};
+// Tüm Filmleri Çekme
+export const fetchAllMovies = async (language : string, page = 1) => {
+  const response = await axios.get(`${baseURL}/discover/movie`, {
+    params: {
+      api_key: apiKey,
+      language:language,
+      page, // Sayfa numarası
+    },
+  });
+  return response.data.results; // Film listesini döner
+};
+
+// Tüm Dizileri Çekme
+export const fetchAllSeries = async (language :string, page = 1) => {
+  const response = await axios.get(`${baseURL}/discover/tv`, {
+    params: {
+      api_key: apiKey,
+      language:language,
+      page, // Sayfa numarası
+    },
+  });
+  return response.data.results; // Dizi listesini döner
+};
+// Film türlerini getiren fonksiyon
+export const fetchMovieGenres = async (language: string): Promise<Genre[]> => {
+  try {
+    const response = await axios.get(`${baseURL}/genre/movie/list`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+      },
+    });
+
+    return response.data.genres;
+  } catch (error) {
+    console.error('Film türlerini çekerken hata oluştu:', error);
+    return [];
+  }
+};
+
+// Dizi türlerini getiren fonksiyon
+export const fetchTVGenres = async (language: string): Promise<Genre[]> => {
+  try {
+    const response = await axios.get(`${baseURL}/genre/tv/list`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+      },
+    });
+
+    return response.data.genres;
+  } catch (error) {
+    console.error('Dizi türlerini çekerken hata oluştu:', error);
+    return [];
+  }
+};
+// Belirli bir türe göre filmleri getiren fonksiyon
+export const fetchMoviesByGenre = async (genreId: number, language: string, page = 1) => {
+  try {
+    const response = await axios.get(`${baseURL}/discover/movie`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+        with_genres: genreId,
+        page: page,
+      },
+    });
+
+    return response.data.results; // Filmleri döndür
+  } catch (error) {
+    console.error('Türe göre filmleri çekerken hata oluştu:', error);
+    return [];
+  }
+};
+
+// Belirli bir türe göre dizileri getiren fonksiyon
+export const fetchTVShowsByGenre = async (genreId: number, language: string, page = 1) => {
+  try {
+    const response = await axios.get(`${baseURL}/discover/tv`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+        with_genres: genreId,
+        page: page,
+      },
+    });
+
+    return response.data.results; // Dizileri döndür
+  } catch (error) {
+    console.error('Türe göre dizileri çekerken hata oluştu:', error);
     return [];
   }
 };

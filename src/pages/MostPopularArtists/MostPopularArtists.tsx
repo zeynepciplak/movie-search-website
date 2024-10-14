@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box ,Typography} from '@mui/material';
 import { fetchPopularArtists } from '../../api/tmdbApi';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -46,6 +46,9 @@ const MostPopularArtists: React.FC = () => {
 
   return (
     <Box sx={{ padding: '20px' }}>
+      <Typography variant="h4" gutterBottom>
+        {t("hamburgerMenu.Most Popular Artists")}
+      </Typography>
       {initialLoading ? ( // İlk yükleme sırasında spinner göster
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px' }}>
           <LoadingIcon/> {/* LoadingSpinner burada gösterilecek */}

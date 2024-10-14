@@ -25,7 +25,8 @@ const ImdbTop100Movies: React.FC = () => {
   const [hoverArtists, setHoverArtists] = useState(false);
   const [hoverAwards, setHoverAwards] = useState(false);
   const [hoverDirectors, setHoverDirectors] = useState(false);
-
+  const [newestSeries,setNewestSeries]=useState(false);
+  const [newestMovies,setNewestMovies]=useState(false);
   const currentLanguage = i18n.language;
 
   const handleLoadMore = async () => {
@@ -185,7 +186,32 @@ const ImdbTop100Movies: React.FC = () => {
               </Link>
               <LaunchIcon sx={{ marginLeft: '8px', color: hoverDirectors ? '#FFD700' : 'inherit' }} />
             </Box>
+            <Box
+              display="flex"
+              alignItems="center"
+              style={{ marginTop: '80px', cursor: 'pointer' }}
+              onMouseEnter={() => setNewestMovies(true)}
+              onMouseLeave={() => setNewestMovies(false)}
+            >
+              <Link href="/newest-movies" underline="none" color="inherit">
+                <Typography variant="h5">{t("hamburgerMenu.Newest Movies")}</Typography>
+              </Link>
+              <LaunchIcon sx={{ marginLeft: '8px', color: newestMovies? '#FFD700' : 'inherit' }} />
+            </Box>
+            <Box
+              display="flex"
+              alignItems="center"
+              style={{ marginTop: '80px', cursor: 'pointer' }}
+              onMouseEnter={() => setNewestSeries(true)}
+              onMouseLeave={() => setNewestSeries(false)}
+            >
+              <Link href="/newest-series" underline="none" color="inherit">
+                <Typography variant="h5">{t('hamburgerMenu.Newest Series')}</Typography>
+              </Link>
+              <LaunchIcon sx={{ marginLeft: '8px', color: newestSeries ? '#FFD700' : 'inherit' }} />
+            </Box>
           </Box>
+          
 
           {selectedMovie && (
             <MovieDetailModal

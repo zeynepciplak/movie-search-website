@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, List, ListItem, ListItemText, Collapse, IconButton, AppBar, Toolbar, Menu, MenuItem, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandLess from '@mui/icons-material/ExpandLess';
@@ -6,13 +6,28 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/global.css';
+import { fetchMovieGenres, fetchTVGenres, Genre } from '../../api/tmdbApi';
 
 const HamburgerMenu: React.FC = () => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [openGenre, setOpenGenre] = useState(false);
-  const [openNewest, setOpenNewest] = useState(false); // En yeni seçeneği için state
+  const [openGenre, setOpenGenre] = useState(false);  // Film ve dizi türleri için açılır/kapanır
+  const [openNewest, setOpenNewest] = useState(false);  // En yeni seçeneği için state
+  const [movieGenres, setMovieGenres] = useState<Genre[]>([]);  // Film türleri
+  const [tvGenres, setTVGenres] = useState<Genre[]>([]);  // Dizi türleri
   const navigate = useNavigate();
+
+  // Film ve dizi türlerini çek
+  useEffect(() => {
+    const loadGenres = async () => {
+      const movieGenresData = await fetchMovieGenres('en-US');  // Film türlerini çek
+      const tvGenresData = await fetchTVGenres('en-US');  // Dizi türlerini çek
+      setMovieGenres(movieGenresData);
+      setTVGenres(tvGenresData);
+    };
+
+    loadGenres();
+  }, []);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -22,22 +37,33 @@ const HamburgerMenu: React.FC = () => {
     setAnchorEl(null);
   };
 
-  const handleGenreClick = () => {
+  // Türler menüsünü aç/kapa
+  const handleGenreToggle = () => {
     setOpenGenre(!openGenre);
   };
 
+  // Tür tıklandığında yönlendirme
+  const handleGenreClick = (genreId: number, mediaType: 'movie' | 'tv') => {
+    if (mediaType === 'movie') {
+      navigate(`/movies/genre/${genreId}`);  // Filmlere yönlendirme
+    } else {
+      navigate(`/series/genre/${genreId}`);  // Dizilere yönlendirme
+    }
+    handleMenuClose();  // Menü kapansın
+  };
+
   const handleNewestClick = () => {
-    setOpenNewest(!openNewest); // En yeni seçeneği açılır/kapanır
+    setOpenNewest(!openNewest);  // En yeni seçeneğini aç/kapa
   };
 
   const handleNewestMoviesClick = () => {
     handleMenuClose();
-    navigate('/newest-movies'); // En yeni filmler sayfasına yönlendirme
+    navigate('/newest-movies');  // En yeni filmler sayfasına yönlendirme
   };
 
   const handleNewestSeriesClick = () => {
     handleMenuClose();
-    navigate('/newest-series'); // En yeni diziler sayfasına yönlendirme
+    navigate('/newest-series');  // En yeni diziler sayfasına yönlendirme
   };
 
   const handleIMDBTop100Click = () => {
@@ -65,12 +91,22 @@ const HamburgerMenu: React.FC = () => {
     navigate('/topdirectors');
   };
 
+  const handleMoviesClick = () => {
+    handleMenuClose();
+    navigate('/movies');
+  };
+
+  const handleSeriesClick = () => {
+    handleMenuClose();
+    navigate('/series');
+  };
+
   return (
     <Box>
-      <AppBar className='appBar' position="static">
-        <Toolbar className='hamburgeer'>
+      <AppBar className="appBar" position="static">
+        <Toolbar className="hamburger">
           <IconButton color="inherit" onClick={handleMenuOpen}>
-            <MenuIcon className='hamburger' />
+            <MenuIcon className="hamburger" />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
         </Toolbar>
@@ -80,64 +116,44 @@ const HamburgerMenu: React.FC = () => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
-        sx={{ width: '100%' }} // Responsive tam genişlik
+        sx={{ width: '100%' }}  // Responsive tam genişlik
       >
         <MenuItem onClick={handleHomePageClick}>
           <ListItemText primary={t('hamburgerMenu.Home Page')} />
         </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
+
+        {/* Movies and Series Sections */}
+        <MenuItem onClick={handleMoviesClick}>
           <ListItemText primary={t('hamburgerMenu.Movies')} />
         </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
+        <MenuItem onClick={handleSeriesClick}>
           <ListItemText primary={t('hamburgerMenu.Series')} />
         </MenuItem>
 
-        <MenuItem onClick={handleGenreClick}>
+        {/* Genre Sections */}
+        <MenuItem onClick={handleGenreToggle}>
           <ListItemText primary={t('hamburgerMenu.Genres')} />
           {openGenre ? <ExpandLess /> : <ExpandMore />}
         </MenuItem>
 
         <Collapse in={openGenre} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Action')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Adventure')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Animation')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Comedy')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Crime')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Documentary')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Drama')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Family')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.History')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Romantic')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Science Fiction')} />
-            </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary={t('hamburgerMenu.Thriller')} />
-            </ListItem>
+            <Typography variant="subtitle1" sx={{ padding: '10px' }}>Movies</Typography>
+            {movieGenres.map((genre) => (
+              <ListItem button key={genre.id} sx={{ pl: 4 }} onClick={() => handleGenreClick(genre.id, 'movie')}>
+                <ListItemText primary={genre.name} />
+              </ListItem>
+            ))}
+            <Typography variant="subtitle1" sx={{ padding: '10px' }}>TV Series</Typography>
+            {tvGenres.map((genre) => (
+              <ListItem button key={genre.id} sx={{ pl: 4 }} onClick={() => handleGenreClick(genre.id, 'tv')}>
+                <ListItemText primary={genre.name} />
+              </ListItem>
+            ))}
           </List>
         </Collapse>
-        {/* The Newest Menüsü */}
+
+        {/* The Newest Menu */}
         <MenuItem onClick={handleNewestClick}>
           <ListItemText primary={t('hamburgerMenu.The Newest')} />
           {openNewest ? <ExpandLess /> : <ExpandMore />}

@@ -3,6 +3,7 @@ import { fetchAwardWinningMovies } from '../../api/tmdbApi';
 import { Box, Typography, Grid } from '@mui/material';
 import MediaCard from '../../components/MediaCard/MediaCard';
 import LoadingIcon from '../../components/Loading/LoadingIcon';
+import { useTranslation } from 'react-i18next';
 
 interface Movie {
   id: number;
@@ -15,11 +16,11 @@ const AwardWinningMovies: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const { i18n, t } = useTranslation();
   useEffect(() => {
     const getAwardWinningMovies = async () => {
       try {
-        const movies = await fetchAwardWinningMovies('en-US');
+        const movies = await fetchAwardWinningMovies(i18n.language);
         setMovies(movies);
         setLoading(false); // Veri geldikten sonra loading kapanır
       } catch (err) {
@@ -29,7 +30,7 @@ const AwardWinningMovies: React.FC = () => {
     };
 
     getAwardWinningMovies();
-  }, []);
+  }, [i18n.language]);
 
   if (loading) {
     return <LoadingIcon />; // Yükleniyor durumunda loading spinner'ı gösteriyoruz
@@ -40,9 +41,9 @@ const AwardWinningMovies: React.FC = () => {
   }
 
   return (
-    <Box>
+    <Box sx={{ padding: '20px' }}>
       <Typography variant="h4" gutterBottom>
-        Award-Winning Movies
+       {t("hamburgerMenu.Award Winning Movies")}
       </Typography>
       <Grid container spacing={4}>
         {movies.map((movie) => (

@@ -1,21 +1,25 @@
-// App.tsx
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
-import Navbar from './components/Navbar/Navbar'; // Navbar bileşenini import ettik
-import ImdbTop100Movies from './pages/ImdbTop100Movies/ImdbTop100Movies'; // IMDb bileşenini import et
+import Navbar from './components/Navbar/Navbar'; 
+import ImdbTop100Movies from './pages/ImdbTop100Movies/ImdbTop100Movies';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import Footer from './components/Footer/Footer';
 import MostPopularArtists from './pages/MostPopularArtists/MostPopularArtists';
 import AwardWinningMovies from './pages/AwardWinningMovies/AwardWinningMovies';
 import TopDirectors from './pages/TopDirectors/TopDirectors';
-
 import NewestMovies from './pages/NewestMovies/NewestMovies';
 import NewestSeries  from './pages/NewestSeries/NewestSeries';
 //import MovieDetailPage from './pages/MovieDetailPage/MovieDetailPage';
 //import ArtistDetailPage from './pages/ArtistDetailPage/ArtistDetailPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import MoviesPage from './pages/MoviesPage/MoviesPage';
+import SeriesPage from './pages/SeriesPage/SeriesPage';
+import MoviesByGenrePage from './pages/MoviesByGenrePage/MoviesByGenrePage';
+import SeriesByGenrePage from './pages/SeriesByGenrePage/SeriesByGenrePage';
+
 // Tema oluşturma
 const theme = createTheme({
   palette: {
@@ -71,7 +75,9 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/imdb-top-100-movies" element={<ImdbTop100Movies />} /> {/* IMDb Top 100 Movies rotası */}
+          <Route path="/movies/genre/:genreId" element={<MoviesByGenrePage />} />
+          <Route path="/series/genre/:genreId" element={<SeriesByGenrePage />} />
+          <Route path="/imdb-top-100-movies" element={<ImdbTop100Movies />} /> 
           <Route path="/most-popular-artists" element={<MostPopularArtists />} />
          
          
@@ -82,6 +88,9 @@ const App: React.FC = () => {
         <Route path="/newest-series" element={<NewestSeries />} />
         {/*<Route path="/movie/:id" element={<MovieDetailPage />} />*/}
         {/*<Route path="/artist/:id" element={<ArtistDetailPage />} /> */}
+        <Route path="/movies" element={<MoviesPage />} /> 
+        <Route path="/series" element={<SeriesPage />} /> 
+
         </Routes>
         <Footer/>
       </Router>
