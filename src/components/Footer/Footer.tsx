@@ -3,19 +3,21 @@ import { Grid, Box, Typography, TextField, Button, Link, IconButton } from '@mui
 import { Email, Phone, Facebook, Google, Twitter, Instagram } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import './Footer.css'; // CSS dosyasını import ediyoruz
+import FooterLogo from '../../assets/FooterLogo.png';
 
 const Footer: React.FC = () => {
     const { t } = useTranslation();
   return (
     <Box className="footer-container">
       <Grid container spacing={4} justifyContent="space-between">
-        {/* Your Logo & About Us Section */}
+       
         <Grid item xs={12} sm={6} md={3}>
-          <Typography variant="h6" className="footer-title">your logo</Typography>
-          <Typography className="footer-subtitle">Your Tagline here</Typography>
-          <Typography className="footer-about">
-            We want to help bring talented students and unique startups together.
-          </Typography>
+          <Typography variant="h6" className="footer-title"><img
+              src={FooterLogo} 
+              alt="Your Logo"
+              style={{ width: '150px', height: '150px' }} // Logonun genişliği ve yüksekliği
+            /></Typography>
+         
           <Typography className="footer-contact">{t("footer.Contact Us")}</Typography>
           <Box className="footer-contact-info">
             <Phone /> +91 9999 999 999 <br />

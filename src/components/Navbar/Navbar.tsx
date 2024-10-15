@@ -8,6 +8,7 @@ import HomeButton from '../Icon/HomeButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import  '../../styles/global.css';
 import { useNavigate } from 'react-router-dom';
+import Smdb from '../../assets/Smdb.png';
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();  // Çeviri fonksiyonunu alıyoruz
@@ -44,7 +45,17 @@ const Navbar: React.FC = () => {
       <AppBar position="static" sx={{ backgroundColor: 'var(--highlight-color)' }}>
         <Toolbar>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 0.1, display: { xs: 'none', sm: 'block' } }}>
-            {t('header.LOGO')}
+          <img
+  src={Smdb} 
+  alt="Your Logo"
+  style={{ 
+    width: '120px', 
+    height: '50px', 
+    borderRadius: '12px', // Kenarları yuvarlamak için
+    marginLeft: '40px', // Sola boşluk bırakmak için
+    marginTop:'5px',
+  }} 
+/>
           </Typography>
           <HomeButton />
           <div className='appBar'>
