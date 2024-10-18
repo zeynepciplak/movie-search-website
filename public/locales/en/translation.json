@@ -97,7 +97,7 @@
    },
    "login":{
     "Login":"Login",
-   " Username":"Username",
+   "Username":"Username",
    "Password":"Password",
    "Login successful!":"Login successful!",
    "Invalid credentials!":"Invalid credentials!"

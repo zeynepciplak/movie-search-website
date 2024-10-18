@@ -512,3 +512,21 @@ export const fetchTVShowsByGenre = async (genreId: number, language: string, pag
     return [];
   }
 };
+
+export const fetchSearchResults = async (query: string) => {
+  try {
+    const response = await axios.get(`${baseURL}/search/multi`, {
+      params: {
+        api_key: apiKey,
+        language: 'en-US',
+        query, // Arama sorgusu
+        include_adult: false, // Yetişkin içerik hariç
+      },
+    });
+
+    return response.data.results;
+  } catch (error) {
+    console.error('Arama sonuçları alınırken hata oluştu:', error);
+    return [];
+  }
+};
