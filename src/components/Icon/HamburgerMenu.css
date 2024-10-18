@@ -1,0 +1,53 @@
+.hamburger-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .appBar {
+    background-color: #FFD700; /* Sarı arka plan */
+  }
+  
+  .hamburger-button {
+    color: #333333; /* Koyu gri renk */
+    font-weight: bold;
+  }
+  
+  .hamburger-drawer {
+    padding: 20px;
+  }
+  
+  .menu-grid {
+    margin-top: 20px;
+  }
+  
+  .category-header {
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  
+  .menu-item {
+    color: #333333;
+    padding-left: 10px;
+  }
+  
+  .menu-item:hover {
+    background-color: #f1c40f; /* Hover efekti */
+    border-radius: 5px;
+  }
+  
+  /* Responsive düzenlemeler */
+  @media (max-width: 768px) {
+    .hamburger-drawer {
+      width: 100%; /* Mobilde tam genişlikte menü */
+    }
+  
+    .category-header {
+      font-size: 0.9rem; /* Mobilde başlık boyutunu küçültüyoruz */
+    }
+  
+    .menu-item {
+      font-size: 0.9rem; /* Mobilde menü item boyutunu küçültüyoruz */
+    }
+  }
+  
