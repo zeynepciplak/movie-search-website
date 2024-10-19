@@ -68,7 +68,7 @@ const HamburgerMenu: React.FC = () => {
             <ListItem button onClick={() => navigate('/')}>
               <ListItemText primary={t('hamburgerMenu.HomePage')} />
             </ListItem>
-            <ListItem button onClick={() => navigate('/top100movies')}>
+            <ListItem button onClick={() => navigate('/imdb-top-100-movies')}>
               <ListItemText primary={t('hamburgerMenu.Top100Movies')} />
             </ListItem>
             <ListItem button onClick={() => navigate('/awardwinningmovies')}>
