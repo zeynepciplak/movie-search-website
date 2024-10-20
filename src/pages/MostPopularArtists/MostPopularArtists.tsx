@@ -24,24 +24,22 @@ const MostPopularArtists: React.FC = () => {
   const currentLanguage = i18n.language;
 
   useEffect(() => {
-    // Sayfa numarasına göre sanatçıları yükler
     const loadArtists = async () => {
-      setLoading(true); // Yüklemeye başladığında butonu devre dışı bırak
-      const fetchedArtists = await fetchPopularArtists(currentLanguage, page); // API çağrısı yaparken sayfa parametresini geç
-      setArtists((prevArtists) => [...prevArtists, ...fetchedArtists]); // Yeni verileri önceki verilerin üstüne ekle
-      setLoading(false); // Yükleme tamamlandığında butonu aktif et
-      setInitialLoading(false); // İlk yükleme tamamlandığında
+      setLoading(true);
+      const fetchedArtists = await fetchPopularArtists(currentLanguage, page);
+      setArtists((prevArtists) => [...prevArtists, ...fetchedArtists]);
+      setLoading(false);
+      setInitialLoading(false);
     };
     loadArtists();
   }, [page, currentLanguage]);
 
-  // "Daha fazla yükle" butonuna tıklandığında çalışacak fonksiyon
   const loadMoreArtists = async () => {
-    setPage((prevPage) => prevPage + 1); // Sayfa numarasını artır
+    setPage((prevPage) => prevPage + 1);
   };
 
   const handleArtistClick = (artistId: number) => {
-    navigate(`/artist/${artistId}`);
+    navigate(`/artist/${artistId}`); // Detay sayfasına yönlendirme
   };
 
   return (
@@ -49,9 +47,9 @@ const MostPopularArtists: React.FC = () => {
       <Typography variant="h4" gutterBottom>
         {t("hamburgerMenu.Most Popular Artists")}
       </Typography>
-      {initialLoading ? ( // İlk yükleme sırasında spinner göster
+      {initialLoading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px' }}>
-          <LoadingIcon/> {/* LoadingSpinner burada gösterilecek */}
+          <LoadingIcon />
         </Box>
       ) : (
         <>
@@ -61,21 +59,20 @@ const MostPopularArtists: React.FC = () => {
                 key={artist.id}
                 title={artist.name}
                 posterPath={artist.imageSrc}
-                releaseDate={''} // Sanatçılar için bir tarih olmayabilir, boş geçebiliriz.
-                onClick={() => handleArtistClick(artist.id)} // Tıklama olayını yönlendirme için kullanıyoruz
-                xs={12} sm={6} md={4} lg={2} // Grid boyutlarını burada belirleyebiliriz.
+                releaseDate={''} 
+                onClick={() => handleArtistClick(artist.id)} // Sanatçıya tıklandığında detay sayfasına yönlendirme
+                xs={12} sm={6} md={4} lg={2} 
               />
             ))}
           </Grid>
           
-          {/* LoadMoreButton'ı ekliyoruz */}
           <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-            {loading ? ( // Yükleme sırasında spinner göster
+            {loading ? (
               <LoadingIcon />
             ) : (
               <LoadMoreButton
                 onClick={loadMoreArtists}
-                label={t('imdbtop100movies.Load More')} // Buton üzerindeki metin, çeviri kullanıyoruz
+                label={t('imdbtop100movies.Load More')} 
               />
             )}
           </Box>

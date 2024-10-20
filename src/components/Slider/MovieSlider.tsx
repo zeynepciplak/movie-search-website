@@ -1,31 +1,27 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import './MovieSlider.css';
-import LoadingIcon from '../Loading/LoadingIcon';
+import './MovieSlider.css'; // Bu stil dosyasını kullanacağız
 
 interface Movie {
   id: number;
   title: string;
-  trailerUrl: string;
-  videoId: string;
-  release_date: string;
-  mediaType: 'movie' | 'tv';
+  posterPath: string;
 }
 
 interface MovieSliderProps {
-  movies: Movie[];
+  movies: Movie[]; // Film verisi array olarak gelecek
 }
 
 const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false); // Simüle edilen yükleme süresi
     }, 1000); // 1 saniye yükleme süresi
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); // Bileşen unmount olduğunda timeout'u temizle
   }, []);
 
   const handleNext = () => {
@@ -54,21 +50,14 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
 
       <div className="slider-track" ref={sliderRef}>
         {loading ? (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '200px', // Sabit alan
-              width: '100%',
-            }}
-          >
-            <LoadingIcon />
+          <div className="loading-container">
+            <span>Loading...</span>
           </div>
         ) : (
           movies.map((movie) => (
             <div key={movie.id} className="movie-card">
-              <div>{movie.title}</div> {/* Film başlığı */}
+              <img src={movie.posterPath} alt={movie.title} />
+              <div>{movie.title}</div>
             </div>
           ))
         )}

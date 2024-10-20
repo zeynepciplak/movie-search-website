@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import MovieCard from './MovieCard';
 import { Trailer, fetchUpcomingTrailers } from '../../api/tmdbApi';
-import backGroundImage from "../../assets/duvarkagıdı.jpg";
-import { useTranslation } from 'react-i18next';
-import LoadingIcon from '../Loading/LoadingIcon';
 import { Box, Typography } from '@mui/material';
+import LoadingIcon from '../Loading/LoadingIcon';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
+import backGroundImage from "../../assets/duvarkagıdı.jpg"; // Arka plan görselini ekleyin
 
 const sliderSettings = {
   dots: true,
@@ -14,7 +15,8 @@ const sliderSettings = {
   slidesToShow: 4,
   slidesToScroll: 1,
   arrows: true,
-  customPaging: (i: number) => <div className="custom-dot"></div>,
+  nextArrow: <FaChevronRight style={{ color: 'white', fontSize: '30px' }} />,
+  prevArrow: <FaChevronLeft style={{ color: 'white', fontSize: '30px' }} />,
   responsive: [
     {
       breakpoint: 1024,
@@ -59,15 +61,20 @@ const MoviesWithModal: React.FC = () => {
       <Typography variant="h4" gutterBottom>
         {t('UpComing.Latest Trailers')}
       </Typography>
+
+      
       <Box
         sx={{
+          padding: '20px',
           backgroundImage: `url(${backGroundImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          padding: '20px',
           borderRadius: '25px',
           position: 'relative',
-          height: '300px',
+          height: 'auto',
+          '@media (max-width: 768px)': {
+            padding: '10px',
+          },
         }}
       >
         {loading ? (

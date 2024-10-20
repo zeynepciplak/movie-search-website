@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { Link } from 'react-router-dom';
 
 interface SlideItemProps {
@@ -15,8 +16,9 @@ interface SlideItemProps {
 const SlideItem: React.FC<SlideItemProps> = ({ movie }) => {
   const { i18n } = useTranslation();
   return (
-    <div className="slide-item "  >
-          <Link to={`/detail-page/${movie.id}/movie`} style={{ textDecoration: 'none', color: 'inherit' }}>
+ 
+    <div className="slide-item ">
+      <Link to={`/detail-page/${movie.id}/tv`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className="slide-image-container">
         <img
           src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}

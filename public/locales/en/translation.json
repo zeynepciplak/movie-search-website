@@ -8,7 +8,7 @@
    "hamburgerMenu": {
      "Home Page": "Home Page",
      "Movies": "Movies",
-     "Series": "Series",
+     "Tv Series": "Tv Series",
      "Genres": "Genres",
      "Family": "Family",
      "Action": "Action",
@@ -105,6 +105,12 @@
    "newest":{
     "Newest Movies":"Newest Movies",
    "Newest Series":"Newest Series"
+   },
+   "detail":{
+    "Genres":"Genres",
+    "Director":"Director",
+    "Stars":"Stars",
+    "Overview":"Overview"
    }
  }
  

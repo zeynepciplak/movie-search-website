@@ -24,7 +24,6 @@ const ImdbTop100Movies: React.FC = () => {
 
   const [hoverArtists, setHoverArtists] = useState(false);
   const [hoverAwards, setHoverAwards] = useState(false);
-  const [hoverDirectors, setHoverDirectors] = useState(false);
   const [newestSeries,setNewestSeries]=useState(false);
   const [newestMovies,setNewestMovies]=useState(false);
   const currentLanguage = i18n.language;
@@ -174,18 +173,7 @@ const ImdbTop100Movies: React.FC = () => {
               <LaunchIcon sx={{ marginLeft: '8px', color: hoverAwards ? '#FFD700' : 'inherit' }} />
             </Box>
 
-            <Box
-              display="flex"
-              alignItems="center"
-              style={{ marginTop: '80px', cursor: 'pointer' }}
-              onMouseEnter={() => setHoverDirectors(true)}
-              onMouseLeave={() => setHoverDirectors(false)}
-            >
-              <Link href="/topdirectors" underline="none" color="inherit">
-                <Typography variant="h5">{t('imdbtop100movies.Top Directors')}</Typography>
-              </Link>
-              <LaunchIcon sx={{ marginLeft: '8px', color: hoverDirectors ? '#FFD700' : 'inherit' }} />
-            </Box>
+            
             <Box
               display="flex"
               alignItems="center"

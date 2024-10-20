@@ -1,0 +1,76 @@
+/* Detay sayfası için genel yapı */
+.detail-page-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2c2c2c; 
+  }
+  
+  .detail-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .poster-section {
+    flex-basis: 15%;
+    margin-right: 10px;
+  }
+  
+  .poster-image {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .info-section {
+    flex-basis: 80%;
+    padding-left: 0;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .overview-section {
+    margin-top: 20px; /* Konu kısmı için boşluk */
+  }
+  
+  .overview-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .overview-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  /* Mobil görünüm için düzenlemeler */
+  @media (max-width: 768px) {
+    .detail-content {
+      flex-direction: column;
+    }
+  
+    .poster-section,
+    .info-section {
+      flex-basis: 100%;
+    }
+  
+    .info-section {
+      padding-left: 0;
+    }
+  
+    .title {
+      font-size: 1.5rem;
+    }
+  }
+  

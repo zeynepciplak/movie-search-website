@@ -76,6 +76,44 @@ export const fetchPopularMovies = async (language: string): Promise<Movie[]> => 
   }
 };
 
+//Dizi Detaylarını Getiren Fonksiyon
+export const fetchTVDetails = async (tvId: string, language: string) => {
+  try {
+    const response = await axios.get(`${baseURL}/tv/${tvId}`, {
+      params: {
+        api_key: apiKey,
+        language: language, // Dil parametresi dinamik olarak gönderiliyor
+        append_to_response: 'credits', // Oyuncu bilgilerini de alıyoruz
+      },
+    });
+
+    const tvData = response.data;
+    return tvData;
+  } catch (error) {
+    console.error('Dizi detaylarını çekerken hata oluştu:', error);
+    return null;
+  }
+};
+
+// Film Detaylarını Getiren Fonksiyon 2 
+export const fetchMovieDetailsById = async (movieId: string, language: string) => {
+  try {
+    const response = await axios.get(`${baseURL}/movie/${movieId}`, {
+      params: {
+        api_key: apiKey,
+        language: language, // Dil parametresi dinamik olarak gönderiliyor
+        append_to_response: 'credits', // Oyuncu bilgilerini de alıyoruz
+      },
+    });
+
+    const movieData = response.data;
+    return movieData;
+  } catch (error) {
+    console.error('Film detaylarını çekerken hata oluştu:', error);
+    return null;
+  }
+};
+
 // Top 100 filmleri getiren fonksiyon
 export const fetchIMDbTop100Movies = async (language: string , page: number): Promise<Movie[]> => {
   try {
@@ -528,5 +566,20 @@ export const fetchSearchResults = async (query: string) => {
   } catch (error) {
     console.error('Arama sonuçları alınırken hata oluştu:', error);
     return [];
+  }
+};
+// Sanatçı detaylarını almak için 
+export const fetchArtistDetails = async (artistId: number, language: string) => {
+  try {
+    const response = await axios.get(`${baseURL}/person/${artistId}`, {
+      params: {
+        api_key: apiKey,
+        language: language,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching artist details:', error);
+    throw error;
   }
 };

@@ -7,49 +7,50 @@ interface MediaCardProps {
   posterPath: string;
   releaseDate: string;
   onClick?: () => void;
-  xs?: number; // Mobil ekranlar için
-  sm?: number; // Tablet ekranlar için
-  md?: number; // Orta boyutlu ekranlar için
-  lg?: number; // Büyük ekranlar için
-  xl?: number; // Çok büyük ekranlar için
+  xs?: number; 
+  sm?: number; 
+  md?: number; 
+  lg?: number; 
+  xl?: number; 
 }
 
 // Styled Card component
 const StyledCard = styled(Card)({
   width: '100%',
-  maxWidth: '160px', 
-  height: '320px', 
+  maxWidth: '180px',
+  height: '320px',
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'space-between',
 });
 
 const StyledCardMedia = styled(CardMedia)({
-  height: '70%', 
+  height: '240px',
   objectFit: 'cover',
 });
 
 const StyledCardContent = styled(CardContent)({
-  height: '30%', 
+  padding: '10px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
-  overflow: 'hidden', 
+  height: '80px',
 });
 
 const TitleTypography = styled(Typography)({
   fontSize: '1rem',
   fontWeight: 'bold',
   wordWrap: 'break-word',
-  display: '-webkit-box',
-  WebkitLineClamp: 2,
-  WebkitBoxOrient: 'vertical',
-  overflow: 'hidden', 
+  overflowWrap: 'break-word',
+  whiteSpace: 'normal',
+  textAlign: 'center',
 });
 
 const DateTypography = styled(Typography)({
   fontSize: '0.8rem',
   color: 'gray',
   marginTop: 'auto',
+  textAlign: 'center',
 });
 
 const MediaCard: React.FC<MediaCardProps> = ({
@@ -57,23 +58,19 @@ const MediaCard: React.FC<MediaCardProps> = ({
   posterPath,
   releaseDate,
   onClick,
-  xs = 12, // Mobilde tam genişlik (1 kart)
-  sm = 6,  // Tabletlerde 2 kart
-  md = 3,  // Orta ekranlarda 4 kart
-  lg = 2,  // Büyük ekranlarda 6 kart
-  xl = 2,  // Çok büyük ekranlarda 6 kart
+  xs = 12,
+  sm = 6,
+  md = 4,
+  lg = 3,
+  xl = 2,
 }) => {
   return (
     <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
       <StyledCard onClick={onClick}>
         <StyledCardMedia
-         // component="img"
-          image={posterPath} 
+          //component="div" 
+          image={posterPath}
           //alt={title}
-          sx={{
-            height: '70%',
-            objectFit: 'cover', 
-          }}
         />
         <StyledCardContent>
           <TitleTypography variant="h6">

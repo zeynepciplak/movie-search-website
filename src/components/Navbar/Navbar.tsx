@@ -8,7 +8,7 @@ import HomeButton from '../Icon/HomeButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import  '../../styles/global.css';
 import { useNavigate } from 'react-router-dom';
-import Smdb from '../../assets/Smdb.png';
+import Cnvt from '../../assets/Cnvt.png'
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();  // Çeviri fonksiyonunu alıyoruz
@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
         <Toolbar>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 0.1, display: { xs: 'none', sm: 'block' } }}>
           <img
-  src={Smdb} 
+  src={Cnvt} 
   alt="Your Logo"
   style={{ 
     width: '120px', 

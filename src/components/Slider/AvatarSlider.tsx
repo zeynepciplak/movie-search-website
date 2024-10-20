@@ -7,6 +7,15 @@ import 'slick-carousel/slick/slick-theme.css';
 import './AvatarSlider.css';
 import { useTranslation } from 'react-i18next';
 import LoadingIcon from '../Loading/LoadingIcon';
+import { useNavigate } from 'react-router-dom';
+
+interface AvatarSliderProps {
+  artists: {
+    id: number;
+    name: string;
+    imageSrc: string;
+  }[];
+}
 
 type FetchDataFunction = (language: string) => Promise<any[]>;
 
@@ -15,7 +24,8 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
   const { i18n } = useTranslation();
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true); // Loading state
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const loadData = async () => {
       const fetchedData = await fetchData(i18n.language); 
@@ -43,6 +53,10 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
     } else if (e.deltaY < 0) {
       handlePrev();
     }
+  };
+
+  const handleAvatarClick = (artistId: number) => {
+    navigate(`/artist/${artistId}`); // Yönlendirme, artistId'yi kullanarak ilgili sayfaya gidiyoruz
   };
 
   const settings = {
@@ -75,7 +89,12 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
         ) : (
           <Slider {...settings} ref={sliderRef}>
             {data.map((item) => (
-              <div key={item.id} className="avatar-card">
+              <div 
+                key={item.id} 
+                className="avatar-card" 
+                onClick={() => handleAvatarClick(item.id)}
+                style={{ cursor: 'pointer' }} 
+              >
                 <CardMedia
                   component="img"
                   src={item.imageSrc}

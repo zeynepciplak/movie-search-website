@@ -29,13 +29,18 @@
   .footer-contact-info {
     margin-top: 5px;
     font-size: 14px;
+    color: #8c8989;
+    font-size: 14px;
+    text-decoration: none;
+    
   }
   
   .footer-link {
-    color: #ffffff;
+   
     font-size: 14px;
     text-decoration: none;
     margin-top: 5px;
+    color: #8c8989 !important ;
   }
   
   .footer-link:hover {
