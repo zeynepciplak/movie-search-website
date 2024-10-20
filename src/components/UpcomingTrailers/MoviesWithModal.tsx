@@ -8,6 +8,40 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import backGroundImage from "../../assets/duvarkagıdı.jpg"; // Arka plan görselini ekleyin
 
+// Özelleştirilmiş Sol Buton
+const PrevArrow = ({ onClick }: any) => (
+  <div
+    style={{
+      position: 'absolute',
+      left: '-25px', // Kenara yaklaştırdık
+      top: '50%',
+      transform: 'translateY(-50%)',
+      zIndex: 2,
+      cursor: 'pointer',
+    }}
+    onClick={onClick}
+  >
+    <FaChevronLeft style={{ fontSize: '30px', color: 'white' }} />
+  </div>
+);
+
+// Özelleştirilmiş Sağ Buton
+const NextArrow = ({ onClick }: any) => (
+  <div
+    style={{
+      position: 'absolute',
+      right: '-25px', // Kenara yaklaştırdık
+      top: '50%',
+      transform: 'translateY(-50%)',
+      zIndex: 2,
+      cursor: 'pointer',
+    }}
+    onClick={onClick}
+  >
+    <FaChevronRight style={{ fontSize: '30px', color: 'white' }} />
+  </div>
+);
+
 const sliderSettings = {
   dots: true,
   infinite: true,
@@ -15,8 +49,8 @@ const sliderSettings = {
   slidesToShow: 4,
   slidesToScroll: 1,
   arrows: true,
-  nextArrow: <FaChevronRight style={{ color: 'white', fontSize: '30px' }} />,
-  prevArrow: <FaChevronLeft style={{ color: 'white', fontSize: '30px' }} />,
+  nextArrow: <NextArrow />, // Sağ ok
+  prevArrow: <PrevArrow />, // Sol ok
   responsive: [
     {
       breakpoint: 1024,
@@ -58,11 +92,10 @@ const MoviesWithModal: React.FC = () => {
 
   return (
     <Box sx={{ padding: '35px' }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography sx={{ fontWeight: "bold" }} variant="h4" gutterBottom>
         {t('UpComing.Latest Trailers')}
       </Typography>
 
-      
       <Box
         sx={{
           padding: '20px',

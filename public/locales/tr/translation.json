@@ -1,117 +1,122 @@
 {
-    "header": {
-      "Login": "Giriş Yap",
-      "Search Button": "Arama Butonu",
-      "Search": "Arama",
-      "LOGO": "LOGO"
+  "header": {
+    "Login": "Giriş Yap",
+    "Search Button": "Arama Butonu",
+    "Search": "Arama",
+    "LOGO": "LOGO"
+  },
+  "hamburgerMenu": {
+    "Home Page": "Ana Sayfa",
+    "Movies": "Filmler",
+    "Tv Series": "Diziler",
+    "Genres": "Türler",
+    "Family": "Aile",
+    "Action": "Aksiyon",
+    "Animation": "Animasyon",
+    "Documentary": "Belgesel",
+    "Science Fiction": "Bilim Kurgu",
+    "Drama": "Dram",
+    "Thriller": "Gerilim",
+    "Comedy": "Komedi",
+    "Adventure": "Macera",
+
+
+    "Romantic": "Romantik",
+    "Crime": "Suç",
+    "History": "Tarih",
+    "The Newest": "En Yeniler",
+    "Menu": "Menü",
+    "Award Winning Movies":"Ödüllü Filmler",
+    "Top 100 Movies":"En İyi 100 Film",
+    "Most Popular Artists":"En Popüler Oyuncular",
+    "Top Directors":"En İyi Yönetmenler",
+    "Newest Movies":"En Yeni Filmler",
+    "Newest Series":"En Yeni Diziler"
+  },
+  "slider":{
+      "Popular Movies This Week":"Bu Hafta Popüler Olan Filmler",
+      "Popular TV Shows This Week":"Bu hafta Popüler Olan Diziler",
+      "Award Winning Movies":"Ödüllü Filmler"
+  },
+  "UpComing":{
+    "Release Date":"Yayın Tarihi",
+   "Upcoming Movies & TV Shows":"Gelecek Filmler & TV Programları",
+   "Movie":"Film",
+   "TV Show":"Dizi",
+   "Watch Trailer":"Fragmanı İzle",
+   "Trailer":"Fragman",
+   "Close":"Kapat",
+   "Latest Trailers":"Son Fragmanlar"
+  },
+  "imdbtop100movies":{
+  "Load More":"Daha Fazla Yükle",
+  "Loading":"Yükleniyor",
+  "Year":"Yıl",
+  "Duration":"Süre",
+  "Actors":"Oyuncular",
+  "Genre":"Tür",
+  "Subject":"Konu",
+  "Artists":"Sanatçılar",
+  "hours":"saat",
+  "minutes":"dakika",
+  "Score":"Puan",
+  "Release Date":"Yayın Tarihi",
+  "Family": "Aile",
+    "Action": "Aksiyon",
+    "Animation": "Animasyon",
+    "Documentary": "Belgesel",
+    "Science Fiction": "Bilim Kurgu",
+    "Drama": "Dram",
+    "Thriller": "Gerilim",
+    "Comedy": "Komedi",
+    "Adventure": "Macera",
+    "Romantic": "Romantik",
+    "Crime": "Suç",
+    "History": "Tarih",
+    "Award Winning Movies":"Ödüllü Filmler",
+    "Top 100 Movies":"En İyi 100 Film",
+    "Most Popular Artists":"En Popüler Oyuncular",
+    "Top Directors":"En İyi Yönetmenler"
+  },
+  "footer":{
+    "Contact Us": "Bize Ulaşın",
+    "Information": "Bilgi",
+    "About Us": "Hakkımızda",
+    "More Search": "Daha Fazla Arama",
+    "Blog": "Blog",
+    "Testimonials": "Referanslar",
+    "Events": "Etkinlikler",
+    "Helpful Links": "Yararlı Bağlantılar",
+    "Services": "Hizmetler",
+    "Supports": "Destekler",
+    "Terms & Condition": "Şartlar ve Koşullar",
+    "Privacy Policy": "Gizlilik Politikası",
+    "Subscribe For More": "Daha Fazlası İçin Abone Olun",
+    "Enter your Email": "E-posta Adresinizi Girin",
+    "Subscribe": "Abone Ol",
+    "© 2024 Your Company, Ltd. All rights reserved.": "© 2024 Şirketiniz, Ltd. Tüm hakları saklıdır."
+  },
+    "login": {
+      "Login": "Giriş",
+      "Username": "Kullanıcı Adı",
+      "Password": "Şifre",
+      "Login successful!": "Giriş başarılı!",
+      "Invalid credentials!": "Geçersiz bilgiler!"
     },
-    "hamburgerMenu": {
-      "Home Page": "Ana Sayfa",
-      "Movies": "Filmler",
-      "Tv Series": "Diziler",
-      "Genres": "Türler",
-      "Family": "Aile",
-      "Action": "Aksiyon",
-      "Animation": "Animasyon",
-      "Documentary": "Belgesel",
-      "Science Fiction": "Bilim Kurgu",
-      "Drama": "Dram",
-      "Thriller": "Gerilim",
-      "Comedy": "Komedi",
-      "Adventure": "Macera",
-
-
-      "Romantic": "Romantik",
-      "Crime": "Suç",
-      "History": "Tarih",
-      "The Newest": "En Yeniler",
-      "Menu": "Menü",
-      "Award Winning Movies":"Ödüllü Filmler",
-      "Top 100 Movies":"En İyi 100 Film",
-      "Most Popular Artists":"En Popüler Oyuncular",
-      "Top Directors":"En İyi Yönetmenler",
+    "newest":{
       "Newest Movies":"En Yeni Filmler",
       "Newest Series":"En Yeni Diziler"
     },
-    "slider":{
-        "Popular Movies This Week":"Bu Hafta Popüler Olan Filmler",
-        "Popular TV Shows This Week":"Bu hafta Popüler Olan Diziler",
-        "Award Winning Movies":"Ödüllü Filmler"
+    "detail":{
+      "Genres":"Türler",
+      "Director":"Yönetmen",
+      "Stars":"Oyuncular",
+      "Overview":"Genel Bakış"
     },
-    "UpComing":{
-      "Release Date":"Yayın Tarihi",
-     "Upcoming Movies & TV Shows":"Gelecek Filmler & TV Programları",
-     "Movie":"Film",
-     "TV Show":"Dizi",
-     "Watch Trailer":"Fragmanı İzle",
-     "Trailer":"Fragman",
-     "Close":"Kapat",
-     "Latest Trailers":"Son Fragmanlar"
-    },
-    "imdbtop100movies":{
-    "Load More":"Daha Fazla Yükle",
-    "Loading":"Yükleniyor",
-    "Year":"Yıl",
-    "Duration":"Süre",
-    "Actors":"Oyuncular",
-    "Genre":"Tür",
-    "Subject":"Konu",
-    "Artists":"Sanatçılar",
-    "hours":"saat",
-    "minutes":"dakika",
-    "Score":"Puan",
-    "Release Date":"Yayın Tarihi",
-    "Family": "Aile",
-      "Action": "Aksiyon",
-      "Animation": "Animasyon",
-      "Documentary": "Belgesel",
-      "Science Fiction": "Bilim Kurgu",
-      "Drama": "Dram",
-      "Thriller": "Gerilim",
-      "Comedy": "Komedi",
-      "Adventure": "Macera",
-      "Romantic": "Romantik",
-      "Crime": "Suç",
-      "History": "Tarih",
-      "Award Winning Movies":"Ödüllü Filmler",
-      "Top 100 Movies":"En İyi 100 Film",
-      "Most Popular Artists":"En Popüler Oyuncular",
-      "Top Directors":"En İyi Yönetmenler"
-    },
-    "footer":{
-      "Contact Us": "Bize Ulaşın",
-      "Information": "Bilgi",
-      "About Us": "Hakkımızda",
-      "More Search": "Daha Fazla Arama",
-      "Blog": "Blog",
-      "Testimonials": "Referanslar",
-      "Events": "Etkinlikler",
-      "Helpful Links": "Yararlı Bağlantılar",
-      "Services": "Hizmetler",
-      "Supports": "Destekler",
-      "Terms & Condition": "Şartlar ve Koşullar",
-      "Privacy Policy": "Gizlilik Politikası",
-      "Subscribe For More": "Daha Fazlası İçin Abone Olun",
-      "Enter your Email": "E-posta Adresinizi Girin",
-      "Subscribe": "Abone Ol",
-      "© 2024 Your Company, Ltd. All rights reserved.": "© 2024 Şirketiniz, Ltd. Tüm hakları saklıdır."
-    },
-      "login": {
-        "Login": "Giriş",
-        "Username": "Kullanıcı Adı",
-        "Password": "Şifre",
-        "Login successful!": "Giriş başarılı!",
-        "Invalid credentials!": "Geçersiz bilgiler!"
-      },
-      "newest":{
-        "Newest Movies":"En Yeni Filmler",
-        "Newest Series":"En Yeni Diziler"
-      },
-      "detail":{
-        "Genres":"Türler",
-        "Director":"Yönetmen",
-        "Stars":"Oyuncular",
-        "Overview":"Genel Bakış"
-      }
-  }
-  
+      "detailArtist":{
+  "Biography":"Biyografi",
+  "Age":"Yaş",
+  "Brithday":"Doğum Günü",
+  "PlaceBirth":"Doğum Yeri"
+ }
+}

@@ -39,7 +39,7 @@ const MostPopularArtists: React.FC = () => {
   };
 
   const handleArtistClick = (artistId: number) => {
-    navigate(`/artist/${artistId}`); // Detay sayfasına yönlendirme
+    navigate(`/detail-page/${artistId}/artist`); // Detay sayfasına yönlendirme
   };
 
   return (

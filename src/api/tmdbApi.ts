@@ -95,6 +95,8 @@ export const fetchTVDetails = async (tvId: string, language: string) => {
   }
 };
 
+
+
 // Film Detaylarını Getiren Fonksiyon 2 
 export const fetchMovieDetailsById = async (movieId: string, language: string) => {
   try {
@@ -551,12 +553,12 @@ export const fetchTVShowsByGenre = async (genreId: number, language: string, pag
   }
 };
 
-export const fetchSearchResults = async (query: string) => {
+export const fetchSearchResults = async (query: string , language: string) => {
   try {
     const response = await axios.get(`${baseURL}/search/multi`, {
       params: {
         api_key: apiKey,
-        language: 'en-US',
+        language: language,
         query, // Arama sorgusu
         include_adult: false, // Yetişkin içerik hariç
       },
@@ -569,7 +571,7 @@ export const fetchSearchResults = async (query: string) => {
   }
 };
 // Sanatçı detaylarını almak için 
-export const fetchArtistDetails = async (artistId: number, language: string) => {
+export const fetchArtistDetails = async (artistId: string, language: string) => {
   try {
     const response = await axios.get(`${baseURL}/person/${artistId}`, {
       params: {

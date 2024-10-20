@@ -1,67 +1,15 @@
 {
-   "header": {
-     "Login": "Login",
-     "Search Button": "Search Button",
-     "Search": "Search",
-     "LOGO": "LOGO"
-   },
-   "hamburgerMenu": {
-     "Home Page": "Home Page",
-     "Movies": "Movies",
-     "Tv Series": "Tv Series",
-     "Genres": "Genres",
-     "Family": "Family",
-     "Action": "Action",
-     "Animation": "Animation",
-     "Documentary": "Documentary",
-     "Science Fiction": "Science Fiction",
-     "Drama": "Drama",
-     "Thriller": "Thriller",
-     "Comedy": "Comedy",
-     "Adventure": "Adventure",
-     "Romantic": "Romantic",
-     "Crime": "Crime",
-     "History": "History",
-     "The Newest": "The Newest",
-     "Menu": "Menu",
-     "Award Winning Movies":"Award Winning Movies",
-     "Top 100 Movies":"Top 100 Movies",
-     "Most Popular Artists":"Most Popular Artists",
-     "Top Directors":"Top Directors",
-     "Newest Movies":"Newest Movies",
-     "Newest Series":"Newest Series"
-   },
-   "slider":{
-      "Popular Movies This Week":"Popular Movies This Week",
-     "Popular TV Shows This Week":"Popular TV Shows This Week",
-     "Award Winning Movies":"Award Winning Movies"
-   },
-   "UpComing":{
-
-    "Release Date":"Release Date",
-   "Upcoming Movies & TV Shows":"Upcoming Movies & TV Shows",
-    "Movie":"Movie",
-    "TV Show":"TV Show",
-    "Watch Trailer":" Watch Trailer",
-   "Trailer":"Trailer",
-   "Close":"Close",
-   "Latest Trailers":"Latest Trailers"
-   },
-   "imdbtop100movies":{
-    "Load More":"Load More",
-    "Loading":"Loading",
-    "Year":"Year",
-    "Duration":"Duration",
-    "Actors":"Actors",
-    "Genre":"Genre",
-    "Subject":"Subject",
-    "Top 100 Movies":"Top 100 Movies",
-    "Most Popular Artists":"Most Popular Artists",
-    "Artists":"Artists",
-    "hours":"hours",
-    "minutes":"minutes",
-    "Score":"Score",
-    "Release Date":"Release Date",
+  "header": {
+    "Login": "Login",
+    "Search Button": "Search Button",
+    "Search": "Search",
+    "LOGO": "LOGO"
+  },
+  "hamburgerMenu": {
+    "Home Page": "Home Page",
+    "Movies": "Movies",
+    "Tv Series": "Tv Series",
+    "Genres": "Genres",
     "Family": "Family",
     "Action": "Action",
     "Animation": "Animation",
@@ -74,43 +22,100 @@
     "Romantic": "Romantic",
     "Crime": "Crime",
     "History": "History",
+    "The Newest": "The Newest",
+    "Menu": "Menu",
     "Award Winning Movies":"Award Winning Movies",
-    "Top Directors":"Top Directors"
-   },
-   "footer":{
-    "Contact Us": "Contact Us",
-    "Information":"Information",
-    "About Us":"About Us",
-    "More Search":"More Search",
-    "Blog":"Blog",
-    "Testimonials":"Testimonials",
-    "Events":"Events",
-    "Helpful Links":"Helpful Links",
-    "Services":"Services",
-    "Supports":"Supports",
-    "Terms & Condition":"Terms & Condition",
-    "Privacy Policy":"Privacy Policy",
-    "Subscribe For More":"Subscribe For More",
-    "Enter your Email":"Enter your Email",
-    "Subscribe":"Subscribe",
-    "© 2024 Your Company, Ltd. All rights reserved.":"© 2024 Your Company, Ltd. All rights reserved."
-   },
-   "login":{
-    "Login":"Login",
-   "Username":"Username",
-   "Password":"Password",
-   "Login successful!":"Login successful!",
-   "Invalid credentials!":"Invalid credentials!"
-   },
-   "newest":{
+    "Top 100 Movies":"Top 100 Movies",
+    "Most Popular Artists":"Most Popular Artists",
+    "Top Directors":"Top Directors",
     "Newest Movies":"Newest Movies",
-   "Newest Series":"Newest Series"
-   },
-   "detail":{
-    "Genres":"Genres",
-    "Director":"Director",
-    "Stars":"Stars",
-    "Overview":"Overview"
-   }
- }
- 
+    "Newest Series":"Newest Series"
+  },
+  "slider":{
+     "Popular Movies This Week":"Popular Movies This Week",
+    "Popular TV Shows This Week":"Popular TV Shows This Week",
+    "Award Winning Movies":"Award Winning Movies"
+  },
+  "UpComing":{
+
+   "Release Date":"Release Date",
+  "Upcoming Movies & TV Shows":"Upcoming Movies & TV Shows",
+   "Movie":"Movie",
+   "TV Show":"TV Show",
+   "Watch Trailer":" Watch Trailer",
+  "Trailer":"Trailer",
+  "Close":"Close",
+  "Latest Trailers":"Latest Trailers"
+  },
+  "imdbtop100movies":{
+   "Load More":"Load More",
+   "Loading":"Loading",
+   "Year":"Year",
+   "Duration":"Duration",
+   "Actors":"Actors",
+   "Genre":"Genre",
+   "Subject":"Subject",
+   "Top 100 Movies":"Top 100 Movies",
+   "Most Popular Artists":"Most Popular Artists",
+   "Artists":"Artists",
+   "hours":"hours",
+   "minutes":"minutes",
+   "Score":"Score",
+   "Release Date":"Release Date",
+   "Family": "Family",
+   "Action": "Action",
+   "Animation": "Animation",
+   "Documentary": "Documentary",
+   "Science Fiction": "Science Fiction",
+   "Drama": "Drama",
+   "Thriller": "Thriller",
+   "Comedy": "Comedy",
+   "Adventure": "Adventure",
+   "Romantic": "Romantic",
+   "Crime": "Crime",
+   "History": "History",
+   "Award Winning Movies":"Award Winning Movies",
+   "Top Directors":"Top Directors"
+  },
+  "footer":{
+   "Contact Us": "Contact Us",
+   "Information":"Information",
+   "About Us":"About Us",
+   "More Search":"More Search",
+   "Blog":"Blog",
+   "Testimonials":"Testimonials",
+   "Events":"Events",
+   "Helpful Links":"Helpful Links",
+   "Services":"Services",
+   "Supports":"Supports",
+   "Terms & Condition":"Terms & Condition",
+   "Privacy Policy":"Privacy Policy",
+   "Subscribe For More":"Subscribe For More",
+   "Enter your Email":"Enter your Email",
+   "Subscribe":"Subscribe",
+   "© 2024 Your Company, Ltd. All rights reserved.":"© 2024 Your Company, Ltd. All rights reserved."
+  },
+  "login":{
+   "Login":"Login",
+  "Username":"Username",
+  "Password":"Password",
+  "Login successful!":"Login successful!",
+  "Invalid credentials!":"Invalid credentials!"
+  },
+  "newest":{
+   "Newest Movies":"Newest Movies",
+  "Newest Series":"Newest Series"
+  },
+  "detail":{
+   "Genres":"Genres",
+   "Director":"Director",
+   "Stars":"Stars",
+   "Overview":"Overview"
+  },
+  "detailArtist":{
+   "Biography":"Biography",
+   "Age":"Age",
+   "Brithday":"Brithday",
+   "PlaceBirth":"PlaceBirth"
+  }
+}

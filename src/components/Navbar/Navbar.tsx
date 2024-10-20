@@ -46,16 +46,17 @@ const Navbar: React.FC = () => {
         <Toolbar>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 0.1, display: { xs: 'none', sm: 'block' } }}>
           <img
-  src={Cnvt} 
-  alt="Your Logo"
-  style={{ 
-    width: '120px', 
-    height: '50px', 
-    borderRadius: '12px', // Kenarları yuvarlamak için
-    marginLeft: '40px', // Sola boşluk bırakmak için
-    marginTop:'5px',
-  }} 
-/>
+          src={Cnvt} 
+          onClick={() => navigate('/')}
+          alt="Your Logo"
+          style={{ 
+            width: '120px', 
+            height: '50px', 
+            borderRadius: '12px', // Kenarları yuvarlamak için
+            marginLeft: '40px', // Sola boşluk bırakmak için
+            marginTop:'5px',
+          }} 
+        />
           </Typography>
           <HomeButton />
           <div className='appBar'>
@@ -64,7 +65,7 @@ const Navbar: React.FC = () => {
           </div>
           <SearchBar />
           <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
-            <IconButton  sx={{ color: 'inherit', ml: 2 }} onClick={handleLoginClick}>
+            <IconButton  sx={{ color: 'inherit', ml: 2 , marginRight: '30px'}} onClick={handleLoginClick}>
               <AccountCircleIcon />
             </IconButton>
             <FormControl variant="standard" sx={{ ml: 2, minWidth: 80, borderBottom: 'none' }}>

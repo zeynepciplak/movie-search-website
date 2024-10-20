@@ -56,7 +56,7 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
   };
 
   const handleAvatarClick = (artistId: number) => {
-    navigate(`/artist/${artistId}`); // Yönlendirme, artistId'yi kullanarak ilgili sayfaya gidiyoruz
+    navigate(`/detail-page/${artistId}/artist`); // Yönlendirme, artistId'yi kullanarak ilgili sayfaya gidiyoruz
   };
 
   const settings = {
@@ -77,23 +77,27 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
 
   return (
     <div className="slider-container" onWheel={handleWheel} tabIndex={0}>
-      <Typography variant="h5" gutterBottom className="slider-title">
-        {title}
-      </Typography>
-
+      <h2 className="slider-title">{title}</h2>
       <div>
         {loading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "300px",
+            }}
+          >
             <LoadingIcon />
           </Box>
         ) : (
           <Slider {...settings} ref={sliderRef}>
             {data.map((item) => (
-              <div 
-                key={item.id} 
-                className="avatar-card" 
+              <div
+                key={item.id}
+                className="avatar-card"
                 onClick={() => handleAvatarClick(item.id)}
-                style={{ cursor: 'pointer' }} 
+                style={{ cursor: "pointer" }}
               >
                 <CardMedia
                   component="img"

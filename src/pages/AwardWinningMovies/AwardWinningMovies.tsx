@@ -4,6 +4,7 @@ import { Box, Typography, Grid } from '@mui/material';
 import MediaCard from '../../components/MediaCard/MediaCard';
 import LoadingIcon from '../../components/Loading/LoadingIcon';
 import { useTranslation } from 'react-i18next';
+import {  useNavigate } from 'react-router-dom';
 
 interface Movie {
   id: number;
@@ -16,6 +17,8 @@ const AwardWinningMovies: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
   const { i18n, t } = useTranslation();
   useEffect(() => {
     const getAwardWinningMovies = async () => {
@@ -39,11 +42,14 @@ const AwardWinningMovies: React.FC = () => {
   if (error) {
     return <Typography>{error}</Typography>;
   }
+const handleMovieClick = (movieId: number) => {
+  navigate(`/detail-page/${movieId}/movie`);
+};
 
   return (
-    <Box sx={{ padding: '20px' }}>
+    <Box sx={{ padding: "20px" }}>
       <Typography variant="h4" gutterBottom>
-       {t("hamburgerMenu.Award Winning Movies")}
+        {t("hamburgerMenu.Award Winning Movies")}
       </Typography>
       <Grid container spacing={4}>
         {movies.map((movie) => (
@@ -52,7 +58,7 @@ const AwardWinningMovies: React.FC = () => {
             title={movie.title}
             posterPath={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
             releaseDate={movie.release_date}
-            onClick={() => console.log(`Clicked on ${movie.title}`)}
+            onClick={() => handleMovieClick(movie.id)} // Tıklanınca handleMovieClick çağırılır
           />
         ))}
       </Grid>
