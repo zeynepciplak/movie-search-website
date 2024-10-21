@@ -123,6 +123,22 @@ const HamburgerMenu: React.FC = () => {
                 />
               </ListItem>
             </Grid>
+            <Grid item xs={6}>
+              <ListItem button onClick={() => navigate("/newest-movies")}>
+                <ListItemText
+                  primary={t("hamburgerMenu.Newest Movies")}
+                  className="menu-category"
+                />
+              </ListItem>
+            </Grid>
+            <Grid item xs={6}>
+              <ListItem button onClick={() => navigate("/newest-series")}>
+                <ListItemText
+                  primary={t("hamburgerMenu.Newest Series")}
+                  className="menu-category"
+                />
+              </ListItem>
+            </Grid>
           </Grid>
 
           <Grid container spacing={4} className="menu-grid">
