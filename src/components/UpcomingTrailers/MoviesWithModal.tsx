@@ -6,14 +6,14 @@ import { Box, Typography } from '@mui/material';
 import LoadingIcon from '../Loading/LoadingIcon';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import backGroundImage from "../../assets/duvarkagıdı.jpg"; // Arka plan görselini ekleyin
+import backGroundImage from "../../assets/duvarkagıdı.jpg"; 
 
 // Özelleştirilmiş Sol Buton
 const PrevArrow = ({ onClick }: any) => (
   <div
     style={{
       position: 'absolute',
-      left: '-25px', // Kenara yaklaştırdık
+      left: '-25px', 
       top: '50%',
       transform: 'translateY(-50%)',
       zIndex: 2,
@@ -30,7 +30,7 @@ const NextArrow = ({ onClick }: any) => (
   <div
     style={{
       position: 'absolute',
-      right: '-25px', // Kenara yaklaştırdık
+      right: '-25px',
       top: '50%',
       transform: 'translateY(-50%)',
       zIndex: 2,

@@ -57,7 +57,7 @@ export const fetchPopularMovies = async (language: string): Promise<Movie[]> => 
     const response = await axios.get(`${baseURL}/trending/movie/week`, {
       params: {
         api_key: apiKey,
-        language: language, // Dil parametresi dinamik olarak gönderiliyor
+        language: language, 
       },
     });
 
@@ -82,8 +82,8 @@ export const fetchTVDetails = async (tvId: string, language: string) => {
     const response = await axios.get(`${baseURL}/tv/${tvId}`, {
       params: {
         api_key: apiKey,
-        language: language, // Dil parametresi dinamik olarak gönderiliyor
-        append_to_response: 'credits', // Oyuncu bilgilerini de alıyoruz
+        language: language, 
+        append_to_response: 'credits', 
       },
     });
 
@@ -103,8 +103,8 @@ export const fetchMovieDetailsById = async (movieId: string, language: string) =
     const response = await axios.get(`${baseURL}/movie/${movieId}`, {
       params: {
         api_key: apiKey,
-        language: language, // Dil parametresi dinamik olarak gönderiliyor
-        append_to_response: 'credits', // Oyuncu bilgilerini de alıyoruz
+        language: language, 
+        append_to_response: 'credits', 
       },
     });
 
@@ -122,10 +122,10 @@ export const fetchIMDbTop100Movies = async (language: string , page: number): Pr
     const response = await axios.get(`${baseURL}/discover/movie`, {
       params: {
         api_key: apiKey,
-        language: language, // Dil parametresi dinamik
+        language: language, 
         sort_by: 'vote_average.desc',
         'vote_count.gte': 1000, // IMDb Top 100 için minimum 1000 oy
-        page: page,  // İlk sayfayı alıyoruz, istersen bunu artırabilirsin
+        page: page, 
       },
     });
 
@@ -336,76 +336,8 @@ export const fetchAwardWinningMovies = async (language: string): Promise<Movie[]
   }
 };
 
-export const fetchPopularDirectors = async (language: string): Promise<Director[]> => {
-  try {
-    const response = await axios.get(`${baseURL}/person/popular`, {
-      params: {
-        api_key: apiKey,
-        language: language,
-      },
-    });
-    console.log(response.data);
-    // Yönetmenleri popüler kişilerden filtreliyoruz (yönetmenler için popüler film yapımcılarını kullanıyoruz)
-    const directors = response.data.results
-      .filter((person: any) => person.known_for_department === 'Directing') // Yalnızca yönetmenleri filtrele
-      .map((director: any) => ({
-        id: director.id,
-        name: director.name,
-        profile_path: director.profile_path
-          ? `https://image.tmdb.org/t/p/w500${director.profile_path}`
-          : null,  // Profil resmi yoksa null atanıyor
-        biography: director.biography || 'Biography not available.',
-        known_for: director.known_for.map((movie: any) => ({
-          id: movie.id,
-          title: movie.title,
-          poster_path: movie.poster_path ? `https://image.tmdb.org/t/p/w200${movie.poster_path}` : null,
-        })),
-      }));
 
-    return directors;
-  } catch (error) {
-    console.error('Yönetmenleri çekerken bir hata oluştu:', error);
-    return [];
-  }
-};
-// Yönetmen detaylarını getiren fonksiyon
-export const fetchDirectorDetails = async (directorId: number, language: string) => {
-  try {
-    const response = await axios.get(`${baseURL}/person/popular`, {
-      params: {
-        api_key: apiKey,
-        language: language,
-      },
-    });
-    console.log(response.data);
-    
 
-    const directorData = response.data;
-    console.log("Director Data API Response:", directorData);
-    const directorDetails = {
-      id: directorData.id,
-      name: directorData.name,
-      profile_path: directorData.profile_path
-        ? `https://image.tmdb.org/t/p/w500${directorData.profile_path}`
-        : null,
-      biography: directorData.biography || 'No biography available.',
-      known_for: directorData.movie_credits?.crew
-        .filter((movie: any) => movie.job === 'Director')
-        .map((movie: any) => ({
-          id: movie.id,
-          title: movie.title,
-          poster_path: movie.poster_path
-            ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-            : 'https://via.placeholder.com/200x300?text=No+Poster',
-        })),
-    };
-
-    return directorDetails;
-  } catch (error) {
-    console.error('Yönetmen detaylarını çekerken bir hata oluştu:', error);
-    return null;
-  }
-};
 // En yeni filmleri getiren fonksiyon
 export const fetchNewestMovies = async (language: string,page:number): Promise<Movie[]> => {
   try {
@@ -428,12 +360,12 @@ export const fetchNewestMovies = async (language: string,page:number): Promise<M
     // release_date'e göre en yeni'den eskiye sıralıyoruz
     return movies.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
   } catch (error) {
-    console.error('Error fetching newest movies:', error);
+    console.error('En yeni filmleri alma hatası:', error);
     return [];
   }
 };
 
-// En yeni dizileri getiren fonksiyon (popüler veya güncel diziler üzerinden)
+// En yeni dizileri getiren fonksiyon 
 export const fetchNewestSeries = async (language: string,page:number): Promise<Series[]> => {
   try {
     const response = await axios.get(`${baseURL}/tv/airing_today`, {
@@ -455,7 +387,7 @@ export const fetchNewestSeries = async (language: string,page:number): Promise<S
     // first_air_date'e göre en yeni'den eskiye sıralıyoruz
     return series.sort((a, b) => new Date(b.first_air_date).getTime() - new Date(a.first_air_date).getTime());
   } catch (error) {
-    console.error('Error fetching newest series:', error);
+    console.error('En yeni dizileri alma hatası:', error);
     return [];
   }
 };
@@ -581,7 +513,7 @@ export const fetchArtistDetails = async (artistId: string, language: string) => 
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching artist details:', error);
+    console.error('Sanatçı ayrıntıları alınırken hata oluştu:', error);
     throw error;
   }
 };

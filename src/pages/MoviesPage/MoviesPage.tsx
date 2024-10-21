@@ -28,7 +28,7 @@ const MoviesPage: React.FC = () => {
     loadMovies();
   }, [i18n.language, page]);
 
-  const handleLoadMore = async () => {  // async ekliyoruz
+  const handleLoadMore = async () => { 
     setPage((prevPage) => prevPage + 1); 
   };
 

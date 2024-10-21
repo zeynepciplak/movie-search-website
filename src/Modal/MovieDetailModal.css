@@ -1,4 +1,4 @@
-/* Modalın arka plan rengi */
+
 .custom-modal {
     background-color: #5a5a5a;
     color: #fff ;
@@ -10,7 +10,7 @@
 
   }
   
-  /* Modal dışındaki overlay rengi */
+ 
   .react-responsive-modal-overlay {
     background-color: rgba(0, 0, 0, 0) ;
   }

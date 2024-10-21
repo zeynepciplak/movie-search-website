@@ -7,7 +7,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { Movie, MovieDetails } from '../api/tmdbApi';
 import { useTranslation } from 'react-i18next';
 import InfoIcon from '@mui/icons-material/Info';
-import MovieDetailModal from '../Modal/MovieDetailModal'; // Modal bileşeni
+import MovieDetailModal from '../Modal/MovieDetailModal'; 
 import StarIcon from '@mui/icons-material/Star';
 
 // Poster görseli için stil
@@ -51,20 +51,20 @@ export interface MovieGridItemProps {
   movieDetails: MovieDetails | null;
 }
 
-// Bileşen
-const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieDetails, movieDetails }) => {
-  const { t, i18n } = useTranslation(); // Dil desteği
 
-  // Modal state
+const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieDetails, movieDetails }) => {
+  const { t, i18n } = useTranslation(); 
+
+
   const [openModal, setOpenModal] = useState(false);
 
-  // Modal'ı açma ve film detaylarını fetch etme
+  
   const handleOpenModal = () => {
     fetchMovieDetails(); // Film detaylarını getir
     setOpenModal(true); // Modalı aç
   };
 
-  // Modal'ı kapatma
+
   const handleCloseModal = () => {
     setOpenModal(false); // Modalı kapat
   };
@@ -95,7 +95,7 @@ const MovieGridItem: React.FC<MovieGridItemProps> = ({ movie, index, fetchMovieD
             </TextWrapper>
           </Grid>
 
-          {/* Sağ alt köşeye InfoIcon ekliyoruz */}
+         
           <div style={{ position: 'absolute', right: '10px', bottom: '10px' }}>
             <InfoIcon onClick={handleOpenModal} style={{ cursor: 'pointer' }} />
           </div>

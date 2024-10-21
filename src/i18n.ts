@@ -23,7 +23,7 @@ i18n
     fallbackLng: 'en', // Bir dil bulunamazsa kullanılacak dil
     debug: true, // Geliştirme sırasında hata ayıklama için
     interpolation: {
-      escapeValue: false, // React zaten XSS koruması sağlar
+      escapeValue: false, 
     },
     backend: {
       loadPath: '/locales/{{lng}}/translation.json', // Çeviri dosyalarının yolu

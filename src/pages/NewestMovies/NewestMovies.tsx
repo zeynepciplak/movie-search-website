@@ -18,7 +18,7 @@ const NewestMovies: React.FC = () => {
   const { i18n, t } = useTranslation();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);  // Yüklenme durumu
+  const [loading, setLoading] = useState(true);  
 
   useEffect(() => {
     const getMovies = async () => {
@@ -42,7 +42,7 @@ const NewestMovies: React.FC = () => {
 
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
-          <LoadingIcon /> {/* Kendi tanımladığımız LoadingSpinner bileşeni */}
+          <LoadingIcon /> 
         </Box>
       ) : (
         <Grid container spacing={2}>

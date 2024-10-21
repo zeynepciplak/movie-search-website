@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import './MovieSlider.css'; // Bu stil dosyasını kullanacağız
+import './MovieSlider.css'; 
 
 interface Movie {
   id: number;
@@ -9,7 +9,7 @@ interface Movie {
 }
 
 interface MovieSliderProps {
-  movies: Movie[]; // Film verisi array olarak gelecek
+  movies: Movie[];
 }
 
 const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
@@ -18,10 +18,10 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ movies }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false); // Simüle edilen yükleme süresi
-    }, 1000); // 1 saniye yükleme süresi
+      setLoading(false); 
+    }, 1000); 
 
-    return () => clearTimeout(timer); // Bileşen unmount olduğunda timeout'u temizle
+    return () => clearTimeout(timer); 
   }, []);
 
   const handleNext = () => {

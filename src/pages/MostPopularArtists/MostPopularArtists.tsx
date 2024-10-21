@@ -3,8 +3,8 @@ import { Grid, Box ,Typography} from '@mui/material';
 import { fetchPopularArtists } from '../../api/tmdbApi';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import MediaCard from '../../components/MediaCard/MediaCard'; // MediaCard bileşenini ekliyoruz
-import LoadMoreButton from '../../components/LoadMoreButton/LoadMoreButton'; // LoadMoreButton bileşeni
+import MediaCard from '../../components/MediaCard/MediaCard'; 
+import LoadMoreButton from '../../components/LoadMoreButton/LoadMoreButton'; 
 import LoadingIcon from '../../components/Loading/LoadingIcon';
 
 
@@ -60,7 +60,7 @@ const MostPopularArtists: React.FC = () => {
                 title={artist.name}
                 posterPath={artist.imageSrc}
                 releaseDate={''} 
-                onClick={() => handleArtistClick(artist.id)} // Sanatçıya tıklandığında detay sayfasına yönlendirme
+                onClick={() => handleArtistClick(artist.id)}
                 xs={12} sm={6} md={4} lg={2} 
               />
             ))}

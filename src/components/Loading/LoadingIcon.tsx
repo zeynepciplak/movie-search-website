@@ -12,7 +12,7 @@ const LoadingIcon: React.FC = () => {
     >
       <CircularProgress 
         disableShrink 
-        sx={{ color: '#FFD700' }} // Burada kendi sarı rengini kullanıyoruz
+        sx={{ color: '#FFD700' }} 
       />
     </Box>
   );

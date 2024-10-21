@@ -56,7 +56,7 @@ export default function DetailPage() {
   const overview = details.overview;
   const voteAverage = details.vote_average;
 
-  // Film veya TV dizisi için yönetmen bilgisi
+ 
   let director;
   if (type === "movie") {
     director = details.credits.crew.find(
@@ -71,7 +71,7 @@ export default function DetailPage() {
   const cast = details?.credits?.cast
     .slice(0, 5)
     .map((actor: any) => actor.name)
-    .join(", "); // İlk 5 oyuncuyu alıyoruz
+    .join(", ");
 
   return (
     <>

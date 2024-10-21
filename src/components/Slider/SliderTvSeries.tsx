@@ -23,7 +23,7 @@ const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
   const [items, setItems] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const cardWidth = 160; // Kart genişliği küçültüldü
+  const cardWidth = 160; 
 
   useEffect(() => {
     const getItems = async () => {
@@ -82,7 +82,7 @@ const Slider: React.FC<SliderProps> = ({ title, fetchData }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '250px', // Sabit alan
+                height: '250px',
                 width: '100%',
               }}
             >

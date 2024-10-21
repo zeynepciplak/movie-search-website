@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Box, Typography, TextField, Button, Link, IconButton } from '@mui/material';
 import { Email, Phone, Facebook, Google, Twitter, Instagram } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import './Footer.css'; // CSS dosyasını import ediyoruz
+import './Footer.css'; 
 import FooterLogo from '../../assets/FooterLogo.png';
 
 const Footer: React.FC = () => {
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           <Typography variant="h6" className="footer-title"><img
               src={FooterLogo} 
               alt="Your Logo"
-              style={{ width: '150px', height: '150px' }} // Logonun genişliği ve yüksekliği
+              style={{ width: '150px', height: '150px' }} 
             /></Typography>
          
           <Typography className="footer-contact">{t("footer.Contact Us")}</Typography>
@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
           </Box>
         </Grid>
 
-        {/* Information Links */}
+       
         <Grid item xs={12} sm={6} md={3}>
           <Typography variant="h6" className="footer-title">{t("footer.Information")}</Typography>
           <Box>
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
           </Box>
         </Grid>
 
-        {/* Helpful Links */}
+       
         <Grid item xs={12} sm={6} md={3}>
           <Typography variant="h6" className="footer-title">{t("footer.Helpful Links")}</Typography>
           <Box>
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
           </Box>
         </Grid>
 
-        {/* Subscription Box */}
+     
         <Grid item xs={12} sm={6} md={3}>
           <Typography variant="h6" className="footer-title">{t("footer.Subscribe For More")}</Typography>
           <TextField label={t("footer.Enter your Email")} variant="outlined" className="footer-input" />
@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
         </Grid>
       </Grid>
 
-      {/* Social Media Icons */}
+      
       <Box className="footer-social">
         <IconButton className="footer-social-icon"><Facebook /></IconButton>
         <IconButton className="footer-social-icon"><Google /></IconButton>
@@ -64,7 +64,6 @@ const Footer: React.FC = () => {
         <IconButton className="footer-social-icon"><Instagram /></IconButton>
       </Box>
 
-      {/* Footer Bottom Line */}
       <Typography className="footer-bottom-text">{t("footer.© 2024 Your Company, Ltd. All rights reserved.")}</Typography>
     </Box>
   );

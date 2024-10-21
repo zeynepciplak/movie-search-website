@@ -23,7 +23,7 @@ interface MovieCardProps {
 const StyledCard = styled(Card)({
   minWidth: 275,
   cursor: "pointer",
-  borderRadius: "15px", // Yuvarlak köşeler
+  borderRadius: "15px", 
   overflow: "hidden",
   transition: "0.3s",
   border: "2px solid transparent",
@@ -32,7 +32,7 @@ const StyledCard = styled(Card)({
   flexDirection: "column",
   alignItems: "center",
   position: "relative",
-  backgroundColor: "#2e3134", // Arka plan rengini koyu yapıyoruz
+  backgroundColor: "#2e3134", 
 
   "&:hover": {
     borderColor: "#fbc02d",
@@ -59,7 +59,7 @@ const StyledButton = styled(Button)({
   backgroundColor: "#3a3a3a",
   color: "#fbc02d",
   borderRadius: "15px",
-  fontSize: "0.8rem", // Yazı boyutu
+  fontSize: "0.8rem",
   padding: "8px 16px",
   "&:hover": {
     backgroundColor: "#fbc02d",

@@ -1,11 +1,11 @@
-// LoadMoreButton.tsx
+
 import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
 interface LoadMoreButtonProps {
-  onClick: () => Promise<void>; // Asenkron fonksiyon, veri yüklenirken bekleyecek
-  label: string; // Buton üzerindeki yazı
+  onClick: () => Promise<void>; 
+  label: string; 
 }
 
 // Butonun stilini burada tanımlıyoruz
@@ -22,12 +22,12 @@ const StyledButton = styled(Button)({
 });
 
 const LoadMoreButton: React.FC<LoadMoreButtonProps> = ({ onClick, label }) => {
-  const [isLoading, setIsLoading] = useState(false); // Yükleme durumu yönetimi
+  const [isLoading, setIsLoading] = useState(false); 
 
   // Butona tıklanınca async fonksiyon tetiklenir ve yükleme durumu kontrol edilir
   const handleClick = async () => {
     setIsLoading(true);
-    await onClick(); // Butona verilen asenkron fonksiyon
+    await onClick(); 
     setIsLoading(false);
   };
 

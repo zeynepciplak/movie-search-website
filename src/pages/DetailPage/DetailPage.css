@@ -1,4 +1,4 @@
-/* Detay sayfası için genel yapı */
+
 .detail-page-container {
     max-width: 100%;
     margin: 0 auto;
@@ -41,7 +41,7 @@
   }
   
   .overview-section {
-    margin-top: 20px; /* Konu kısmı için boşluk */
+    margin-top: 20px; 
   }
   
   .overview-section h2 {
@@ -53,8 +53,7 @@
     font-size: 1.1rem;
     line-height: 1.6;
   }
-  
-  /* Mobil görünüm için düzenlemeler */
+ 
   @media (max-width: 768px) {
     .detail-content {
       flex-direction: column;

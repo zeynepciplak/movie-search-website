@@ -52,8 +52,8 @@ const Navbar: React.FC = () => {
           style={{ 
             width: '120px', 
             height: '50px', 
-            borderRadius: '12px', // Kenarları yuvarlamak için
-            marginLeft: '40px', // Sola boşluk bırakmak için
+            borderRadius: '12px', 
+            marginLeft: '40px', 
             marginTop:'5px',
           }} 
         />
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
                   '.MuiSelect-select:focus': { backgroundColor: 'transparent' },
                   '.MuiSvgIcon-root': { color: 'white' },
                   '&::before, &::after': { borderBottom: 'none' },
-                  '.MuiOutlinedInput-notchedOutline': { borderBottom: 'none', border: 'none' }, // Outlined borderları kaldırır
+                  '.MuiOutlinedInput-notchedOutline': { borderBottom: 'none', border: 'none' }, 
                   '&:hover:not(.Mui-disabled):before': {
                     borderBottom: 'none',
                   },

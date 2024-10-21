@@ -15,8 +15,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 150px; /* Kart genişliği */
-  height: 250px; /* Kart yüksekliği */
+  width: 150px; 
+  height: 250px; 
   margin: 0 5px;
 }
 

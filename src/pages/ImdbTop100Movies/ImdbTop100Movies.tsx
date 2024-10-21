@@ -129,7 +129,7 @@ const ImdbTop100Movies: React.FC = () => {
             <Box
               style={{
                 display: 'flex',
-                justifyContent: 'flex-end', // Sağ tarafa hizalar
+                justifyContent: 'flex-end', 
                 marginRight:'4rem',
                 marginBottom:'30px',
               

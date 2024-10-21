@@ -14,7 +14,6 @@ interface MediaCardProps {
   xl?: number; 
 }
 
-// Styled Card component
 const StyledCard = styled(Card)({
   width: '100%',
   maxWidth: '180px',

@@ -37,7 +37,7 @@ const theme = createTheme({
   },
   typography: {
     body2: {
-      fontSize: '14px', // body2 için varsayılan font boyutu 12px olacak
+      fontSize: '14px', // body2 için varsayılan font boyutu 
       textAlign: 'left', // Genel olarak sola hizalayacak
       color:'#6d6d6d',
     },

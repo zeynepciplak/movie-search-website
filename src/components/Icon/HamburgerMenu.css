@@ -1,24 +1,22 @@
-/* Ana kategorileri daha dikkat çekici yap */
+
 .menu-category {
   font-size: 1.6rem;
-  /* Daha büyük yazı tipi */
   font-weight: bold;
   color: #f1c40f;
-  /* Dikkat çekici bir renk */
   padding: 10px 0;
   text-align: center;
   cursor: pointer;
   transition: color 0.3s ease, border-bottom 0.3s ease;
-  /* Hover animasyonu */
+  
 }
 
 .menu-category:hover {
   color: #f39c12;
   border-bottom: 2px solid #f1c40f;
-  /* Altına çizgi ekle */
+
 }
 
-/* "Filmler" ve "Diziler" başlıklarını belirginleştir */
+
 .category-header {
   font-size: 1.4rem;
   font-weight: bold;
@@ -34,33 +32,27 @@
   color: #FFFFFF;
   text-align: center;
   transition: background-color 0.3s ease, color 0.3s ease;
-  /* Hover geçişleri */
   padding: 8px;
   border-radius: 5px;
-  /* Köşeleri hafif yuvarlat */
+ 
 }
 
 .menu-item:hover {
   background-color: #f1c40f;
-  /* Arka plan rengi değişimi */
   color: #f1c40f;
-  /* Yazı rengini hover'da siyah yap */
   box-shadow: 0 4px 10px #f1c40f;
-  /* Hafif bir gölge efekti */
   transform: translateY(-2px);
-  /* Hover'da öğeyi biraz yukarı kaldırma efekti */
 }
 
 .menu-item-text:hover {
   color: #f39c12;
-  /* Hover'da yazı rengi değişimi */
+
 }
-/* Kategori altındaki yazıların metin ayarı */
 .menu-item-text {
   text-align: center;
   font-weight: bold;
   transition: color 0.3s ease;
-  /* Hover geçişi */
+ 
 }
 
 /* Responsive düzenlemeler */
@@ -78,13 +70,12 @@
   }
 }
 
-/* Modern ve şık scrollbar */
+
 .hamburger-drawer {
   overflow-y: auto;
   scrollbar-width: thin;
-  /* Firefox için */
   scrollbar-color: #f1c40f #2e3134;
-  /* Firefox için, thumb ve track renkleri */
+ 
 }
 
 /* WebKit tarayıcılar için (Chrome, Safari, Edge) */
@@ -95,21 +86,16 @@
 
 .hamburger-drawer::-webkit-scrollbar-track {
   background: #2e3134;
-  /* Scrollbar arkaplan rengi (track) */
   border-radius: 10px;
-  /* Track'in köşelerini yuvarlat */
 }
 
 .hamburger-drawer::-webkit-scrollbar-thumb {
   background-color: #f1c40f;
-  /* Scrollbar rengi (thumb) */
   border-radius: 10px;
-  /* Thumb'in köşelerini yuvarlat */
   border: 2px solid #2e3134;
-  /* Thumb'in etrafına boşluk bırak */
 }
 
 .hamburger-drawer::-webkit-scrollbar-thumb:hover {
   background-color: #f39c12;
-  /* Hover durumunda thumb'in rengi değişir */
+ 
 }

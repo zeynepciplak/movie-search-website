@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid, Typography, Box } from '@mui/material';
-import { fetchTVShowsByGenre, Series } from '../../api/tmdbApi'; // API fonksiyonları
+import { fetchTVShowsByGenre, Series } from '../../api/tmdbApi'; 
 import MediaCard from '../../components/MediaCard/MediaCard';
-import LoadingIcon from '../../components/Loading/LoadingIcon'; // Yükleme ikonu
+import LoadingIcon from '../../components/Loading/LoadingIcon'; 
 import { useTranslation } from 'react-i18next';
 
 const SeriesByGenrePage: React.FC = () => {
   const { genreId } = useParams<{ genreId: string }>(); // URL parametresinden genreId'yi alıyoruz
   const [series, setSeries] = useState<Series[]>([]); // Dizi listesi state'i
   const [loading, setLoading] = useState<boolean>(true); // Yükleme durumu için state
-  const { i18n, t } = useTranslation(); // Dil desteği
+  const { i18n, t } = useTranslation(); 
   
   useEffect(() => {
     const loadSeriesByGenre = async () => {

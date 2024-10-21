@@ -2,20 +2,20 @@
   position: relative;
   width: 80%;
   margin: 0 auto;
-  overflow: hidden; /* İçeriğin taşmasını engelle */
-  padding: 0 50px;  /* Sağ ve sol boşluk ekleyerek butonlar için yer aç */
+  overflow: hidden; 
+  padding: 0 50px; 
 }
 
 .slider-track {
   display: flex;
-  overflow-x: scroll; /* Yatay kaydırma sağla */
-  scroll-behavior: smooth; /* Kaydırma animasyonu */
+  overflow-x: scroll; 
+  scroll-behavior: smooth;
   padding: 20px 0;
 }
 
 .movie-card {
-  min-width: 200px; /* Kart genişliği */
-  margin-right: 10px; /* Kartlar arası boşluk */
+  min-width: 200px; 
+  margin-right: 10px; 
 }
 
 /* Slider butonları */
@@ -33,34 +33,34 @@
   justify-content: center;
   border-radius: 50%;
   transition: background-color 0.3s;
-  z-index: 1; /* Butonların içerikten önde görünmesini sağlar */
+  z-index: 1; 
 }
 
 .slider-button.left {
-  left: 0px; /* Sol buton */
+  left: 0px; 
 }
 
 .slider-button.right {
-  right: 0px; /* Sağ buton */
+  right: 0px; 
 }
 
 .slider-button:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Hover efekti */
 }
 
-/* Responsive: Mobil ekranlarda slider butonlarını gizle */
+
 @media (max-width: 768px) {
   .slider-button {
-    display: none; /* Mobilde butonları gizle */
+    display: none; 
   }
 
   .movie-card {
-    min-width: 150px; /* Kart genişliğini mobilde küçült */
+    min-width: 150px; 
   }
 }
 
 @media (max-width: 480px) {
   .movie-card {
-    min-width: 120px; /* Daha küçük mobil cihazlarda kart genişliğini daha da küçült */
+    min-width: 120px; 
   }
 }

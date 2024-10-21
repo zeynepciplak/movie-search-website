@@ -24,7 +24,7 @@
 }
 
 .slide-item {
-  flex: 0 0 200px; /* Kart genişliği büyütüldü */
+  flex: 0 0 200px; 
   margin: 0 10px;
   border-radius: 12px;
   overflow: hidden;
@@ -37,7 +37,7 @@
 
 .slide-image {
   width: 100%;
-  aspect-ratio: 2/3; /* Afişlerin oranı 2:3 olarak korunuyor */
+  aspect-ratio: 2/3; 
   object-fit: cover;
   border-radius: 12px;
 }
@@ -69,7 +69,7 @@
   position: absolute;
   bottom: -20px;
   left: 10px;
-  background-color: #FFD700; /* Kullandığın sarı renk */
+  background-color: #FFD700; 
   border-radius: 50%;
   padding: 5px 10px;
   color: white;
@@ -97,21 +97,21 @@
 }
 
 .slider-button.left {
-  left: -25px; /* Oklar için daha fazla görünürlük sağlandı */
+  left: -25px; 
 }
 
 .slider-button.right {
-  right: -25px; /* Oklar için daha fazla görünürlük sağlandı */
+  right: -25px; 
 }
 
-/* Responsive Design */
+
 @media (max-width: 1280px) {
   .slide-item {
-    flex: 0 0 180px; /* Daha küçük ekranlar için kart genişliği küçültüldü */
+    flex: 0 0 180px; 
   }
 
   .slide-image {
-    aspect-ratio: 2/3; /* Oranı korumaya devam ediyoruz */
+    aspect-ratio: 2/3;
   }
 }
 

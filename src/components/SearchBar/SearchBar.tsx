@@ -3,7 +3,7 @@ import { styled, alpha } from "@mui/material/styles";
 import { InputBase, List, ListItem, ListItemText, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
-import { fetchSearchResults } from "../../api/tmdbApi"; // Arama API fonksiyonu
+import { fetchSearchResults } from "../../api/tmdbApi"; 
 import { useTranslation } from "react-i18next";
 
 const Search = styled("div")(({ theme }) => ({
@@ -89,13 +89,13 @@ const SearchBar: React.FC = () => {
       try {
         const results = await fetchSearchResults(searchQuery, language);
         setSearchResults(results);
-        setShowResults(true); // Sonuçlar olduğunda göster
+        setShowResults(true); 
       } catch (error) {
         console.error("Arama sonuçları getirilirken hata oluştu:", error);
       }
     };
 
-    const debounceFetch = setTimeout(fetchResults, 500); // 500ms bekleme (debounce)
+    const debounceFetch = setTimeout(fetchResults, 500); 
 
     return () => clearTimeout(debounceFetch);
   }, [searchQuery, language]);
@@ -112,7 +112,7 @@ const SearchBar: React.FC = () => {
     }
 
     navigate(path);
-    setShowResults(false); // Sonuçlara tıklayınca kapat
+    setShowResults(false); 
   };
 
   useEffect(() => {
@@ -123,7 +123,7 @@ const SearchBar: React.FC = () => {
         inputRef.current &&
         !inputRef.current.contains(event.target as Node)
       ) {
-        setShowResults(false); // Dışına tıklanınca kapat
+        setShowResults(false); 
       }
     };
 
@@ -134,7 +134,6 @@ const SearchBar: React.FC = () => {
     };
   }, []);
 
-  // Arama kutusuna tıklayınca sonuçları tekrar göster
   const handleInputFocus = () => {
     if (searchResults.length > 0) {
       setShowResults(true);
@@ -153,7 +152,7 @@ const SearchBar: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           inputRef={inputRef}
-          onFocus={handleInputFocus} // Input'a tıklanınca sonuçları geri getir
+          onFocus={handleInputFocus} 
         />
       </Search>
 

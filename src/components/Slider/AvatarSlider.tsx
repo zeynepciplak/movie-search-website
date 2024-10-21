@@ -56,7 +56,7 @@ const AvatarSlider = ({ title, fetchData }: { title: string, fetchData: FetchDat
   };
 
   const handleAvatarClick = (artistId: number) => {
-    navigate(`/detail-page/${artistId}/artist`); // Yönlendirme, artistId'yi kullanarak ilgili sayfaya gidiyoruz
+    navigate(`/detail-page/${artistId}/artist`); 
   };
 
   const settings = {
